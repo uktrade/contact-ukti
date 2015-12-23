@@ -4,11 +4,18 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var sassMiddleware = require('node-sass-middleware');
+var mojularSassPaths = require('mojular/sass-paths');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+var loadPaths = mojularSassPaths([
+  require('mojular-govuk-elements/package.json'),
+  require('mojular-moj-elements/package.json')
+]);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,6 +27,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(sassMiddleware({
+  src: path.join(__dirname, 'public', 'sass'),
+  dest: path.join(__dirname, 'public', 'stylesheets'),
+  prefix: '/stylesheets',
+  sourceMap: true,
+  includePaths: loadPaths
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
