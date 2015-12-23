@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
 var sassMiddleware = require('node-sass-middleware');
 var mojularSassPaths = require('mojular/sass-paths');
 
@@ -26,6 +27,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
 app.use(cookieParser());
 app.use(sassMiddleware({
   src: path.join(__dirname, 'public', 'sass'),
