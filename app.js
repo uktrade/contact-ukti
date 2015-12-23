@@ -8,7 +8,7 @@ var sassMiddleware = require('node-sass-middleware');
 var mojularSassPaths = require('mojular/sass-paths');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var enquiryForm = require('./routes/enquiry-form');
 
 var app = express();
 
@@ -37,7 +37,7 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/enquire', enquiryForm);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

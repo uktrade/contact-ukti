@@ -1,5 +1,8 @@
 extends ../node_modules/mojular-templates/layouts/jade/base
 
+block prepend page_title
+  = title + ' | '
+
 block stylesheets
   link(rel='stylesheet', href='/stylesheets/style.css')
 

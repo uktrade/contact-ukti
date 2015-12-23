@@ -1,0 +1,93 @@
+extends layout
+
+block content
+  form(action='enquiry-handler' method='post')
+    h1 Investment enquiry
+    fieldset.form-group
+      legend.form-label-bold Your details
+      div.form-group
+        label.form-label(for='name') Name
+        input#name.form-control(type='text' name='name')
+      div.form-group
+        label.form-label(for='job-title') Job title
+        input#job-title.form-control(type='text' name='job')
+      div.form-group
+        label.form-label(for='email') Email address
+        input#email.form-control(type='email' name='email')
+      div.form-group
+        label.form-label(for='phone') Telephone number
+        input#phone.form-control(type='text' name='phone')
+    fieldset.form-group
+      legend.form-label-bold Your company details
+      div.form-group
+        label.form-label(for='company-name') Company name
+        input#company-name.form-control(type='text' name='company-name')
+      div.form-group
+        label.form-label(for='company-address') Company address
+        textarea#company-address.form-control(type='company-address')
+      fieldset.form-group
+        legend Company type
+        label.block-label(for='type-company')
+          input#type-company(name='org-type' type='radio' value='Company or Organisation')
+          | Company or Organisation
+        label.block-label(for='type-govt')
+          input#type-govt(name='org-type' type='radio' value='Government Department')
+          | Government Department
+        label.block-label(for='type-individual')
+          input#type-individual(name='org-type' type='radio' value='Individual')
+          | Individual
+        label.block-label(for='type-intermediary')
+          input#type-intermediary(name='org-type' type='radio' value='Intermediary')
+          | Intermediary
+        label.block-label(for='type-student')
+          input#type-student(name='org-type' type='radio' value='Student')
+          | Student
+      div.form-group
+        label.form-label(for='company-based') Where is your company based?
+        input#company-based.form-control(type='text' name='company-based')
+      div.form-group
+        label.form-label(for='industry') Primary industry
+        input#industry.form-control(type='text' name='industry')
+      div.form-group
+        label.form-label(for='turnover') Annual turnover (optional)
+        input#turnover.form-control(type='text' name='turnover')
+      div.form-group
+        label.form-label(for='employees') Number of employees (optional)
+        input#employees.form-control(type='text' name='employees')
+      fieldset.form-group
+        legend.form-label-bold How did you hear about UK Trade & Investment?
+        label.block-label(for='heard-ukti')
+          input#heard-ukti(name='heard-about' type='radio' value='Contact with UKTI staff member')
+          | Contact with UKTI staff member
+        label.block-label(for='heard-govuk')
+          input#heard-govuk(name='heard-about' type='radio' value='GOV.UK website')
+          | GOV.UK website
+        label.block-label(for='heard-press')
+          input#heard-press(name='heard-about' type='radio' value='Press article/advert')
+          | Press article/advert
+        label.block-label(for='heard-intermediary')
+          input#heard-intermediary(name='heard-about' type='radio' value='Intermediary')
+          | Intermediary (for example a trade association, chamber or bank)
+        label.block-label(for='heard-social')
+          input#heard-social(name='heard-about' type='radio' value='Social Media')
+          | Social Media
+        label.block-label(for='heard-personal')
+          input#heard-personal(name='heard-about' type='radio' value='Personal reference')
+          | Personal reference
+        label.block-label(for='heard-other')
+          input#heard-other(name='heard-about' type='radio' value='Other')
+          | Other
+    fieldset.form-group
+      legend.form-label-bold Would you be happy to be contacted again?
+      p Please select all that apply
+      label.block-label(for='dpa-ukti')
+        input#dpa-ukti(name='dpa' type='checkbox' value='By UK Trade & Investment')
+        | By UK Trade & Investment
+      label.block-label(for='dpa-partners')
+        input#dpa-partners(name='dpa' type='checkbox' value='By external UK Trade & Investment partners')
+        | By external UK Trade & Investment partners
+      label.block-label(for='dpa-overseas')
+        input#dpa-overseas(name='dpa' type='checkbox' value='By overseas providers for UK Trade & Investment services')
+        | By overseas providers for UK Trade & Investment services
+    .form-group
+      button.button(type='submit') Submit enquiry

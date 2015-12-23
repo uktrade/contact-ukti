@@ -2,3 +2,8 @@
 $images-dir: '/images/';
 
 @import 'govuk';
+
+// patch extra space after textareas
+textarea.form-control {
+  display: block;
+}
