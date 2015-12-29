@@ -1,0 +1,16 @@
+.confirmation-box {
+  margin: 1em 0;
+  padding: 2em;
+  color: $white;
+  text-align: center;
+  background-color: $turquoise;
+
+  h1 {
+    margin: 0 0 10px;
+    font-size: em(36);
+  }
+
+  p {
+    margin: 0 0 em(5);
+  }
+}

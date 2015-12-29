@@ -14,7 +14,7 @@ block content
         label.form-label(for='job-title') Job title
           if errors && errors['job-title']
             span.error-message= errors['job-title'].msg
-        input#job-title.form-control(type='text' name='job' required)
+        input#job-title.form-control(type='text' name='job-title' required)
       div.form-group(class=errors && errors.email ? 'error' : '')
         label.form-label(for='email') Email address
           if errors && errors.email
@@ -36,25 +36,25 @@ block content
         label.form-label(for='company-address') Company address
           if errors && errors['company-address']
             span.error-message= errors['company-address'].msg
-        textarea#company-address.form-control(type='company-address' required)
+        textarea#company-address.form-control(name='company-address' required)
       fieldset.form-group(class=errors && errors['company-type'] ? 'error' : '')
         legend Company type
         if errors && errors['company-type']
           div.error-message= errors['company-type'].msg
         label.block-label(for='company-type')
-          input#company-type(name='org-type' type='radio' value='Company or Organisation' required)
+          input#company-type(name='company-type' type='radio' value='Company or Organisation' required)
           | Company or Organisation
         label.block-label(for='type-govt')
-          input#type-govt(name='org-type' type='radio' value='Government Department' required)
+          input#type-govt(name='company-type' type='radio' value='Government Department' required)
           | Government Department
         label.block-label(for='type-individual')
-          input#type-individual(name='org-type' type='radio' value='Individual' required)
+          input#type-individual(name='company-type' type='radio' value='Individual' required)
           | Individual
         label.block-label(for='type-intermediary')
-          input#type-intermediary(name='org-type' type='radio' value='Intermediary' required)
+          input#type-intermediary(name='company-type' type='radio' value='Intermediary' required)
           | Intermediary
         label.block-label(for='type-student')
-          input#type-student(name='org-type' type='radio' value='Student' required)
+          input#type-student(name='company-type' type='radio' value='Student' required)
           | Student
       div.form-group(class=errors && errors['company-based'] ? 'error' : '')
         label.form-label(for='company-based') Where is your company based?
@@ -78,7 +78,7 @@ block content
         if errors && errors['enquiry-summary']
           span.error-message= errors['enquiry-summary'].msg
       p.form-hint Limit your summary to 250 words
-      textarea#enquiry-summary.form-control(type='enquiry-summary' required)
+      textarea#enquiry-summary.form-control(name='enquiry-summary' required)
     fieldset.form-group(class=errors && errors['heard-about'] ? 'error' : '')
       legend.form-label-bold How did you hear about UK Trade & Investment?
       if errors && errors['heard-about']
@@ -108,13 +108,13 @@ block content
       legend.form-label-bold Would you be happy to be contacted again?
       p Please select all that apply
       label.block-label(for='dpa-ukti')
-        input#dpa-ukti(name='dpa' type='checkbox' value='By UK Trade & Investment' required)
+        input#dpa-ukti(name='data-protection' type='checkbox' value='By UK Trade & Investment' required)
         | By UK Trade & Investment
       label.block-label(for='dpa-partners')
-        input#dpa-partners(name='dpa' type='checkbox' value='By external UK Trade & Investment partners' required)
+        input#dpa-partners(name='data-protection' type='checkbox' value='By external UK Trade & Investment partners' required)
         | By external UK Trade & Investment partners
       label.block-label(for='dpa-overseas')
-        input#dpa-overseas(name='dpa' type='checkbox' value='By overseas providers for UK Trade & Investment services' required)
+        input#dpa-overseas(name='data-protection' type='checkbox' value='By overseas providers for UK Trade & Investment services' required)
         | By overseas providers for UK Trade & Investment services
     .form-group
       button.button(type='submit') Submit enquiry

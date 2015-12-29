@@ -3,6 +3,9 @@ $images-dir: '/images/';
 
 @import 'govuk';
 
+// app specific elements
+@import 'elements/confirmation-box';
+
 // patch extra space after textareas
 textarea.form-control {
   display: block;

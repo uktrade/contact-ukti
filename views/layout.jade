@@ -1,5 +1,8 @@
 extends ../node_modules/mojular-templates/layouts/jade/base
 
+block head
+  base(href='/')
+
 block prepend page_title
   = title + ' | '
 
