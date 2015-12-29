@@ -1,5 +1,9 @@
 var express = require('express');
 var expressValidator = require('express-validator');
+var S = require('string');
+var mapKeys = require('lodash/object/mapKeys');
+var mailer = require('../lib/mailer');
+var jadeCompiler = require('../lib/jadeCompiler');
 var router = express.Router();
 
 /* GET form page. */
@@ -9,6 +13,7 @@ router.get('/', function(req, res, next) {
 
 /* POST handler. */
 router.post('/', function(req, res, next) {
+  req.sanitizeBody();
   req.checkBody({
    'name': {
       notEmpty: true,
@@ -61,9 +66,31 @@ router.post('/', function(req, res, next) {
   if (errors) {
     res.render('enquiry-form', { title: 'Contact UK Trade & Investment', errors: errors });
   } else {
-    res.send(req.body);
+    var fields = mapKeys(req.body, function (value, key) {
+      return S(key).humanize().s;
+    });
+
+    jadeCompiler.compile('emails/inward-enquiry', { fields: fields }, function (error, html) {
+      var send = mailer.sendInwardEnquiry({
+        html: html
+      });
+
+      send.then(function (info) {
+        res.redirect('/enquire/complete');
+      }, function (error) {
+        res.render('error', {
+          message: 'Enquiry not be sent',
+          description: 'There was a problem sending your enquiry. Please try completing your enquiry again.'
+        });
+      });
+    });
   }
 
+});
+
+/* GET success page. */
+router.get('/complete', function(req, res, next) {
+  res.render('enquiry-success');
 });
 
 module.exports = router;
