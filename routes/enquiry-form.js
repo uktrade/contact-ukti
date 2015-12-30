@@ -8,12 +8,11 @@ var router = express.Router();
 
 /* GET form page. */
 router.get('/', function(req, res, next) {
-  res.render('enquiry-form', { title: 'Contact UK Trade & Investment' });
+  res.render('enquiry-form', { title: 'Contact UK Trade & Investment', formData: {} });
 });
 
 /* POST handler. */
 router.post('/', function(req, res, next) {
-  req.sanitizeBody();
   req.checkBody({
    'name': {
       notEmpty: true,
@@ -66,7 +65,10 @@ router.post('/', function(req, res, next) {
 
   var errors = req.validationErrors(true);
   if (errors) {
-    res.render('enquiry-form', { title: 'Contact UK Trade & Investment', errors: errors });
+    res.render('enquiry-form', {
+      title: 'Contact UK Trade & Investment',
+      formErrors: errors,
+      formData: req.body });
   } else {
     var fields = mapKeys(req.body, function (value, key) {
       return S(key).humanize().s;
