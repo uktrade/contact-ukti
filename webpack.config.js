@@ -1,4 +1,4 @@
-var webpack = require("webpack");
+var webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -11,7 +11,9 @@ module.exports = {
   },
   module: {
     loaders: [
-      { include: /\.json$/, loaders: ['json-loader'] }
+      { include: /\.json$/, loaders: ['json-loader'] },
+      { test: /jquery-autocomplete/, loader: 'imports?jQuery=jquery' },
+      { test: /autocomplete.noResults/, loader: 'imports?$=jquery' }
     ]
   },
   resolve: {

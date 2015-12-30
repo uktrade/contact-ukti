@@ -1,0 +1,58 @@
+mixin form-label(name, label)
+  label.form-label(for=name)= label
+    +form-error(name)
+
+mixin form-error(name)
+  if msg = formErrors && formErrors[name] ? formErrors[name].msg : false
+    span.error-message= msg
+
+mixin form-hint(msg)
+  if msg
+    p.form-hint= msg
+
+mixin text-field(name, label, opts)
+  div.form-group(class=formErrors && formErrors[name] ? 'error' : '')
+    +form-label(name, label)
+    +form-hint(opts.hint)
+    input.form-control(
+      id=name
+      type=opts.type ? opts.type : 'text'
+      name=name
+      required=opts.required
+      value=formData[name]
+    )
+
+mixin textarea(name, label, opts)
+  div.form-group(class=formErrors && formErrors[name] ? 'error' : '')
+    +form-label(name, label)
+    +form-hint(opts.hint)
+    textarea.form-control(
+      id=name
+      name=name
+      required=opts.required
+    )= formData[name]
+
+mixin choices(name, label, choices, opts)
+  fieldset.form-group(class=formErrors && formErrors[name] ? 'error' : '')
+    legend(class=opts.labelClass)= label
+    +form-error(name)
+    +form-hint(opts.hint)
+    for choice in choices
+      label.block-label
+        input(
+          name=name
+          type=opts.type ? opts.type : 'radio'
+          value=choice.label
+          required=opts.required
+          checked=formData[name] ? formData[name].indexOf(choice.label) != -1 : false
+        )
+        = choice.label
+
+mixin autocomplete(name, label, choices, opts)
+  div.form-group(class=formErrors && formErrors[name] ? 'error' : '')
+    +form-label(name, label)
+    +form-hint(opts.hint)
+    select.form-control.js-autocomplete(id=name name=name required=opts.required)
+      option
+      each choice in choices
+        option(value=choice selected=formData[name] == choice)= choice
