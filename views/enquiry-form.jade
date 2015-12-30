@@ -1,120 +1,337 @@
 extends layout
 
+//- load form element mixins
+include includes/+form-elements.jade
+
 block content
   form(action='/enquire' method='post' novalidate)
     h1 Investment enquiry
     fieldset.form-group
       legend.form-label-bold Your details
-      div.form-group(class=errors && errors.name ? 'error' : '')
-        label.form-label(for='name') Your full name
-          if errors && errors.name
-            span.error-message= errors.name.msg
-        input#name.form-control(type='text' name='name' required)
-      div.form-group(class=errors && errors['job-title'] ? 'error' : '')
-        label.form-label(for='job-title') Job title
-          if errors && errors['job-title']
-            span.error-message= errors['job-title'].msg
-        input#job-title.form-control(type='text' name='job-title' required)
-      div.form-group(class=errors && errors.email ? 'error' : '')
-        label.form-label(for='email') Email address
-          if errors && errors.email
-            span.error-message= errors.email.msg
-        input#email.form-control(type='email' name='email' required)
-      div.form-group(class=errors && errors.phone ? 'error' : '')
-        label.form-label(for='phone') Telephone number
-          if errors && errors.phone
-            span.error-message= errors.phone.msg
-        input#phone.form-control(type='text' name='phone' required)
+      +text-field('name', 'Your full name', { required: true })
+      +text-field('job-title', 'Job title', { required: true })
+      +text-field('email', 'Email address', { type: 'email', required: true })
+      +text-field('phone', 'Telephone number', { required: true })
     fieldset.form-group
       legend.form-label-bold Your company details
-      div.form-group(class=errors && errors['company-name'] ? 'error' : '')
-        label.form-label(for='company-name') Company name
-          if errors && errors['company-name']
-            span.error-message= errors['company-name'].msg
-        input#company-name.form-control(type='text' name='company-name' required)
-      div.form-group(class=errors && errors['company-address'] ? 'error' : '')
-        label.form-label(for='company-address') Company address
-          if errors && errors['company-address']
-            span.error-message= errors['company-address'].msg
-        textarea#company-address.form-control(name='company-address' required)
-      fieldset.form-group(class=errors && errors['company-type'] ? 'error' : '')
-        legend Company type
-        if errors && errors['company-type']
-          div.error-message= errors['company-type'].msg
-        label.block-label(for='company-type')
-          input#company-type(name='company-type' type='radio' value='Company or Organisation' required)
-          | Company or Organisation
-        label.block-label(for='type-govt')
-          input#type-govt(name='company-type' type='radio' value='Government Department' required)
-          | Government Department
-        label.block-label(for='type-individual')
-          input#type-individual(name='company-type' type='radio' value='Individual' required)
-          | Individual
-        label.block-label(for='type-intermediary')
-          input#type-intermediary(name='company-type' type='radio' value='Intermediary' required)
-          | Intermediary
-        label.block-label(for='type-student')
-          input#type-student(name='company-type' type='radio' value='Student' required)
-          | Student
-      div.form-group(class=errors && errors['company-based'] ? 'error' : '')
-        label.form-label(for='company-based') Where is your company based?
-          if errors && errors['company-based']
-            span.error-message= errors['company-based'].msg
-        input#company-based.form-control(type='text' name='company-based' required)
-      div.form-group(class=errors && errors.industry ? 'error' : '')
-        label.form-label(for='industry') Primary industry
-          if errors && errors.industry
-            span.error-message= errors.industry.msg
-        input#industry.form-control(type='text' name='industry' required)
-      div.form-group
-        label.form-label(for='turnover') Annual turnover (optional)
-        input#turnover.form-control(type='text' name='turnover')
-      div.form-group
-        label.form-label(for='employees') Number of employees (optional)
-        input#employees.form-control(type='text' name='employees')
-    fieldset.form-group(class=errors && errors['enquiry-summary'] ? 'error' : '')
-      legend.form-label-bold Your enquiry
-      label.form-label(for='enquiry-summary') Provide a brief summary of the assistance you require
-        if errors && errors['enquiry-summary']
-          span.error-message= errors['enquiry-summary'].msg
-      p.form-hint Limit your summary to 250 words
-      textarea#enquiry-summary.form-control(name='enquiry-summary' required)
-    fieldset.form-group(class=errors && errors['heard-about'] ? 'error' : '')
-      legend.form-label-bold How did you hear about UK Trade & Investment?
-      if errors && errors['heard-about']
-        div.error-message= errors['heard-about'].msg
-      label.block-label(for='heard-ukti')
-        input#heard-ukti(name='heard-about' type='radio' value='Contact with UKTI staff member' required)
-        | Contact with UKTI staff member
-      label.block-label(for='heard-govuk')
-        input#heard-govuk(name='heard-about' type='radio' value='GOV.UK website' required)
-        | GOV.UK website
-      label.block-label(for='heard-press')
-        input#heard-press(name='heard-about' type='radio' value='Press article/advert' required)
-        | Press article/advert
-      label.block-label(for='heard-intermediary')
-        input#heard-intermediary(name='heard-about' type='radio' value='Intermediary' required)
-        | Intermediary (for example a trade association, chamber or bank)
-      label.block-label(for='heard-social')
-        input#heard-social(name='heard-about' type='radio' value='Social Media' required)
-        | Social Media
-      label.block-label(for='heard-personal')
-        input#heard-personal(name='heard-about' type='radio' value='Personal reference' required)
-        | Personal reference
-      label.block-label(for='heard-other')
-        input#heard-other(name='heard-about' type='radio' value='Other' required)
-        | Other
+      +text-field('company-name', 'Company name', { required: true })
+      +textarea('company-address', 'Company address', { required: true })
+      +choices('company-type', 'Company type', [
+        { name: 'type-company', label: 'Company or Organisation' },
+        { name: 'type-govt', label: 'Government Department' },
+        { name: 'type-individual', label: 'Individual' },
+        { name: 'type-intermediary', label: 'Intermediary' },
+        { name: 'type-student', label: 'Student' },
+      ], { required: true })
+      +autocomplete('company-location', 'Which country is your company based in?', [
+        'Afghanistan',
+        'Albania',
+        'Algeria',
+        'American Samoa',
+        'Andorra',
+        'Angola',
+        'Anguilla',
+        'Antigua and Barbuda',
+        'Argentina',
+        'Armenia',
+        'Aruba',
+        'Ascension',
+        'Australia',
+        'Austria',
+        'Azerbaijan',
+        'Bahamas',
+        'Bahrain',
+        'Bangladesh',
+        'Barbados',
+        'Belarus',
+        'Belgium',
+        'Belize',
+        'Benin',
+        'Bermuda',
+        'Bhutan',
+        'Bolivia',
+        'Bosnia and Herzegovina',
+        'Botswana',
+        'Brazil',
+        'British Indian Ocean Territory',
+        'British Virgin Islands',
+        'Brunei',
+        'Bulgaria',
+        'Burkina',
+        'Burma',
+        'Burundi',
+        'Cambodia',
+        'Cameroon',
+        'Canada',
+        'Cape Verde',
+        'Cayman Islands',
+        'Central African Republic',
+        'Chad',
+        'Chile',
+        'China',
+        'Christmas Island',
+        'Cocos (Keeling) Islands',
+        'Colombia',
+        'Comoros Islands',
+        'Congo',
+        'Congo (Democratic Republic)',
+        'Cook Islands',
+        'Costa Rica',
+        'Cote d\'Ivoire',
+        'Croatia',
+        'Cuba',
+        'Cyprus',
+        'Czech Republic',
+        'Denmark',
+        'Djibouti',
+        'Dominica',
+        'Dominican Republic',
+        'East Timor',
+        'Ecuador',
+        'Egypt',
+        'El Salvador',
+        'Equatorial Guinea',
+        'Eritrea',
+        'Estonia',
+        'Ethiopia',
+        'Falkland Islands',
+        'Faroe Islands',
+        'Fiji',
+        'Finland',
+        'France',
+        'French Polynesia',
+        'French Southern Territories',
+        'Gabon',
+        'Gambia, The',
+        'Georgia',
+        'Germany',
+        'Ghana',
+        'Gibraltar',
+        'Greece',
+        'Greenland',
+        'Grenada',
+        'Guadeloupe',
+        'Guam',
+        'Guatemala',
+        'Guinea',
+        'Guinea-Bissau',
+        'Guyana',
+        'Haiti',
+        'Holy See',
+        'Honduras',
+        'Hong Kong (SAR)',
+        'Hungary',
+        'Iceland',
+        'India',
+        'Indonesia',
+        'Iran',
+        'Iraq',
+        'Ireland',
+        'Israel',
+        'Italy',
+        'Jamaica',
+        'Japan',
+        'Jersey',
+        'Jordan',
+        'Kazakhstan',
+        'Kenya',
+        'Kiribati',
+        'Korea (South)',
+        'Kosovo',
+        'Kuwait',
+        'Kyrgyzstan',
+        'Laos',
+        'Latvia',
+        'Lebanon',
+        'Lesotho',
+        'Liberia',
+        'Libya',
+        'Liechtenstein',
+        'Lithuania',
+        'Luxembourg',
+        'Macao (SAR)',
+        'Macedonia',
+        'Madagascar',
+        'Malawi',
+        'Malaysia',
+        'Maldives',
+        'Mali',
+        'Malta',
+        'Marshall Islands',
+        'Martinique',
+        'Mauritania',
+        'Mauritius',
+        'Mayotte',
+        'Mexico',
+        'Micronesia',
+        'Moldova',
+        'Monaco',
+        'Mongolia',
+        'Montenegro',
+        'Montserrat',
+        'Morocco',
+        'Mozambique',
+        'Namibia',
+        'Nauru',
+        'Nepal',
+        'Netherlands',
+        'Netherlands Antilles',
+        'New Caledonia',
+        'New Zealand',
+        'Nicaragua',
+        'Niger',
+        'Nigeria',
+        'Niue',
+        'Norfolk Island',
+        'North Korea',
+        'Northern Mariana Islands',
+        'Norway',
+        'Oman',
+        'Pakistan',
+        'Palau',
+        'Palestinian Territories',
+        'Panama',
+        'Papua New Guinea',
+        'Paraguay',
+        'Peru',
+        'Philippines',
+        'Pitcairn',
+        'Poland',
+        'Portugal',
+        'Puerto Rico',
+        'Qatar',
+        'Reunion',
+        'Romania',
+        'Russia',
+        'Rwanda',
+        'Saint Christopher and Nevis',
+        'Samoa',
+        'San Marino',
+        'Sao Tome and Principe',
+        'Saudi Arabia',
+        'Senegal',
+        'Serbia',
+        'Seychelles',
+        'Sierra Leone',
+        'Singapore',
+        'Slovakia',
+        'Slovenia',
+        'Solomon Islands',
+        'Somalia',
+        'South Africa',
+        'Spain',
+        'Sri Lanka',
+        'St Barthelemy',
+        'St Martin',
+        'St. Helena',
+        'St. Lucia',
+        'St. Pierre and Miquelon',
+        'St. Vincent',
+        'Sudan',
+        'Surinam',
+        'Svalbard and Jan Mayen Islands',
+        'Swaziland',
+        'Sweden',
+        'Switzerland',
+        'Syria',
+        'Taiwan',
+        'Tajikistan',
+        'Tanzania',
+        'Thailand',
+        'Togo',
+        'Tokelau',
+        'Tonga',
+        'Trinidad and Tobago',
+        'Tristan da Cunha',
+        'Tunisia',
+        'Turkey',
+        'Turkmenistan',
+        'Turks and Caicos Islands',
+        'Tuvalu',
+        'Uganda',
+        'Ukraine',
+        'United Arab Emirates',
+        'United Kingdom',
+        'United States',
+        'United States Minor Outlying Islands',
+        'Uruguay',
+        'Uzbekistan',
+        'Vanuatu',
+        'Vatican',
+        'Venezuela',
+        'Vietnam',
+        'Virgin Islands (US)',
+        'Wallis and Futuna',
+        'Western Sahara',
+        'Yemen',
+        'Zambia',
+        'Zimbabwe',
+      ], { required: true })
+      +autocomplete('industry', 'Primary operating industry', [
+        'Advanced Engineering',
+        'Aerospace',
+        'Agriculture, Horticulture and Fisheries',
+        'Airports',
+        'Automotive',
+        'Biotechnology and Pharmaceuticals',
+        'Business and Consumer Services',
+        'Chemicals',
+        'Clothing, Footwear and Fashion',
+        'Communications',
+        'Construction',
+        'Creative and Media',
+        'Defence',
+        'Defence and Security',
+        'Education and Training',
+        'Electronics and IT Hardware',
+        'Energy',
+        'Environment',
+        'Environment and Water',
+        'Financial and Professional Services',
+        'Food and Drink',
+        'Giftware, Jewellery and Tableware',
+        'Global Sports Projects',
+        'Healthcare and Medical',
+        'Household Goods, Furniture and Furnishings',
+        'ICT',
+        'Leisure and Tourism',
+        'Life Sciences',
+        'Marine',
+        'Mass Transport',
+        'Mechanical Electrical and Process Engineering',
+        'Metallurgical Process Plant',
+        'Metals, Minerals and Materials',
+        'Mining',
+        'More Sectors',
+        'Oil and Gas',
+        'Ports and Logistics',
+        'Power',
+        'Railways',
+        'Renewable Energy',
+        'Retail and Luxury',
+        'Security',
+        'Software and Computer Services',
+        'Textiles, Interior Textiles and Carpets',
+        'Water',
+      ], { required: true })
+      +text-field('turnover', 'Annual turnover (optional)', {})
+      +text-field('employees', 'Number of employees (optional)', {})
     fieldset.form-group
-      legend.form-label-bold Would you be happy to be contacted again?
-      p Please select all that apply
-      label.block-label(for='dpa-ukti')
-        input#dpa-ukti(name='data-protection' type='checkbox' value='By UK Trade & Investment' required)
-        | By UK Trade & Investment
-      label.block-label(for='dpa-partners')
-        input#dpa-partners(name='data-protection' type='checkbox' value='By external UK Trade & Investment partners' required)
-        | By external UK Trade & Investment partners
-      label.block-label(for='dpa-overseas')
-        input#dpa-overseas(name='data-protection' type='checkbox' value='By overseas providers for UK Trade & Investment services' required)
-        | By overseas providers for UK Trade & Investment services
+      legend.form-label-bold Your enquiry
+      +textarea('enquiry-summary', 'Provide a brief summary of the assistance you require', { required: true, hint: 'Limit your summary to 250 words' })
+    +choices('heard-about', 'How did you hear about UK Trade & Investment?', [
+      { name: 'heard-ukti', label: 'Contact with UKTI staff member' },
+      { name: 'heard-govuk', label: 'GOV.UK website' },
+      { name: 'heard-press', label: 'Press article/advert' },
+      { name: 'heard-intermediary', label: 'Intermediary (for example a trade association, chamber or bank)' },
+      { name: 'heard-social', label: 'Social Media' },
+      { name: 'heard-personal', label: 'Personal reference' },
+      { name: 'heard-other', label: 'Other' },
+    ], { required: true, labelClass: 'form-label-bold' })
+    +choices('data-protection', 'Would you be happy to be contacted again?', [
+      { name: 'dpa-ukti', label: 'By UK Trade & Investment' },
+      { name: 'dpa-partners', label: 'By external UK Trade & Investment partners' },
+      { name: 'dpa-overseas', label: 'By overseas providers for UK Trade & Investment services' },
+    ], { labelClass: 'form-label-bold', type: 'checkbox', hint: 'Please select all that apply' })
     .form-group
       button.button(type='submit') Submit enquiry

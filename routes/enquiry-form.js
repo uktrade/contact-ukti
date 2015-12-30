@@ -26,7 +26,9 @@ router.post('/', function(req, res, next) {
    'email': {
       notEmpty: true,
       errorMessage: 'is required',
-      isEmail: true
+      isEmail: {
+        errorMessage: 'must be a valid email address'
+      }
     },
    'phone': {
       notEmpty: true,
@@ -44,7 +46,7 @@ router.post('/', function(req, res, next) {
       notEmpty: true,
       errorMessage: 'is required'
     },
-   'company-based': {
+   'company-location': {
       notEmpty: true,
       errorMessage: 'is required'
     },
