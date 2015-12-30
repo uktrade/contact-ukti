@@ -5,6 +5,7 @@ $images-dir: '/images/';
 
 // app specific elements
 @import 'elements/confirmation-box';
+@import 'elements/autocomplete';
 
 // patch extra space after textareas
 textarea.form-control {
