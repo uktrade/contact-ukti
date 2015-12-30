@@ -5,6 +5,14 @@ include includes/+form-elements.jade
 
 block content
   form(action='/enquire' method='post' novalidate)
+    if formErrors
+      .error-summary(role="group" aria-labelledby="error-summary" tabindex="-1")
+        h1#error-summary.heading-medium.error-summary-heading There was a problem submitting this form
+        p Please correct the highlighted errors:
+        ul.error-summary-list
+          for error in formErrors
+            li
+              a(href='enquire##{error.param}') #{S(error.param).humanize().s} #{error.msg}
     h1 Investment enquiry
     fieldset.form-group
       legend.form-label-bold Your details

@@ -22,6 +22,9 @@ var loadPaths = mojularSassPaths([
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// locals
+app.locals.S = require('string');
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
