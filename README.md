@@ -1,4 +1,4 @@
-# UKTI Inward Investment Contact Form
+# UKTI Contact Form
 
 A simple form to email contact form which captures a companies information and sends an email to the relevant team within UKTI.
 
@@ -11,13 +11,13 @@ A simple form to email contact form which captures a companies information and s
 Clone this repository
 
 ```bash
-git clone https://github.com/UKTradeInvestment/inward-investment-contact.git
+git clone https://github.com/UKTradeInvestment/contact-ukti.git
 ```
 
 Move into the new directory
 
 ```bash
-cd inward-investment-contact
+cd contact-ukti
 ```
 
 Install project dependencies
