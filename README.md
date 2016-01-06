@@ -33,6 +33,7 @@ export SMTP_USER=[Add your SMTP username]
 export SMTP_PASS=[Add your SMTP password]
 export FROM_ADDR=[Add the address to send emails from]
 export TO_ADDR=[Add the address to send emails to]
+export SECRET=[Secret used to create session]
 ```
 
 Start the express application
@@ -66,6 +67,7 @@ For development it is recommended to use [Nodemon](https://github.com/remy/nodem
   SMTP_PASS=[Add your SMTP password]
   FROM_ADDR=[Add the address to send emails from]
   TO_ADDR=[Add the address to send emails to]
+  SECRET=[Secret used to create session]
   ```
 
 4. Create a `dev.Procfile` at the project root and add the following contents:
