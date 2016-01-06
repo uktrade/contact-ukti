@@ -1,98 +1,51 @@
-var express = require('express');
-var expressValidator = require('express-validator');
+var router = require('express').Router();
 var S = require('string');
-var mapKeys = require('lodash/object/mapKeys');
+var _ = require('lodash');
+
 var mailer = require('../lib/mailer');
-var jadeCompiler = require('../lib/jadeCompiler');
-var router = express.Router();
+var fieldIterator = require('../lib/fieldIterator');
+var complexForm = require('../lib/fields');
 
-/* GET form page. */
-router.get('/', function(req, res, next) {
-  res.render('enquiry-form', { title: 'Contact UK Trade & Investment', formData: {} });
-});
+/* form page. */
+router.all('/', function(req, res, next) {
+  var data = {
+    title: 'Contact UK Trade & Investment',
+    enctype: '',
+    method: 'POST',
+  };
 
-/* POST handler. */
-router.post('/', function(req, res, next) {
-  req.checkBody({
-   'name': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'job-title': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'email': {
-      notEmpty: true,
-      errorMessage: 'is required',
-      isEmail: {
-        errorMessage: 'must be a valid email address'
-      }
-    },
-   'phone': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'company-name': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'company-address': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'company-type': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'company-location': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'industry': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'enquiry-summary': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'heard-about': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-  });
-
-  var errors = req.validationErrors(true);
-  if (errors) {
-    res.render('enquiry-form', {
-      title: 'Contact UK Trade & Investment',
-      formErrors: errors,
-      formData: req.body });
-  } else {
-    var fields = mapKeys(req.body, function (value, key) {
-      return S(key).humanize().s;
-    });
-
-    jadeCompiler.compile('emails/inward-enquiry', { fields: fields }, function (error, html) {
-      var send = mailer.sendInwardEnquiry({
-        html: html
+  complexForm.handle(req, {
+    success: function (form) {
+      var fields = {};
+      _.each(form.fields, function (field) {
+        var humanize = S(field.name).humanize().s;
+        fields[humanize] = field.value;
       });
 
-      send.then(function (info) {
+      mailer.sendEnquiry(fields).then(function (info) {
         res.redirect('/enquire/complete');
       }, function (error) {
         res.render('error', {
-          message: 'Enquiry not be sent',
-          description: 'There was a problem sending your enquiry. Please try completing your enquiry again.'
+          message: 'Enquiry not sent',
+          description: 'There was a problem sending your enquiry. Please try completing your enquiry again.',
         });
       });
-    });
-  }
+    },
+    error: function(form) {
+      data.form = form.toHTML(fieldIterator);
+      data.errors = _.filter(form.fields, function(key) {
+        return key.error;
+      });
 
+      res.render('enquiry-form', data);
+    },
+    other: function (form) {
+      data.form = form.toHTML(fieldIterator);
+      res.render('enquiry-form', data);
+    }
+  });
 });
 
-/* GET success page. */
 router.get('/complete', function(req, res, next) {
   res.render('enquiry-success');
 });
