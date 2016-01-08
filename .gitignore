@@ -1,0 +1,16 @@
+#ide specific
+.idea/
+
+.bundle/
+node_modules
+public
+reports
+*.log
+.DS_Store
+public/js/bundle.js
+.yardoc
+doc
+Gemfile.lock
+apps/**/translations/en
+dump.rdb
+dev.Procfile
