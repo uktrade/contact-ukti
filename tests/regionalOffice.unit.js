@@ -78,6 +78,25 @@ describe('Regional Office', function () {
       );
     });
 
+    it('Returns a regional office if postcode is in Wales, Scotland or Northern Ireland', function() {
+      var postcode = 'sa54tg';
+
+      nock(process.env.POSTCODE_API)
+        .get('/'+postcode)
+        .reply(200, {
+          status: 200,
+          result: {
+            'region': null,
+            'european_electoral_region': 'Wales'
+          }
+        });
+
+      return regionalOffice.getByPostcode(postcode).then(
+        assert.ok,
+        assertFailWithMessage('getByPostcode(' + postcode + ') should not fail')
+      );
+    });
+
     it('Returns an error if the postcode is invalid', function() {
       var postcode = 'invalid';
 
