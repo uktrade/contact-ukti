@@ -1,100 +1,16 @@
-var express = require('express');
-var expressValidator = require('express-validator');
-var S = require('string');
-var mapKeys = require('lodash/object/mapKeys');
-var mailer = require('../lib/mailer');
-var jadeCompiler = require('../lib/jadeCompiler');
-var router = express.Router();
+var router = require('express').Router();
+var formSteps = require('../lib/formSteps');
+var formHandler = require('../lib/formHandler');
 
-/* GET form page. */
-router.get('/', function(req, res, next) {
-  res.render('enquiry-form', { title: 'Contact UK Trade & Investment', formData: {} });
+/* form page. */
+router.get('/', function(req, res) {
+  res.redirect('/enquire/' + formSteps[0].name);
 });
 
-/* POST handler. */
-router.post('/', function(req, res, next) {
-  req.checkBody({
-   'name': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'job-title': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'email': {
-      notEmpty: true,
-      errorMessage: 'is required',
-      isEmail: {
-        errorMessage: 'must be a valid email address'
-      }
-    },
-   'phone': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'company-name': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'company-address': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'company-type': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'company-location': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'industry': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'enquiry-summary': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-   'heard-about': {
-      notEmpty: true,
-      errorMessage: 'is required'
-    },
-  });
-
-  var errors = req.validationErrors(true);
-  if (errors) {
-    res.render('enquiry-form', {
-      title: 'Contact UK Trade & Investment',
-      formErrors: errors,
-      formData: req.body });
-  } else {
-    var fields = mapKeys(req.body, function (value, key) {
-      return S(key).humanize().s;
-    });
-
-    jadeCompiler.compile('emails/inward-enquiry', { fields: fields }, function (error, html) {
-      var send = mailer.sendInwardEnquiry({
-        html: html
-      });
-
-      send.then(function (info) {
-        res.redirect('/enquire/complete');
-      }, function (error) {
-        res.render('error', {
-          message: 'Enquiry not be sent',
-          description: 'There was a problem sending your enquiry. Please try completing your enquiry again.'
-        });
-      });
-    });
-  }
-
-});
-
-/* GET success page. */
 router.get('/complete', function(req, res, next) {
   res.render('enquiry-success');
 });
+
+router.all('/:step', formHandler.handleRequest);
 
 module.exports = router;
