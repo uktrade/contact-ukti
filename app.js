@@ -83,6 +83,7 @@ app.use(secureCookies);
 app.use(initSession);
 
 // apps
+app.use(require('./apps/contact-ukti/'));
 
 app.get('/cookies', function renderCookies(req, res) {
   res.render('cookies');
