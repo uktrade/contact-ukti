@@ -1,0 +1,43 @@
+{{<layout}}
+  {{$step}}Step 4 of 5{{/step}}
+
+  {{$journeyHeader}}
+    {{#t}}journeys.contact-us.header{{/t}}
+  {{/journeyHeader}}
+
+  {{$validationSummary}}
+    {{> partials-validation-summary}}
+  {{/validationSummary}}
+
+  {{$propositionHeader}}
+    {{> partials-navigation}}
+  {{/propositionHeader}}
+
+  {{$title}}
+    {{#t}}pages.enquiry.header{{/t}}
+  {{/title}}
+
+  {{$header}}
+    {{<partials-page-header}}
+      {{$page-header}}
+        {{#t}}pages.enquiry.header{{/t}}
+      {{/page-header}}
+    {{/partials-page-header}}
+  {{/header}}
+
+  {{$content}}
+    <p>{{#t}}pages.enquiry.subheader{{/t}}</p>
+
+    {{<partials-form}}
+
+      {{$form}}
+
+        {{#input-submit}}continue{{/input-submit}}
+
+      {{/form}}
+
+    {{/partials-form}}
+
+  {{/content}}
+
+{{/layout}}
