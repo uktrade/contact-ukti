@@ -1,3 +1,4 @@
+name: UKTI East of England
 address: |
   BioPark
   Broadwater Road
@@ -5,4 +6,5 @@ address: |
   Hertfordshire
   AL7 3AX
 email: eastinfo@mobile.ukti.gov.uk
-phone: 01707 398 398
+phone:
+  - 01707 398 398
