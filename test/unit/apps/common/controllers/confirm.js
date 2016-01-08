@@ -27,7 +27,7 @@ describe('apps/common/controllers/confirm', function () {
       sessionModel: {
         toJSON: sinon.stub().returns(expected)
       },
-      originalUrl: '/not-arrived/confirm'
+      originalUrl: '/contact-ukti/confirm'
     };
     var res = {};
     var callback = sinon.stub();
@@ -42,34 +42,11 @@ describe('apps/common/controllers/confirm', function () {
       Model.prototype.save.should.have.been.called;
     });
 
-    it('sets a template for delivery journey', function () {
-      req.originalUrl = '/not-arrived/confirm';
+    it('sets a template for contact ukti journey', function () {
+      req.originalUrl = '/contact-ukti/confirm';
       controller.saveValues(req, res, callback);
 
-      modelProto.set.should.have.been.calledWith('template', 'delivery');
-    });
-
-    it('sets a template for error journey', function () {
-      req.originalUrl = '/correct-mistakes/confirm';
-      controller.saveValues(req, res, callback);
-
-      modelProto.set.should.have.been.calledWith('template', 'error');
-    });
-
-    it('sets a template for lost or stolen inside uk journey', function () {
-      req.originalUrl = '/lost-stolen-damaged/confirm';
-      req.sessionModel.toJSON.returns({'inside-uk': 'yes'});
-      controller.saveValues(req, res, callback);
-
-      modelProto.set.should.have.been.calledWith('template', 'lost-or-stolen-uk');
-    });
-
-    it('sets a template for lost or stolen outside uk journey', function () {
-      req.originalUrl = '/lost-stolen-damaged/confirm';
-      req.sessionModel.toJSON.returns({'inside-uk': 'no'});
-      controller.saveValues(req, res, callback);
-
-      modelProto.set.should.have.been.calledWith('template', 'lost-or-stolen-abroad');
+      modelProto.set.should.have.been.calledWith('template', 'contact-ukti');
     });
 
     it('throws an error if its not part of a recognised journey', function () {
