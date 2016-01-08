@@ -11,3 +11,7 @@ $images-dir: '/images/';
 textarea.form-control {
   display: block;
 }
+// patch to remove top spacing on form group panels
+.panel-indent.form-group {
+  margin-top: 0;
+}
