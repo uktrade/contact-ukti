@@ -13,29 +13,10 @@ var ConfirmController = function ConfirmController() {
 util.inherits(ConfirmController, BaseController);
 
 var serviceMap = {
-  '/not-arrived/confirm': function notArrived() {
+  '/contact-ukti/confirm': function notArrived() {
     return {
-      template: 'delivery',
-      subject: 'Form submitted: Your BRP hasn\'t arrived'
-    };
-  },
-  '/correct-mistakes/confirm': function correctMistakes() {
-    return {
-      template: 'error',
-      subject: 'Form submitted: Report a problem with your new BRP'
-    };
-  },
-  '/lost-stolen-damaged/confirm': function lostStolenDamaged(data) {
-    var suffix = (data['inside-uk'] === 'yes') ? '-uk' : '-abroad';
-    return {
-      template: 'lost-or-stolen' + suffix,
-      subject: 'Form submitted: Report a lost or stolen BRP'
-    };
-  },
-  '/collection/confirm': function collection() {
-    return {
-      template: 'collection',
-      subject: 'Form submitted: Report a collection problem'
+      template: 'contact-ukti',
+      subject: 'Form submitted: Contact UK Trade & Investment'
     };
   }
 };

@@ -10,72 +10,27 @@ var fs = require('fs');
 var path = require('path');
 
 var customerHtmlTemplates = {
-  error: fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/html/error.mus')).toString('utf8'),
-  'lost-or-stolen-uk': fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/html/lost_or_stolen_uk.mus')).toString('utf8'),
-  'lost-or-stolen-abroad': fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/html/lost_or_stolen_abroad.mus')).toString('utf8'),
-  delivery: fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/html/delivery.mus')).toString('utf8'),
-  collection: fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/html/collection.mus')).toString('utf8'),
-  'someone-else': fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/html/someone-else.mus')).toString('utf8')
+  'contact-ukti': fs.readFileSync(
+    path.resolve(__dirname, './templates/customer/html/contact-ukti.mus')).toString('utf8')
 };
 
 var customerPlainTextTemplates = {
-  error: fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/plain/error.mus')).toString('utf8'),
-  'lost-or-stolen-uk': fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/plain/lost_or_stolen_uk.mus')).toString('utf8'),
-  'lost-or-stolen-abroad': fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/plain/lost_or_stolen_abroad.mus')).toString('utf8'),
-  delivery: fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/plain/delivery.mus')).toString('utf8'),
-  collection: fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/plain/collection.mus')).toString('utf8'),
-  'someone-else': fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/plain/someone-else.mus')).toString('utf8')
+  'contact-ukti': fs.readFileSync(
+    path.resolve(__dirname, './templates/customer/plain/contact-ukti.mus')).toString('utf8')
 };
 
 var caseworkerHtmlTemplates = {
-  error: fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/html/error.mus')).toString('utf8'),
-  'lost-or-stolen-uk': fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/html/lost_or_stolen.mus')).toString('utf8'),
-  'lost-or-stolen-abroad': fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/html/lost_or_stolen.mus')).toString('utf8'),
-  delivery: fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/html/delivery.mus')).toString('utf8'),
-  collection: fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/html/collection.mus')).toString('utf8'),
-  'someone-else': fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/html/someone-else.mus')).toString('utf8')
+  'contact-ukti': fs.readFileSync(
+    path.resolve(__dirname, './templates/caseworker/html/contact-ukti.mus')).toString('utf8')
 };
 
 var caseworkerPlainTextTemplates = {
-  error: fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/plain/error.mus')).toString('utf8'),
-  'lost-or-stolen-uk': fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/plain/lost_or_stolen.mus')).toString('utf8'),
-  'lost-or-stolen-abroad': fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/plain/lost_or_stolen.mus')).toString('utf8'),
-  delivery: fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/plain/delivery.mus')).toString('utf8'),
-  collection: fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/plain/collection.mus')).toString('utf8'),
-  'someone-else': fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/plain/someone-else.mus')).toString('utf8')
+  'contact-ukti': fs.readFileSync(
+    path.resolve(__dirname, './templates/caseworker/plain/contact-ukti.mus')).toString('utf8')
 };
 
 var translationLocation = {
-  error: 'correct-mistakes',
-  'lost-or-stolen-uk': 'lost-stolen-damaged',
-  'lost-or-stolen-abroad': 'lost-stolen-damaged',
-  delivery: 'not-arrived',
-  collection: 'collection',
-  'someone-else': 'someone-else'
+  'contact-ukti': 'contact-ukti'
 };
 
 var transport = config.email.auth.user === '' ?
