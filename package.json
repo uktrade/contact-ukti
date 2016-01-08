@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "NODE_ENV=test mocha tests/ -R spec",
     "start": "node ./bin/www",
     "postinstall": "node_modules/.bin/gulp build"
   },
@@ -33,6 +34,8 @@
     "gulp-sourcemaps": "^1.5.2",
     "gulp-util": "^3.0.6",
     "imports-loader": "^0.6.5",
+    "mocha": "^2.3.4",
+    "nock": "^5.2.1",
     "util": "^0.10.3",
     "webpack": "^1.12.2"
   }
