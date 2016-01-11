@@ -7,17 +7,51 @@
     "header": "What are your personal details?",
     "subheader": ""
   },
+  "company-location": {
+    "header": "Where is your company based?",
+    "subheader": ""
+  },
   "company-details": {
     "header": "What are your company details?",
     "subheader": ""
   },
+  "company-address": {
+    "header": "What is your company address?",
+    "subheader": ""
+  },
   "enquiry": {
     "header": "What is the reason for your enquiry?",
-    "subheader": "Provide a brief summary"
+    "subheader": ""
   },
   "confirm": {
     "header": "Is the information you have given us correct?",
-    "subheader": "Check and make sure the information below is right. If it isn't you can change it here."
+    "subheader": "Check and make sure the information below is right. If it isn't you can change it here.",
+    "personal-details-table": {
+      "title": "Your personal details",
+      "headers": {
+        "fullname": "Full name",
+        "email": "Email address",
+        "phone": "Phone number"
+      }
+    },
+    "enquiry-table": {
+      "title": "Your enquiry",
+      "headers": {
+        "reason": "Reason",
+        "description": "Description"
+      }
+    },
+    "org-details-table": {
+      "title": "Your company details",
+      "headers": {
+        "org-name": "Company name",
+        "org-type": "Company type",
+        "sector": "Primary operating industry",
+        "annual-turnover": "Annual turnover",
+        "no-employees": "Number of employees",
+        "org-address": "Company address"
+      }
+    }
   },
   "confirmation": {
     "header": "Thank you, we have received your information.",
@@ -25,9 +59,7 @@
     "next": {
       "header": "What happens next",
       "para": {
-        "one": "Our staff will review the information you have sent and speak with the courier if necessary to find out why your card hasn't yet arrived.",
-        "two": "As each BRP delivery is tracked, we will be able to find your BRP card and arrange redelivery.",
-        "three": "We shall be in touch with you as soon as possible. During very busy periods this can take up to 5 working days."
+        "one": "Our staff will review your enquiry and get back to you shortly"
       }
     }
   }

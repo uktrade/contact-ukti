@@ -1,5 +1,5 @@
 {{<layout}}
-  {{$step}}Step 1 of 5{{/step}}
+  {{$step}}Step 1{{/step}}
 
   {{$journeyHeader}}
     {{#t}}journeys.contact-us.header{{/t}}
@@ -26,10 +26,21 @@
   {{/header}}
 
   {{$content}}
-  
+
     {{<partials-form}}
 
       {{$form}}
+        {{#radio-group}}enquiry-reason{{/radio-group}}
+
+        <fieldset id="enquiry-reason-other" class="panel-indent {{#errors.enquiry-reason-other}}validation-error{{/errors.enquiry-reason-other}}">
+
+          <legend class="visuallyhidden">
+            <span class="form-label-bold">{{#t}}fields.enquiry-reason-other.label{{/t}}</span>
+          </legend>
+
+          {{#input-text}}enquiry-reason-other{{/input-text}}
+
+        </fieldset>
 
         {{#input-submit}}continue{{/input-submit}}
 

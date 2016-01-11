@@ -38,7 +38,7 @@ module.exports = {
   'sector': {
     validate: ['required'],
     className: ['typeahead'],
-    options: [''].concat(require('../../../assets/countries').allCountries),
+    options: [''].concat(require('../../../assets/data/industries')),
     label: 'fields.sector.label'
   },
   'annual-turnover': {

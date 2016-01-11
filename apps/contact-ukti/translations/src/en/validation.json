@@ -1,0 +1,22 @@
+{
+  "enquiry-reason": {
+    "required": "What is your enquiry related to?"
+  },
+  "enquiry-reason-other": {
+    "required": "Tell us the reason you want to get in touch"
+  },
+  "fullname": {
+    "required": "Enter your full name"
+  },
+  "email": {
+    "required": "Enter your email address",
+    "email": "Enter your email in the correct format, for example name@domain.com"
+  },
+  "country": {
+    "required": "Tell us where you are",
+    "equal": "Please select a country from the list"
+  },
+  "enquiry-description": {
+    "required": "Tell us about your enquiry"
+  }
+}

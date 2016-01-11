@@ -1,5 +1,5 @@
 {{<layout}}
-  {{$step}}Step 4{{/step}}
+  {{$step}}Step 5{{/step}}
 
   {{$journeyHeader}}
     {{#t}}journeys.contact-us.header{{/t}}
@@ -14,13 +14,13 @@
   {{/propositionHeader}}
 
   {{$title}}
-    {{#t}}pages.company-details.header{{/t}}
+    {{#t}}pages.company-address.header{{/t}}
   {{/title}}
 
   {{$header}}
     {{<partials-page-header}}
       {{$page-header}}
-        {{#t}}pages.company-details.header{{/t}}
+        {{#t}}pages.company-address.header{{/t}}
       {{/page-header}}
     {{/partials-page-header}}
   {{/header}}
@@ -31,15 +31,22 @@
 
       {{$form}}
 
-        {{#input-text}}org-name{{/input-text}}
+        <fieldset id="address-group">
+          <legend class="visuallyhidden">
+            {{#t}}fields.org-address.legend{{/t}}
+          </legend>
 
-        {{#radio-group}}org-type{{/radio-group}}
+          {{#input-text}}org-address-house-number{{/input-text}}
 
-        {{#select}}sector{{/select}}
+          {{#input-text}}org-address-street{{/input-text}}
 
-        {{#input-text}}annual-turnover{{/input-text}}
+          {{#input-text}}org-address-town{{/input-text}}
 
-        {{#input-text}}no-employees{{/input-text}}
+          {{#input-text}}org-address-county{{/input-text}}
+
+          {{#input-text-code}}org-address-postcode{{/input-text-code}}
+
+        </fieldset>
 
         {{#input-submit}}continue{{/input-submit}}
 
