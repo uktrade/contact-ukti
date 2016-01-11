@@ -31,6 +31,7 @@ module.exports = {
     next: '/company-details',
   },
   '/company-details': {
+    controller: require('./controllers/company-details'),
     fields: [
       'org-name',
       'org-type',
