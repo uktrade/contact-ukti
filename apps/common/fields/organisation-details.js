@@ -1,60 +1,69 @@
 'use strict';
 
 module.exports = {
-  'org-help': {
+  'org-name': {
     validate: ['required'],
-    className: 'inline',
-    legend: {
-      className: 'visuallyhidden',
-      value: 'pages.check-details.org-help.title'
-    },
-    options: [{
-      value: 'yes',
-      label: 'fields.org-help.options.yes.label',
-      toggle: 'org-details-group'
-    }, {
-      value: 'no',
-      label: 'fields.org-help.options.no.label'
-    }]
-  },
-  'rep-name': {
-    validate: ['required'],
-    label: 'fields.rep-name.label',
-    dependent: {
-      field: 'org-help',
-      value: 'yes'
-    },
-  },
-  'rep-email': {
-    validate: ['email'],
-    label: 'fields.rep-email.label',
-    dependent: {
-      field: 'org-help',
-      value: 'yes'
-    }
+    label: 'fields.org-name.label',
   },
   'org-type': {
+    className: 'form-group',
     validate: ['required'],
-    dependent: {
-      field: 'org-help',
-      value: 'yes'
-    },
-    legend: {
-      className: 'visuallyhidden',
-      value: 'pages.check-details.org-details-group.type'
-    },
-    options: [{
-      value: 'pbs',
-      label: 'fields.org-type.options.pbs.label'
-    }, {
-      value: 'legal',
-      label: 'fields.org-type.options.legal.label'
-    }, {
-      value: 'relative',
-      label: 'fields.org-type.options.relative.label'
-    }, {
-      value: 'support',
-      label: 'fields.org-type.options.support.label'
-    }]
+    options: [
+      {
+        value: 'company',
+        label: 'fields.org-type.options.company.label'
+      },
+      {
+        value: 'govt',
+        label: 'fields.org-type.options.govt.label',
+        toggle: 'country-group'
+      },
+      {
+        value: 'individual',
+        label: 'fields.org-type.options.individual.label',
+        toggle: 'country-group'
+      },
+      {
+        value: 'intermediary',
+        label: 'fields.org-type.options.intermediary.label',
+        toggle: 'country-group'
+      },
+      {
+        value: 'student',
+        label: 'fields.org-type.options.student.label',
+        toggle: 'country-group'
+      },
+    ]
+  },
+  'sector': {
+    validate: ['required'],
+    className: ['typeahead'],
+    options: [''].concat(require('../../../assets/countries').allCountries),
+    label: 'fields.sector.label'
+  },
+  'annual-turnover': {
+    label: 'fields.annual-turnover.label'
+  },
+  'no-employees': {
+    label: 'fields.no-employees.label'
+  },
+  'org-address-house-number': {
+    validate: ['required'],
+    label: 'fields.org-address-house-number.label'
+  },
+  'org-address-street': {
+    validate: ['required'],
+    label: 'fields.org-address-street.label'
+  },
+  'org-address-town': {
+    validate: ['required'],
+    label: 'fields.org-address-town.label'
+  },
+  'org-address-county': {
+    label: 'fields.org-address-county.label',
+  },
+  'org-address-postcode': {
+    validate: ['required'],
+    label: 'fields.org-address-postcode.label'
   }
 };

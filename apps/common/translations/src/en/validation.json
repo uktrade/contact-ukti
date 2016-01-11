@@ -11,29 +11,26 @@
   "address-postcode": {
     "required": "Enter the postcode"
   },
-  "contact-address-house-number": {
-    "required": "Enter your house name or number"
-  },
-  "contact-address-street": {
-    "required": "Enter your street"
-  },
-  "contact-address-town": {
-    "required": "Enter the town or city"
-  },
-  "contact-address-postcode": {
-    "required": "Enter the postcode"
-  },
-  "org-help": {
-    "required": "Did you have help completing this form?"
-  },
-  "rep-name": {
-    "required": "What is the name of the person who helped you complete this form?"
-  },
-  "rep-email": {
-    "required": "What is the contact e-mail address of the person who helped you complete this form?",
-    "email": "Enter the email in the correct format for example, name@domain.com"
+  "org-name": {
+    "required": "Enter your company name"
   },
   "org-type": {
-    "required": "Who has helped you fill in this form?"
+    "required": "Choose what type of company you are"
+  },
+  "sector": {
+    "required": "Enter your primary operating industry",
+    "equal": "Please select an industry from the list"
+  },
+  "org-address-house-number": {
+    "required": "Enter the building name or number"
+  },
+  "org-address-street": {
+    "required": "Enter the street"
+  },
+  "org-address-town": {
+    "required": "Enter the town or city"
+  },
+  "org-address-postcode": {
+    "required": "Enter the postcode"
   }
 }
