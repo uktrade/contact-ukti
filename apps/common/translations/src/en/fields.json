@@ -1,34 +1,52 @@
 {
-  "org-help": {
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
-  "rep-name": {
-    "label": "Full name"
-  },
-  "rep-email": {
-    "label": "E-mail"
+  "org-name": {
+    "label": "Company name"
   },
   "org-type": {
+    "legend": "Company type",
     "options": {
-      "pbs": {
-        "label": "PBS sponsor"
+      "company": {
+        "label": "Company or organisation"
       },
-      "legal": {
-        "label": "Legal represntative"
+      "govt": {
+        "label": "Government department"
       },
-      "relative": {
-        "label": "Relative/friend"
+      "individual": {
+        "label": "Individual"
       },
-      "support": {
-        "label": "Support organisation"
+      "intermediary": {
+        "label": "Intermediary"
+      },
+      "student": {
+        "label": "Student"
       }
     }
+  },
+  "sector": {
+    "label": "Primary operating industry"
+  },
+  "annual-turnover": {
+    "label": "Annual turnover (optional)"
+  },
+  "no-employees": {
+    "label": "Number of employees (optional)"
+  },
+  "org-address": {
+    "legend": "Company address"
+  },
+  "org-address-house-number": {
+    "label": "Building name or number"
+  },
+  "org-address-street": {
+    "label": "Street"
+  },
+  "org-address-town": {
+    "label": "Town/City"
+  },
+  "org-address-county": {
+    "label": "County (optional)"
+  },
+  "org-address-postcode": {
+    "label": "Postcode"
   }
 }
