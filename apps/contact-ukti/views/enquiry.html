@@ -1,5 +1,5 @@
 {{<layout}}
-  {{$step}}Step 4 of 5{{/step}}
+  {{$step}}Step 6{{/step}}
 
   {{$journeyHeader}}
     {{#t}}journeys.contact-us.header{{/t}}
@@ -26,11 +26,12 @@
   {{/header}}
 
   {{$content}}
-    <p>{{#t}}pages.enquiry.subheader{{/t}}</p>
 
     {{<partials-form}}
 
       {{$form}}
+
+        {{#textarea}}enquiry-description{{/textarea}}
 
         {{#input-submit}}continue{{/input-submit}}
 

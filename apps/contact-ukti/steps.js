@@ -6,22 +6,57 @@ module.exports = {
     next: '/enquiry-reason',
   },
   '/enquiry-reason': {
-    fields: [],
+    fields: [
+      'enquiry-reason',
+      'enquiry-reason-other',
+    ],
     next: '/personal-details',
   },
   '/personal-details': {
-    fields: [],
+    fields: [
+      'fullname',
+      'email',
+      'no-email',
+      'phone',
+    ],
     backLink: 'enquiry-reason',
+    next: '/company-location',
+  },
+  '/company-location': {
+    fields: [
+      'inside-uk',
+      'country',
+    ],
+    backLink: 'personal-details',
     next: '/company-details',
   },
   '/company-details': {
-    fields: [],
-    backLink: 'personal-details',
+    fields: [
+      'org-name',
+      'org-type',
+      'sector',
+      'annual-turnover',
+      'no-employees',
+    ],
+    backLink: 'company-location',
+    next: '/company-address',
+  },
+  '/company-address': {
+    fields: [
+      'org-address-house-number',
+      'org-address-street',
+      'org-address-town',
+      'org-address-county',
+      'org-address-postcode',
+    ],
+    backLink: 'company-details',
     next: '/enquiry',
   },
   '/enquiry': {
-    fields: [],
-    backLink: 'company-details',
+    fields: [
+      'enquiry-description'
+    ],
+    backLink: 'company-address',
     next: '/confirm',
   },
   '/confirm': {

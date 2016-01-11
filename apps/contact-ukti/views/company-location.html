@@ -1,5 +1,5 @@
 {{<layout}}
-  {{$step}}Step 4{{/step}}
+  {{$step}}Step 3{{/step}}
 
   {{$journeyHeader}}
     {{#t}}journeys.contact-us.header{{/t}}
@@ -14,13 +14,13 @@
   {{/propositionHeader}}
 
   {{$title}}
-    {{#t}}pages.company-details.header{{/t}}
+    {{#t}}pages.company-location.header{{/t}}
   {{/title}}
 
   {{$header}}
     {{<partials-page-header}}
       {{$page-header}}
-        {{#t}}pages.company-details.header{{/t}}
+        {{#t}}pages.company-location.header{{/t}}
       {{/page-header}}
     {{/partials-page-header}}
   {{/header}}
@@ -31,15 +31,18 @@
 
       {{$form}}
 
-        {{#input-text}}org-name{{/input-text}}
+        {{#radio-group}}inside-uk{{/radio-group}}
 
-        {{#radio-group}}org-type{{/radio-group}}
+        <fieldset id="country-group" class="panel-indent {{#errors.country}}validation-error{{/errors.country}}">
 
-        {{#select}}sector{{/select}}
+          <legend class="visuallyhidden">
+            <span class="form-label-bold">{{#t}}fields.country.legend{{/t}}</span>
+          </legend>
 
-        {{#input-text}}annual-turnover{{/input-text}}
+          {{#select}}country{{/select}}
 
-        {{#input-text}}no-employees{{/input-text}}
+        </fieldset>
+
 
         {{#input-submit}}continue{{/input-submit}}
 

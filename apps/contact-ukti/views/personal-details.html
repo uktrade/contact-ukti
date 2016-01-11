@@ -1,5 +1,5 @@
 {{<layout}}
-  {{$step}}Step 2 of 5{{/step}}
+  {{$step}}Step 2{{/step}}
 
   {{$journeyHeader}}
     {{#t}}journeys.contact-us.header{{/t}}
@@ -26,10 +26,18 @@
   {{/header}}
 
   {{$content}}
-  
+
     {{<partials-form}}
 
       {{$form}}
+
+        {{#input-text}}fullname{{/input-text}}
+
+        {{#input-text}}email{{/input-text}}
+
+        {{#checkbox}}no-email{{/checkbox}}
+
+        {{#input-phone}}phone{{/input-phone}}
 
         {{#input-submit}}continue{{/input-submit}}
 

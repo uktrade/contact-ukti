@@ -1,0 +1,57 @@
+{
+  "enquiry-reason": {
+    "label": "Label",
+    "options": {
+      "export": {
+        "label": "Exporting from the UK or investing overseas (for UK companies)"
+      },
+      "investment": {
+        "label": "Inward investment into the UK (for non-UK companies)"
+      },
+      "bisops": {
+        "label": "Business opportunities service"
+      },
+      "dso": {
+        "label": "UK Trade & Invesment Defence and Security Organisation (DSO)"
+      },
+      "events": {
+        "label": "UK Trade & Investment events"
+      },
+      "other": {
+        "label": "Other"
+      }
+    }
+  },
+  "enquiry-reason-other": {
+    "label": "What is your reason?"
+  },
+  "fullname": {
+    "label": "Full name"
+  },
+  "email": {
+    "label": "Email address"
+  },
+  "no-email": {
+    "label": "I do not have an email address"
+  },
+  "phone": {
+    "label": "Phone number (optional)"
+  },
+  "inside-uk": {
+    "options": {
+      "yes": {
+        "label": "UK"
+      },
+      "no": {
+        "label": "Outside UK"
+      }
+    }
+  },
+  "country": {
+    "legend": "Outside the UK",
+    "label": "Which country are you in?"
+  },
+  "enquiry-description": {
+    "label": "Give us a brief summary of your enquiry"
+  }
+}
