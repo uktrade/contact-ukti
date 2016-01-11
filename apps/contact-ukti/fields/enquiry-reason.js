@@ -3,6 +3,7 @@
 module.exports = {
   'enquiry-reason': {
     validate: ['required'],
+    className: 'form-group',
     legend: {
       className: 'visuallyhidden',
       value: 'pages.enquiry-reason.header'
