@@ -4,8 +4,8 @@
   "main": "app.js",
   "description": "A UK Trade & Investment contact form",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/UKTradeInvestment/contact-ukti/"
+    "type": "git",
+    "url": "https://github.com/UKTradeInvestment/contact-ukti/"
   },
   "license": "GPL-2.0",
   "scripts": {
@@ -13,7 +13,7 @@
     "dev": "parallelshell 'NODE_ENV=development node_modules/.bin/nodemon . -e .js,.json,.html' 'npm run watch:scss' 'npm run watch:js'",
     "watch:scss": "nodemon -e scss -x 'npm run sass'",
     "watch:js": "nodemon --watch assets/js -x 'npm run browserify'",
-    "test": "NODE_ENV=test mocha",
+    "test": "NODE_ENV=test mocha --opts test/unit/mocha.opts",
     "browserify": "browserify ./assets/js/index.js > ./public/js/bundle.js",
     "test:acceptance": "cd acceptance_tests/; bundle install && bundle exec cucumber",
     "test:ci": "npm run lint && npm run style && npm run test",
@@ -24,7 +24,10 @@
     "sass": "./node_modules/node-sass/bin/node-sass ./assets/scss/app.scss ./public/css/app.css --include-path ./node_modules",
     "create:public": "mkdir -p ./public/js ./public/css ./public/images",
     "hof-transpile": "hof-transpiler ./apps/**/translations/src -w --shared ./apps/common/translations/src",
-    "postinstall": "npm run create:public; npm run sass; npm run browserify; npm run copy:images; npm run hof-transpile"
+    "postinstall": "npm run create:public; npm run sass; npm run browserify; npm run copy:images; npm run hof-transpile",
+    "test:functional": "./node_modules/.bin/wdio test/functional/wdio.conf.js",
+    "test:functional-headless": "./node_modules/.bin/wdio test/functional/wdio.headless.conf.js",
+    "test:functional-wip": "./node_modules/.bin/wdio test/functional/wdio.wip.conf.js"
   },
   "author": "UK Trade & Investment",
   "dependencies": {
@@ -52,12 +55,16 @@
     "winston": "^1.0.1"
   },
   "devDependencies": {
-    "chai": "^3.0.0",
+    "chai": "^3.2.0",
+    "chai-as-promised": "^5.1.0",
+    "cucumber": "^0.5.3",
     "debug": "^2.2.0",
+    "del": "^2.0.2",
     "eslint": "^0.23.0",
     "eslint-plugin-filenames": "^0.1.1",
     "eslint-plugin-mocha": "^0.2.2",
     "eslint-plugin-one-variable-per-var": "0.0.3",
+    "globule": "^0.2.0",
     "hof-transpiler": "0.0.6",
     "jscs": "^1.13.1",
     "mocha": "^2.2.5",
@@ -67,10 +74,15 @@
     "parallelshell": "^1.1.1",
     "plato": "^1.5.0",
     "pre-commit": "^1.0.10",
+    "progress": "^1.1.8",
     "proxyquire": "^1.5.0",
+    "q": "^1.4.1",
+    "request": "^2.63.0",
+    "selenium-standalone": "4.6.0",
     "sinomocha": "^0.2.4",
     "sinon": "^1.15.3",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "webdriverio": "^3.2.4"
   },
   "pre-commit": [
     "lint",
