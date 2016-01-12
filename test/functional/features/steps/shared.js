@@ -28,6 +28,58 @@ var sharedSteps = function sharedSteps() {
   });
 
   /**
+   * Submit the form for a given page object
+   *
+   * Usage: When I submit the "Signin" form
+   *
+   * @params {string} page The requested page object name
+   * @params {function} next The callback function of the scenario
+   */
+  this.When(/^I submit the "([^"]*)" form$/, function submitForm(pageName, next) {
+    if (!browser.pages[pageName]) {
+      var errStr = 'Could not find page named "' + pageName + '" in the PageObjectMap, did you remember to add it?';
+      throw new Error(errStr);
+    }
+
+    var page = new browser.pages[pageName](browser);
+    page.submitForm(next);
+  });
+
+  /**
+   * Set the value of a field for a given page object
+   *
+   * Usage: When I set "username" to "donaldduck" on the "Signin" page
+   *
+   * @params {string} field The name of the field
+   * @params {string} value The value of the field to be set
+   * @params {string} page The requested page object name
+   * @params {function} next The callback function of the scenario
+   */
+  this.When(/^I set "([^"]*)" to "([^"]*)" on the "([^"]*)" page$/, function submitForm(field, value, pageName, next) {
+    if (!browser.pages[pageName]) {
+      var errStr = 'Could not find page named "' + pageName + '" in the PageObjectMap, did you remember to add it?';
+      throw new Error(errStr);
+    }
+
+    var page = new browser.pages[pageName](browser);
+    page.setValue(field, value, next);
+  });
+
+  /**
+   * Check that the validation summary is present
+   *
+   * Usage: Then I should see the validation summary
+   *
+   * @params {function} next The callback function of the scenario
+   */
+  this.Then(/^I should see the validation summary$/, function shouldSee(next) {
+    browser
+      .isVisible('.validation-summary')
+      .should.eventually.equal(true)
+      .and.notify(next);
+  });
+
+  /**
    * Check the current body content contains
    * supplied text
    *
