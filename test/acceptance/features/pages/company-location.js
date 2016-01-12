@@ -5,22 +5,22 @@
  * Detaches UI interactions from step definitions
  *
  */
-var name = 'Enquiry Reason';
+var name = 'Company Location';
 var Page = function Page(client) {
 
   /**
    * Private
    */
 
-  var url = '/contact-ukti/enquiry-reason';
+  var url = '/contact-ukti/company-location';
   var fields = {
-    reason: {
-      selector: '[name="enquiry-reason"]',
-      value: 'Export'
+    insideUk: {
+      selector: '[name="inside-uk"]',
+      value: 'yes'
     },
-    other: {
-      selector: '[name="enquiry-reason-other"]',
-      value: 'My other reason'
+    country: {
+      selector: '#country',
+      value: 'United Arab Emirates'
     }
   };
   var $errors = '.validation-error';
@@ -44,7 +44,7 @@ var Page = function Page(client) {
 
   this.complete = function completeForm() {
     return client
-      .click(fields.reason.selector + '[value="' + fields.reason.value + '"]')
+      .click(fields.insideUk.selector + '[value="' + fields.insideUk.value + '"]')
       .submitForm($form);
   };
 

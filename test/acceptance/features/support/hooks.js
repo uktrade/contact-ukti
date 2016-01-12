@@ -13,6 +13,7 @@ var myHooks = function myHooks() {
    */
   this.registerHandler('BeforeFeatures', function beforeFeaturesHandler(event, callback) {
     browser.pages = require('./pages-map');
+    browser.utils = require('./utils');
     callback();
   });
 

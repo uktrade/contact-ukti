@@ -11,20 +11,74 @@ var sharedSteps = function sharedSteps() {
   /**
    * Go to a url of a page object
    *
-   * Usage: Given I am on the "Signin" page
-   * Usage: Given I go to the "Signin" page
+   * Usage: Given I am on the "Enquiry" page
+   * Usage: Given I go to the "Enquiry" page
    *
-   * @params {string} page The requested page object name
+   * @params {string} pageName The requested page object name
+   */
+  this.Given(/^I (?:am on|go to) the "([^"]*)" page$/, function gotoPage(pageName) {
+    return browser.utils
+      .getPage(pageName)
+      .get();
+  });
+
+  /**
+   * Submit an incomplete form for a given page object
+   *
+   * Usage: When I don't complete the "Enquiry" form
+   *
+   * @params {string} pageName The requested page object name
+   */
+  this.When(/^I don't complete the "([^"]*)" form$/, function completeForm(pageName) {
+    return browser.utils
+      .getPage(pageName)
+      .submit();
+  });
+
+  /**
+   * Submit a complete form for a given page object
+   *
+   * Usage: When I complete the "Enquiry" form
+   *
+   * @params {string} pageName The requested page object name
+   */
+  this.When(/^I complete the "([^"]*)" form$/, function submitForm(pageName) {
+    return browser.utils
+      .getPage(pageName)
+      .complete();
+  });
+
+  /**
+   * Check that the validation summary is present for given page object
+   *
+   * Usage: Then I should see the validation for the "Enquiry" page
+   *
+   * @params {string} pageName The requested page object name
    * @params {function} next The callback function of the scenario
    */
-  this.Given(/^I (?:am on|go to) the "([^"]*)" page$/, function gotoPage(pageName, next) {
-    if (!browser.pages[pageName]) {
-      var errStr = 'Could not find page named "' + pageName + '" in the PageObjectMap, did you remember to add it?';
-      throw new Error(errStr);
-    }
+  this.Then(/^I should see validation for the "([^"]*)" page$/, function seeValidation(pageName, next) {
+    browser.utils
+      .getPage(pageName)
+      .hasErrors()
+      .should.eventually.equal(true)
+      .and.notify(next);
+  });
 
-    var page = new browser.pages[pageName](browser);
-    page.get(next);
+  /**
+   * Check url does not match for given page object
+   *
+   * Usage: Then I should not be on the "Enquiry" page
+   *
+   * @params {string} pageName The requested page object name
+   * @params {function} next The callback function of the scenario
+   */
+  this.Then(/^I should not be on the "([^"]*)" page$/, function shouldNotBeOn(pageName, next) {
+    var url = browser.utils.getPage(pageName).getUrl();
+
+    browser
+      .getUrl()
+      .should.eventually.not.equal(url)
+      .and.notify(next);
   });
 
   /**

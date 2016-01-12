@@ -5,22 +5,34 @@
  * Detaches UI interactions from step definitions
  *
  */
-var name = 'Enquiry Reason';
+var name = 'Company Details';
 var Page = function Page(client) {
 
   /**
    * Private
    */
 
-  var url = '/contact-ukti/enquiry-reason';
+  var url = '/contact-ukti/company-details';
   var fields = {
-    reason: {
-      selector: '[name="enquiry-reason"]',
-      value: 'Export'
+    orgName: {
+      selector: '#org-name',
+      value: 'My company Ltd'
     },
-    other: {
-      selector: '[name="enquiry-reason-other"]',
-      value: 'My other reason'
+    orgType: {
+      selector: '[name="org-type"]',
+      value: 'company'
+    },
+    sector: {
+      selector: '#sector',
+      value: 'Advanced Engineering'
+    },
+    turnover: {
+      selector: '#annual-turnover',
+      value: '100000'
+    },
+    noEmployees: {
+      selector: '#no-employees',
+      value: '100'
     }
   };
   var $errors = '.validation-error';
@@ -44,7 +56,11 @@ var Page = function Page(client) {
 
   this.complete = function completeForm() {
     return client
-      .click(fields.reason.selector + '[value="' + fields.reason.value + '"]')
+      .setValue(fields.orgName.selector, fields.orgName.value)
+      .click(fields.orgType.selector + '[value="' + fields.orgType.value + '"]')
+      .setValue(fields.sector.selector, fields.sector.value)
+      .setValue(fields.turnover.selector, fields.turnover.value)
+      .setValue(fields.noEmployees.selector, fields.noEmployees.value)
       .submitForm($form);
   };
 
@@ -57,7 +73,7 @@ var Page = function Page(client) {
     return client
       .elements($errors)
       .then(function elementsResult(res) {
-        return res.value.length === 1;
+        return res.value.length === 3;
       });
   };
 
