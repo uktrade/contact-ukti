@@ -16,4 +16,4 @@ baseConfig.capabilities = [{
 // run only work in progress tags
 baseConfig.cucumberOpts.tags = ['@wip', '~@ignore'];
 
-module.exports = baseConfig;
+module.exports.config = baseConfig;

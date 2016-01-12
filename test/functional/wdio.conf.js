@@ -25,46 +25,46 @@ function startSelenium() {
   request(statusUrl, function checkSelenium(error) {
     if (!error) {
       // already started, return promise
+      logger.info('Selenium already running');
       deferred.resolve('started all good');
-    }
+    } else {
+      var bar;
 
-    var bar;
-
-    logger.info('Installing selenium standalone');
-    selenium.install({
-      version: '2.48.0',
-      drivers: {
-        chrome: {
-          version: '2.9'
+      logger.info('Installing selenium standalone');
+      selenium.install({
+        version: '2.48.0',
+        drivers: {
+          chrome: {
+            version: '2.9'
+          }
+        },
+        progressCb: function seleniumProgress(total, progress, chunk) {
+          if (!bar) {
+            bar = new ProgressBar('selenium installation [:bar] :percent :etas', {
+              total: total,
+              complete: '=',
+              incomplete: ' ',
+              width: 20
+            });
+          }
+          bar.tick(chunk);
         }
-      },
-      progressCb: function seleniumProgress(total, progress, chunk) {
-        if (!bar) {
-          bar = new ProgressBar('selenium installation [:bar] :percent :etas', {
-            total: total,
-            complete: '=',
-            incomplete: ' ',
-            width: 20
-          });
-        }
-        bar.tick(chunk);
-      }
-    }, function seleniumInstall(installError) {
-      if (installError) {
-        deferred.reject(installError);
-      }
-
-      logger.info('Starting selenium');
-      selenium.start(function seleniumStart(startError, child) {
-        if (startError) {
-          deferred.reject(startError);
+      }, function seleniumInstall(installError) {
+        if (installError) {
+          deferred.reject(installError);
         }
 
-        selenium.child = child;
-        deferred.resolve();
+        logger.info('Starting selenium');
+        selenium.start(function seleniumStart(startError, child) {
+          if (startError) {
+            deferred.reject(startError);
+          }
+
+          selenium.child = child;
+          deferred.resolve();
+        });
       });
-    });
-
+    }
   });
 
   return deferred.promise;
