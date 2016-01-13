@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cp -r /app/public/* /public/
-exec npm start
+exec npm start &
+exec nginx
