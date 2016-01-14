@@ -6,6 +6,7 @@ var path = require('path');
 var logger = require('./lib/logger');
 var churchill = require('churchill');
 var session = require('express-session');
+var url = require('url');
 var redis = require('redis');
 var RedisStore = require('connect-redis-crypto')(session);
 var config = require('./config');
@@ -42,7 +43,17 @@ app.use(function setBaseUrl(req, res, next) {
 /*************************************/
 /******* Redis session storage *******/
 /*************************************/
-var client = redis.createClient(config.redis.port, config.redis.host);
+var client;
+
+if (config.redis.url) {
+  var redisURL = url.parse(config.redis.url);
+  /*eslint-disable camelcase*/
+  client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+  /*eslint-enable camelcase*/
+  client.auth(redisURL.auth.split(':')[1]);
+} else {
+  client = redis.createClient(config.redis.port, config.redis.host);
+}
 
 client.on('error', function clientErrorHandler(e) {
   throw e;
