@@ -19,7 +19,7 @@ CompanyDetailsController.prototype.locals = function contactDetailsLocals(req) {
 
 CompanyDetailsController.prototype.validateField = function validateField(key, req) {
   if (key === 'org-type' && req.session['hmpo-wizard-0']['inside-uk'] === 'no') {
-    return true;
+    return '';
   }
 
   return BaseController.prototype.validateField.apply(this, arguments);

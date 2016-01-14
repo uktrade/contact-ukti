@@ -71,9 +71,9 @@ Emailer.prototype.send = function send(email, callback) {
         cid: 'govuk_logotype_email'
       },
       {
-        filename: 'ho_crest_27px.png',
-        path: path.resolve(__dirname, './images/ho_crest_27px.png'),
-        cid: 'ho_crest_27px'
+        filename: 'org_crest.png',
+        path: path.resolve(__dirname, './images/org_crest.png'),
+        cid: 'org_crest'
       },
       {
         filename: 'spacer.gif',
