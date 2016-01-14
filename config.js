@@ -7,6 +7,11 @@ module.exports = {
   env: process.env.NODE_ENV,
   port: process.env.PORT || 8080,
   listen_host: process.env.LISTEN_HOST || '0.0.0.0',
+  auth: {
+    use: process.env.USE_AUTH,
+    user: process.env.AUTH_USER,
+    pass: process.env.AUTH_PASS,
+  },
   session: {
     secret: process.env.SESSION_SECRET || 'howdoesyourgardengrow',
     ttl: process.env.SESSION_TTL || 1800 /* 30 mins timeout */

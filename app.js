@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var logger = require('./lib/logger');
+var auth = require('./lib/basic-auth');
 var churchill = require('churchill');
 var session = require('express-session');
 var url = require('url');
@@ -11,6 +12,13 @@ var redis = require('redis');
 var RedisStore = require('connect-redis-crypto')(session);
 var config = require('./config');
 require('moment-business');
+
+/*************************************/
+/******* Basic Authentication ********/
+/*************************************/
+if (config.auth.use === 'true') {
+  app.use(auth());
+}
 
 if (config.env !== 'ci') {
   app.use(churchill(logger));
