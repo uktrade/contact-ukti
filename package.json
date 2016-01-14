@@ -4,8 +4,12 @@
   "main": "app.js",
   "description": "A UK Trade & Investment contact form",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/UKTradeInvestment/contact-ukti/"
+    "type": "git",
+    "url": "https://github.com/UKTradeInvestment/contact-ukti/"
+  },
+  "engines": {
+    "node": "0.12.9",
+    "npm": "2.14.9"
   },
   "license": "GPL-2.0",
   "scripts": {
