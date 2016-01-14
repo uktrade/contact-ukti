@@ -1,23 +1,26 @@
-FROM vaijab/nodejs:0.12.7
+FROM ukti/alpine-nginx-nodejs:0.12.9
 
-RUN useradd -d /app app
-RUN mkdir -p /public
-RUN chown app:app /public
+RUN apk add --update g++ make python
 
 WORKDIR /app
-USER app
 
-COPY package.json /app/package.json
-COPY assets /app/assets
-RUN npm install
+USER www-data
 COPY . /app
 
 USER root
-RUN chown -R app:app .
+RUN rm -rf node_modules public documentation .git .npm
+RUN chown -R www-data:www-data .
 
-USER app
-RUN npm run hof-transpile
+USER www-data
+RUN npm install
 
 USER root
-EXPOSE 8080
+RUN apk del g++ make python
+RUN rm -rf /tmp/*
+
+USER www-data
+RUN npm run hof-transpile
+COPY conf/nginx/default.conf /etc/nginx/sites-enabled/default.conf
+
+USER root
 CMD ./run.sh
