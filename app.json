@@ -7,7 +7,5 @@
       "generator": "secret"
     }
   },
-  "addons": [
-    "redistogo:nano"
-  ]
+  "addons": []
 }
