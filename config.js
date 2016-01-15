@@ -17,7 +17,7 @@ module.exports = {
     ttl: process.env.SESSION_TTL || 1800 /* 30 mins timeout */
   },
   redis: {
-    url: process.env.REDIS_URL,
+    url: process.env.REDIS_URL || process.env.REDISTOGO_URL,
     port: process.env.REDIS_PORT_6379_TCP_PORT || process.env.REDIS_PORT || 6379,
     host: process.env.REDIS_PORT_6379_TCP_ADDR || process.env.REDIS_HOST || '127.0.0.1'
   },
