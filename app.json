@@ -2,6 +2,7 @@
   "name": "contact-ukti",
   "scripts": {},
   "env": {
+    "NPM_CONFIG_PRODUCTION": false,
     "SESSION_SECRET": {
       "description": "A secret key for verifying the integrity of signed cookies.",
       "generator": "secret"
