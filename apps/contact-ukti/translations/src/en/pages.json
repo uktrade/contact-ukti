@@ -15,6 +15,14 @@
     "header": "What are your company details?",
     "subheader": ""
   },
+  "operating-industry": {
+    "header": "What industry do you primarily operate in?",
+    "subheader": ""
+  },
+  "previously-sold-overseas": {
+    "header": "Have you sold products or services to overseas customers?",
+    "subheader": ""
+  },
   "company-address": {
     "header": "What is your company address?",
     "subheader": ""
@@ -47,6 +55,7 @@
         "org-name": "Company name",
         "org-type": "Company type",
         "sector": "Primary operating industry",
+        "exported-before": "Previously sold overseas",
         "annual-turnover": "Annual turnover",
         "no-employees": "Number of employees",
         "org-address": "Company address"

@@ -1,5 +1,5 @@
 {{<layout}}
-  {{$step}}Step 8{{/step}}
+  {{$step}}Step 6{{/step}}
 
   {{$journeyHeader}}
     {{#t}}journeys.contact-us.header{{/t}}
@@ -14,13 +14,13 @@
   {{/propositionHeader}}
 
   {{$title}}
-    {{#t}}pages.enquiry.header{{/t}}
+    {{#t}}pages.previously-sold-overseas.header{{/t}}
   {{/title}}
 
   {{$header}}
     {{<partials-page-header}}
       {{$page-header}}
-        {{#t}}pages.enquiry.header{{/t}}
+        {{#t}}pages.previously-sold-overseas.header{{/t}}
       {{/page-header}}
     {{/partials-page-header}}
   {{/header}}
@@ -31,7 +31,7 @@
 
       {{$form}}
 
-        {{#textarea}}enquiry-description{{/textarea}}
+        {{#radio-group}}exported-before{{/radio-group}}
 
         {{#input-submit}}continue{{/input-submit}}
 

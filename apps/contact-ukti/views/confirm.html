@@ -1,5 +1,5 @@
 {{<layout}}
-  {{$step}}Step 7{{/step}}
+  {{$step}}Step 9{{/step}}
 
   {{$journeyHeader}}
     {{#t}}journeys.contact-us.header{{/t}}
@@ -102,14 +102,6 @@
             </tr>
             {{/values.org-type}}
 
-            {{#values.sector}}
-            <tr>
-              <td>{{#t}}pages.confirm.org-details-table.headers.sector{{/t}}</td>
-              <td>{{values.sector}}</td>
-              <td><a href="company-details/edit#sector" class="button">{{#t}}buttons.change{{/t}}</a></td>
-            </tr>
-            {{/values.sector}}
-
             {{#values.annual-turnover}}
             <tr>
               <td>{{#t}}pages.confirm.org-details-table.headers.annual-turnover{{/t}}</td>
@@ -125,6 +117,22 @@
               <td><a href="company-details/edit#no-employees" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
             {{/values.no-employees}}
+
+            {{#values.sector}}
+            <tr>
+              <td>{{#t}}pages.confirm.org-details-table.headers.sector{{/t}}</td>
+              <td>{{values.sector}}</td>
+              <td><a href="operating-industry/edit#sector" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+            {{/values.sector}}
+
+            {{#values.exported-before}}
+            <tr>
+              <td>{{#t}}pages.confirm.org-details-table.headers.exported-before{{/t}}</td>
+              <td>{{values.exported-before}}</td>
+              <td><a href="previously-sold-overseas/edit#sector" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+            {{/values.exported-before}}
 
             {{#values.org-address-street}}
             <tr>

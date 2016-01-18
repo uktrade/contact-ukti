@@ -16,7 +16,7 @@ var Page = function Page(client) {
   var fields = {
     reason: {
       selector: '[name="enquiry-reason"]',
-      value: 'Export'
+      value: 'Exporting from the UK or investing overseas'
     },
     other: {
       selector: '[name="enquiry-reason-other"]',
