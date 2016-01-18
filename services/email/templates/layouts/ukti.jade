@@ -1,0 +1,31 @@
+include ../includes/_mixins
+
+doctype strict
+html
+  head
+    title= data.subject
+  body(style='margin: 0; padding: 0;')
+    +tbl
+      tr
+        td(bgcolor='#0b0c0c')
+          table(width='580' cellpadding='0' cellspacing='0' border='0' align='center')
+            tr
+              td(height='53' valign='middle')
+                img(width='152' height='31' src='cid:govuk_logotype_email' alt='GOV.UK' border='0')
+    +tbl('#ffffff')
+      tr: td
+        table(width='580' cellpadding='0' cellspacing='0' border='0' align='center')
+          tr: td(height='20')
+          tr: td
+            +tbl
+              tr
+                td(width='2' bgcolor='#c80651')
+                td(width='8')
+                  img(src='cid:spacer_image' alt='' width='8' height='30' style='display: block;')
+                td(width='36')
+                  img(src='cid:org_crest' alt='UKTI Logo' width='36' height='30' style='display:block;')
+                td(width='8')
+                  img(src='cid:spacer_image' alt='' width='8' height='30' style='display: block;')
+                td: +text(18) UK Trade &#38; Investment
+          tr: td(height='40')
+          block content
