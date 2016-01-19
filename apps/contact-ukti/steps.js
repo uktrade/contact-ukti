@@ -22,9 +22,10 @@ module.exports = {
     next: '/company-location',
   },
   '/company-location': {
+    controller: require('./controllers/company-location'),
     fields: [
       'inside-uk',
-      'country',
+      'outside-uk',
     ],
     next: '/company-details',
   },

@@ -33,13 +33,13 @@
 
         {{#radio-group}}inside-uk{{/radio-group}}
 
-        <fieldset id="country-group" class="panel-indent {{#errors.country}}validation-error{{/errors.country}}">
+        <fieldset id="country-group" class="panel-indent {{#errors.outside-uk}}validation-error{{/errors.outside-uk}}">
 
           <legend class="visuallyhidden">
-            <span class="form-label-bold">{{#t}}fields.country.legend{{/t}}</span>
+            <span class="form-label-bold">{{#t}}fields.outside-uk.legend{{/t}}</span>
           </legend>
 
-          {{#select}}country{{/select}}
+          {{#select}}outside-uk{{/select}}
 
         </fieldset>
 

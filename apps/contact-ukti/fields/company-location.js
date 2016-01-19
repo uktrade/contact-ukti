@@ -20,7 +20,7 @@ module.exports = {
       },
     ]
   },
-  country: {
+  'outside-uk': {
     className: ['typeahead', 'js-hidden'],
     options: [''].concat(require('../../../assets/countries').allCountries),
     dependent: {
@@ -29,9 +29,9 @@ module.exports = {
     },
     legend: {
       className: 'visuallyhidden',
-      value: 'fields.country.label',
+      value: 'fields.outside-uk.label',
     },
     validate: ['required'],
-    label: 'fields.country.label',
+    label: 'fields.outside-uk.label',
   },
 };

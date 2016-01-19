@@ -58,7 +58,8 @@
         "exported-before": "Previously sold overseas",
         "annual-turnover": "Annual turnover",
         "no-employees": "Number of employees",
-        "org-address": "Company address"
+        "org-address": "Company address",
+        "country": "Country"
       }
     }
   },

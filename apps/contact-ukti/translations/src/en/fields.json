@@ -47,7 +47,7 @@
       }
     }
   },
-  "country": {
+  "outside-uk": {
     "legend": "Outside the UK",
     "label": "Which country are you in?"
   },

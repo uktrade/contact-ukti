@@ -86,6 +86,14 @@
         <h3>{{#t}}pages.confirm.org-details-table.title{{/t}}</h3>
         <table id="org-details" class="table-details">
           <tbody>
+            {{#values.country}}
+            <tr>
+              <td>{{#t}}pages.confirm.org-details-table.headers.country{{/t}}</td>
+              <td>{{values.country}}</td>
+              <td><a href="company-location/edit#inside-uk-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+            {{/values.country}}
+
             {{#values.org-name}}
             <tr>
               <td>{{#t}}pages.confirm.org-details-table.headers.org-name{{/t}}</td>
@@ -141,8 +149,7 @@
                 {{values.org-address-house-number}} {{values.org-address-street}},
                 {{values.org-address-town}},
                 {{#values.org-address-county}}{{values.org-address-county}},{{/values.org-address-county}}
-                {{values.org-address-postcode}},
-                {{values.country}}
+                {{values.org-address-postcode}}
               </td>
               <td><a href="company-address/edit#address-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
