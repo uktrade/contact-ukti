@@ -1,9 +1,0 @@
-# local:
-#     :url: https://staging.somewhere.com
-
-# devnotprod:
-#     :url: https://production.somewhere
-
-environment: 'local'
-
-submit: true

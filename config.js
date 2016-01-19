@@ -32,5 +32,9 @@ module.exports = {
       pass: process.env.SMTP_PASSWORD || ''
     },
     from: process.env.FROM_ADDRESS || 'info@ukti.gov.uk'
+  },
+  // webdriverio
+  webdriver: {
+    baseUrl: process.env.WDIO_BASEURL || 'http://localhost:8080'
   }
 };
