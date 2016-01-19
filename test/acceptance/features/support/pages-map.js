@@ -2,7 +2,8 @@
 
 var globule = require('globule');
 var path = require('path');
-var pages = globule.find('./test/functional/features/pages/**/*.js');
+var findPath = path.resolve(__dirname, '..', 'pages', '**', '*.js');
+var pages = globule.find(findPath);
 var pageMap = {};
 
 for (var i = 0; i < pages.length; i++) {

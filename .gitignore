@@ -14,4 +14,4 @@ Gemfile.lock
 apps/**/translations/en
 dump.rdb
 dev.Procfile
-test/functional/errorshots
+test/acceptance/errorshots

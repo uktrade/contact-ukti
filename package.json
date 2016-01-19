@@ -14,22 +14,23 @@
   "license": "GPL-2.0",
   "scripts": {
     "start": "node .",
-    "dev": "parallelshell 'NODE_ENV=development ./node_modules/.bin/nodemon . -e .js,.json,.html' 'npm run watch:scss' 'npm run watch:js'",
-    "postinstall": "npm run create:public && npm run sass && npm run browserify && npm run copy:images && npm run hof-transpile",
-    "watch:scss": "./node_modules/.bin/nodemon -e scss -x 'npm run sass'",
-    "watch:js": "./node_modules/.bin/nodemon --watch assets/js -x 'npm run browserify'",
+    "dev": "parallelshell 'NODE_ENV=development nodemon . -e .js,.json,.html' 'npm run watch:scss' 'npm run watch:js' 'npm run watch:i18n'",
+    "postinstall": "npm run create:public && npm run sass && (npm run hof-transpile & npm run browserify & npm run copy:images)",
+    "watch:scss": "nodemon --ext scss --exec 'npm run sass'",
+    "watch:js": "nodemon --watch assets/js --exec 'npm run browserify'",
+    "watch:i18n": "nodemon --ext .json --watch apps/common/translations/src --watch apps/contact-ukti/translations/src --exec 'npm run hof-transpile'",
     "create:public": "mkdir -p ./public/js ./public/css ./public/images",
     "copy:images": "cp -r ./assets/images ./public/",
-    "sass": "./node_modules/node-sass/bin/node-sass ./assets/scss/app.scss ./public/css/app.css --include-path ./node_modules",
+    "sass": "node-sass ./assets/scss/app.scss ./public/css/app.css --include-path ./node_modules",
     "browserify": "browserify ./assets/js/index.js > ./public/js/bundle.js",
     "hof-transpile": "hof-transpiler ./apps/**/translations/src -w --shared ./apps/common/translations/src",
     "lint": "eslint .",
     "style": "jscs **/*.js --config=./.jscsrc.json",
-    "test": "npm run lint && npm run style && npm run test:unit && npm run test:acceptance",
+    "test": "npm run lint & npm run style & npm run test:unit",
     "test:unit": "NODE_ENV=test mocha --opts test/unit/mocha.opts",
-    "test:acceptance": "./node_modules/webdriverio/bin/wdio test/functional/wdio.conf.js",
-    "test:acceptance-wip": "./node_modules/webdriverio/bin/wdio test/functional/wdio.wip.js",
-    "test:acceptance-headless": "./node_modules/webdriverio/bin/wdio test/functional/wdio.headless.js",
+    "test:acceptance": "wdio test/acceptance/wdio.conf.js",
+    "test:acceptance-wip": "wdio test/acceptance/wdio.wip.conf.js",
+    "test:acceptance-headless": "wdio test/acceptance/wdio.headless.conf.js",
     "quality": "plato -r -x 'node_modules|reports|test' -d reports/plato ."
   },
   "author": "UK Trade & Investment",
@@ -91,8 +92,6 @@
     "webdriverio": "^3.2.4"
   },
   "pre-commit": [
-    "lint",
-    "style",
-    "test:unit"
+    "test"
   ]
 }

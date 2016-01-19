@@ -10,7 +10,7 @@ var ProgressBar = require('progress');
 var logger = require('../../lib/logger');
 var config = require('../../config');
 
-var screenshotPath = path.join('test', 'functional', 'errorshots');
+var screenshotPath = path.resolve(__dirname, 'errorshots');
 
 /**
  * Start a selenium server if it doesn't exist
@@ -77,7 +77,7 @@ var wdioConfig = {
   // Test Files
   // ==========
   specs: [
-    './test/functional/features/**/*.feature'
+    './test/acceptance/features/**/*.feature'
   ],
 
   // ============
@@ -101,9 +101,9 @@ var wdioConfig = {
   reporter: 'dot',
   cucumberOpts: {
     require: [
-      './test/functional/features/steps/**/*.js',
-      './test/functional/features/pages/**/*.js',
-      './test/functional/features/support/**/*.js'
+      './test/acceptance/features/steps/**/*.js',
+      './test/acceptance/features/pages/**/*.js',
+      './test/acceptance/features/support/**/*.js'
     ],
     // Enable this config to treat undefined definitions as warnings.
     ignoreUndefinedDefinitions: false,
