@@ -1,0 +1,23 @@
+extends ../layouts/ukti
+
+block content
+  tr: td
+    h1(style='margin:0;padding:0;')
+      +text(23)= t('emails.contact-ukti.header')
+  tr: td( height='10')
+  tr: td
+    +text
+      p #{t('emails.dear')} #{data['fullname']}
+      p #{t('emails.customer-instructions')}
+      p #{t('emails.you-sent')}:
+  include ../includes/contact-ukti-data
+  tr: td(height='20')
+  tr: td
+    +text
+      p #{t('emails.phishing.intro')}:
+      ul
+        li= t('emails.phishing.no-reply')
+        li 
+          t('emails.phishing.foward')
+          a(href='phishing@ukti.gsi.gov.uk')
+            +text phishing@ukti.gsi.gov.uk

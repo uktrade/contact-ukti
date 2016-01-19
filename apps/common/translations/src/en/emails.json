@@ -1,0 +1,9 @@
+{
+  "dear": "Dear",
+  "you-sent": "Here is the information you have sent us",
+  "phishing": {
+    "intro": "If you're unsure an email is from UKTI",
+    "no-reply": "do not reply to it or click any links",
+    "foward": "forward it to"
+  }
+}

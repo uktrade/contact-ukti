@@ -1,0 +1,13 @@
+mixin tbl(color)
+  table(width='100%' cellpadding='0' cellspacing='0' border='0' bgcolor=color)
+    if block
+      block
+
+mixin text(size, weight, color, lineHeight)
+  - size = size || 16
+  - weight = weight || 500
+  - color = color || '#0b0c0c'
+  - lineHeight = lineHeight || '1.3'
+  font(face='Arial, sans-serif' size='2' style='font-size: #{size}px; font-weight: #{weight}; line-height: #{lineHeight}em' color=color)
+    if block
+      block

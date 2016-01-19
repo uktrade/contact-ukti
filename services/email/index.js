@@ -2,39 +2,34 @@
 
 var logger = require('../../lib/logger');
 var nodemailer = require('nodemailer');
+var htmlToText = require('nodemailer-html-to-text').htmlToText;
 var config = require('../../config');
+var jadeCompiler = require('../../lib/jade-compiler');
 var i18n = require('hof').i18n;
-var Hogan = require('hogan.js');
 var i18nLookup = require('hof').i18nLookup;
-var fs = require('fs');
+var Q = require('q');
 var path = require('path');
-
-var customerHtmlTemplates = {
-  'contact-ukti': fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/html/contact-ukti.mus')).toString('utf8')
-};
-
-var customerPlainTextTemplates = {
-  'contact-ukti': fs.readFileSync(
-    path.resolve(__dirname, './templates/customer/plain/contact-ukti.mus')).toString('utf8')
-};
-
-var caseworkerHtmlTemplates = {
-  'contact-ukti': fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/html/contact-ukti.mus')).toString('utf8')
-};
-
-var caseworkerPlainTextTemplates = {
-  'contact-ukti': fs.readFileSync(
-    path.resolve(__dirname, './templates/caseworker/plain/contact-ukti.mus')).toString('utf8')
-};
-
-var translationLocation = {
-  'contact-ukti': 'contact-ukti'
-};
 
 var transport = config.email.auth.user === '' ?
   require('nodemailer-stub-transport') : require('nodemailer-smtp-transport');
+
+var attachments = [
+  {
+    filename: 'govuk_logotype_email.png',
+    path: path.resolve(__dirname, 'images', 'govuk_logotype_email.png'),
+    cid: 'govuk_logotype_email'
+  },
+  {
+    filename: 'org_crest.png',
+    path: path.resolve(__dirname, 'images', 'org_crest.png'),
+    cid: 'org_crest'
+  },
+  {
+    filename: 'spacer.gif',
+    path: path.resolve(__dirname, 'images', 'spacer.gif'),
+    cid: 'spacer_image'
+  }
+];
 
 function Emailer() {
   this.transporter = nodemailer.createTransport(transport({
@@ -44,74 +39,96 @@ function Emailer() {
     auth: config.email.auth,
     ignoreTLS: false
   }));
+  this.transporter.use('compile', htmlToText());
+
+  this.lookup = null;
 }
 
 Emailer.prototype.send = function send(email, callback) {
   var locali18n = i18n({
     path: path.resolve(
-      __dirname, '../../apps/', './' + translationLocation[email.template], './translations/__lng__/__ns__.json'
+      __dirname, '..', '..', 'apps', email.template, 'translations', '__lng__', '__ns__.json'
     )
   });
 
   locali18n.on('ready', function locali18nLoaded() {
-    var lookup = i18nLookup(locali18n.translate.bind(locali18n));
-    var templateData = {
-      data: email.dataToSend,
-      t: function t() {
-        return function lookupTranslation(translate) {
-          // for translations inside our mustache templates
-          return lookup(Hogan.compile(translate).render(email.dataToSend));
-        };
-      }
-    };
-    var attachments = [
-      {
-        filename: 'govuk_logotype_email.png',
-        path: path.resolve(__dirname, './images/govuk_logotype_email.png'),
-        cid: 'govuk_logotype_email'
-      },
-      {
-        filename: 'ho_crest_27px.png',
-        path: path.resolve(__dirname, './images/ho_crest_27px.png'),
-        cid: 'ho_crest_27px'
-      },
-      {
-        filename: 'spacer.gif',
-        path: path.resolve(__dirname, './images/spacer.gif'),
-        cid: 'spacer_image'
-      }
-    ];
+    this.lookup = i18nLookup(locali18n.translate.bind(locali18n));
 
-    function sendCustomerEmail() {
-      if (email.to) {
-        logger.info('Emailing customer: ', email.subject);
-        this.transporter.sendMail({
-          from: config.email.from,
-          to: email.to,
-          subject: email.subject,
-          text: Hogan.compile(customerPlainTextTemplates[email.template]).render(templateData),
-          html: Hogan.compile(customerHtmlTemplates[email.template]).render(templateData),
-          attachments: attachments
-        }, callback);
-      } else {
-        callback();
-      }
-    }
-
-    logger.info('Emailing caseworker: ', email.subject);
-    this.transporter.sendMail({
-      from: config.email.from,
-      to: config.email.caseworker[email.template],
-      subject: email.subject,
-      text: Hogan.compile(caseworkerPlainTextTemplates[email.template]).render(templateData),
-      html: Hogan.compile(caseworkerHtmlTemplates[email.template]).render(templateData),
-      attachments: attachments
-    }, function errorHandler(err) {
-      return err
-        ? callback(err)
-        : sendCustomerEmail.bind(this)();
-    }.bind(this));
+    this
+      .sendToCaseworker(email)
+      .then(function success() {
+        if (email.to) {
+          this
+            .sendToCustomer(email)
+            .then(callback, callback);
+        } else {
+          callback();
+        }
+      }.bind(this), callback);
   }.bind(this));
+};
+
+Emailer.prototype.sendToCaseworker = function sendCaseworker(email) {
+  var deferred = Q.defer();
+
+  logger.info('Emailing caseworker: ', email.subject);
+  jadeCompiler.compile(
+    path.resolve(__dirname, 'templates', 'caseworker', email.template),
+    {
+      data: email.dataToSend,
+      t: this.lookup
+    },
+    function compileCb(error, html) {
+      if (error) {
+        return deferred.reject(error);
+      }
+
+      this.sendEmail(config.email.caseworker[email.template], email.subject, html)
+        .then(deferred.resolve, deferred.reject);
+    }.bind(this)
+  );
+  return deferred.promise;
+};
+
+Emailer.prototype.sendToCustomer = function sendCustomer(email) {
+  var deferred = Q.defer();
+
+  logger.info('Emailing customer: ', email.subject);
+  jadeCompiler.compile(
+    path.resolve(__dirname, 'templates', 'customer', email.template),
+    {
+      data: email.dataToSend,
+      t: this.lookup
+    },
+    function compileCb(error, html) {
+      if (error) {
+        return deferred.reject(error);
+      }
+
+      this.sendEmail(email.to, email.subject, html)
+        .then(deferred.resolve, deferred.reject);
+    }.bind(this)
+  );
+  return deferred.promise;
+};
+
+Emailer.prototype.sendEmail = function sendEmail(to, subject, html) {
+  var deferred = Q.defer();
+
+  this.transporter.sendMail({
+    from: config.email.from,
+    to: to,
+    subject: subject,
+    html: html,
+    attachments: attachments
+  }, function errorHandler(err) {
+    if (err) {
+      return deferred.reject(err);
+    }
+    return deferred.resolve();
+  });
+
+  return deferred.promise;
 };
 
 module.exports = new Emailer();
