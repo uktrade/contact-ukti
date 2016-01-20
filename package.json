@@ -89,7 +89,7 @@
     "sinomocha": "^0.2.4",
     "sinon": "^1.15.3",
     "sinon-chai": "^2.8.0",
-    "webdriverio": "^3.2.4"
+    "webdriverio": "^3.4.0"
   },
   "pre-commit": [
     "test"

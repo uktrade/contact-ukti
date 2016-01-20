@@ -1,19 +1,16 @@
 'use strict';
 
-var baseConfig = require('./wdio.conf.js').config;
+/**
+ * Configuration overwrites for headless tests
+ */
+var config = require('./wdio.conf.js').config;
 
-// ============
-// Capabilities
-// ============
-baseConfig.capabilities = [{
-  browserName: 'chrome'
-}];
+exports.config = (function headlessConfig(globalConfig) {
+  globalConfig.capabilities = [{
+    browserName: 'chrome'
+  }];
 
-// ===================
-// Test Configurations
-// ===================
+  globalConfig.cucumberOpts.tags = ['@wip', '~@ignore'];
 
-// run only work in progress tags
-baseConfig.cucumberOpts.tags = ['@wip', '~@ignore'];
-
-module.exports.config = baseConfig;
+  return globalConfig;
+}(config));
