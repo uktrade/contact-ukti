@@ -40,15 +40,17 @@ module.exports = {
     next: '/operating-industry',
   },
   '/operating-industry': {
+    controller: require('./controllers/operating-industry'),
     fields: [
       'sector',
     ],
-    next: '/previously-sold-overseas',
+    next: '/company-address',
   },
   '/previously-sold-overseas': {
     fields: [
       'exported-before',
     ],
+    backLink: 'operating-industry',
     next: '/company-address',
   },
   '/company-address': {
