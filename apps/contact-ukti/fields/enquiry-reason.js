@@ -10,29 +10,29 @@ module.exports = {
     },
     options: [
       {
-        value: 'Export',
+        value: 'Exporting from the UK or investing overseas',
         label: 'fields.enquiry-reason.options.export.label',
       },
       {
-        value: 'Investment',
+        value: 'Inward investment into the UK',
         label: 'fields.enquiry-reason.options.investment.label',
       },
       {
-        value: 'BisOps',
+        value: 'Business opportunities service',
         label: 'fields.enquiry-reason.options.bisops.label',
       },
       {
-        value: 'DSO',
+        value: 'Defence and Security Organisation (DSO)',
         label: 'fields.enquiry-reason.options.dso.label',
       },
       {
-        value: 'Events',
+        value: 'UK Trade & Investment events',
         label: 'fields.enquiry-reason.options.events.label',
       },
       {
         value: 'Other',
         label: 'fields.enquiry-reason.options.other.label',
-        toggle: 'enquiry-reason-other',
+        toggle: 'enquiry-reason-other-toggle',
       },
     ],
   },

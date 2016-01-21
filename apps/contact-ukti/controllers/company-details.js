@@ -12,14 +12,14 @@ util.inherits(CompanyDetailsController, BaseController);
 
 CompanyDetailsController.prototype.locals = function contactDetailsLocals(req) {
   var locals = BaseController.prototype.locals.apply(this, arguments);
-  return (req.form.values['inside-uk'] === 'yes') ? _.extend({}, locals, {
+  return (req.sessionModel.get('inside-uk') === 'yes') ? _.extend({}, locals, {
     insideUk: true
   }) : locals;
 };
 
 CompanyDetailsController.prototype.validateField = function validateField(key, req) {
-  if (key === 'org-type' && req.session['hmpo-wizard-0']['inside-uk'] === 'no') {
-    return '';
+  if (key === 'org-type' && req.sessionModel.get('inside-uk') === 'no') {
+    return undefined;
   }
 
   return BaseController.prototype.validateField.apply(this, arguments);

@@ -5,31 +5,19 @@
  * Detaches UI interactions from step definitions
  *
  */
-var name = 'Company Details';
+var name = 'Industry';
 var Page = function Page(client) {
 
   /**
    * Private
    */
 
-  var url = '/contact-ukti/company-details';
+  var url = '/contact-ukti/operating-industry';
   var fields = {
-    orgName: {
-      selector: '#org-name',
-      value: 'My company Ltd'
+    sector: {
+      selector: '#sector',
+      value: 'Advanced Engineering'
     },
-    orgType: {
-      selector: '[name="org-type"]',
-      value: 'Company or organisation'
-    },
-    turnover: {
-      selector: '[name="annual-turnover"]',
-      value: 'Under £100,000'
-    },
-    noEmployees: {
-      selector: '[name="no-employees"]',
-      value: 'Less than 10'
-    }
   };
   var $errors = '.validation-error';
   var $form = 'form';
@@ -52,10 +40,7 @@ var Page = function Page(client) {
 
   this.complete = function completeForm() {
     return client
-      .setValue(fields.orgName.selector, fields.orgName.value)
-      .click(fields.orgType.selector + '[value="' + fields.orgType.value + '"]')
-      .click(fields.turnover.selector + '[value="' + fields.turnover.value + '"]')
-      .click(fields.noEmployees.selector + '[value="' + fields.noEmployees.value + '"]')
+      .setValue(fields.sector.selector, fields.sector.value)
       .submitForm($form);
   };
 
@@ -68,7 +53,7 @@ var Page = function Page(client) {
     return client
       .elements($errors)
       .then(function elementsResult(res) {
-        return res.value.length === 2;
+        return res.value.length === 1;
       });
   };
 

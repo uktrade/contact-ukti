@@ -1,12 +1,14 @@
 'use strict';
 
-var baseConfig = require('./wdio.conf.js').config;
+/**
+ * Configuration overwrites for headless tests
+ */
+var config = require('./wdio.conf.js').config;
 
-// ============
-// Capabilities
-// ============
-baseConfig.capabilities = [{
-  browserName: 'phantomjs'
-}];
+exports.config = (function headlessConfig(globalConfig) {
+  globalConfig.capabilities = [{
+    browserName: 'phantomjs'
+  }];
 
-module.exports.config = baseConfig;
+  return globalConfig;
+}(config));

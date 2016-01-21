@@ -19,15 +19,14 @@ module.exports = {
       'no-email',
       'phone',
     ],
-    backLink: 'enquiry-reason',
     next: '/company-location',
   },
   '/company-location': {
+    controller: require('./controllers/company-location'),
     fields: [
       'inside-uk',
-      'country',
+      'outside-uk',
     ],
-    backLink: 'personal-details',
     next: '/company-details',
   },
   '/company-details': {
@@ -35,11 +34,23 @@ module.exports = {
     fields: [
       'org-name',
       'org-type',
-      'sector',
       'annual-turnover',
       'no-employees',
     ],
-    backLink: 'company-location',
+    next: '/operating-industry',
+  },
+  '/operating-industry': {
+    controller: require('./controllers/operating-industry'),
+    fields: [
+      'sector',
+    ],
+    next: '/company-address',
+  },
+  '/previously-sold-overseas': {
+    fields: [
+      'exported-before',
+    ],
+    backLink: 'operating-industry',
     next: '/company-address',
   },
   '/company-address': {
@@ -50,20 +61,17 @@ module.exports = {
       'org-address-county',
       'org-address-postcode',
     ],
-    backLink: 'company-details',
     next: '/enquiry',
   },
   '/enquiry': {
     fields: [
       'enquiry-description'
     ],
-    backLink: 'company-address',
     next: '/confirm',
   },
   '/confirm': {
     controller: require('../common/controllers/confirm'),
     fields: [],
-    backLink: 'enquiry',
     next: '/confirmation',
   },
   '/confirmation': {

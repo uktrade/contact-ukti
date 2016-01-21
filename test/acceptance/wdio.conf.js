@@ -98,7 +98,7 @@ var wdioConfig = {
   screenshotPath: screenshotPath,
   baseUrl: config.webdriver.baseUrl,
   framework: 'cucumber',
-  reporter: 'dot',
+  reporter: 'spec',
   cucumberOpts: {
     require: [
       './test/acceptance/features/steps/**/*.js',
@@ -139,4 +139,4 @@ var wdioConfig = {
 
 };
 
-module.exports.config = wdioConfig;
+exports.config = wdioConfig;

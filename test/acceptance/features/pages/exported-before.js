@@ -5,31 +5,19 @@
  * Detaches UI interactions from step definitions
  *
  */
-var name = 'Company Details';
+var name = 'Exported Before';
 var Page = function Page(client) {
 
   /**
    * Private
    */
 
-  var url = '/contact-ukti/company-details';
+  var url = '/contact-ukti/previously-sold-overseas';
   var fields = {
-    orgName: {
-      selector: '#org-name',
-      value: 'My company Ltd'
+    exportedBefore: {
+      selector: '[name="exported-before"]',
+      value: 'No'
     },
-    orgType: {
-      selector: '[name="org-type"]',
-      value: 'Company or organisation'
-    },
-    turnover: {
-      selector: '[name="annual-turnover"]',
-      value: 'Under £100,000'
-    },
-    noEmployees: {
-      selector: '[name="no-employees"]',
-      value: 'Less than 10'
-    }
   };
   var $errors = '.validation-error';
   var $form = 'form';
@@ -52,10 +40,7 @@ var Page = function Page(client) {
 
   this.complete = function completeForm() {
     return client
-      .setValue(fields.orgName.selector, fields.orgName.value)
-      .click(fields.orgType.selector + '[value="' + fields.orgType.value + '"]')
-      .click(fields.turnover.selector + '[value="' + fields.turnover.value + '"]')
-      .click(fields.noEmployees.selector + '[value="' + fields.noEmployees.value + '"]')
+      .click(fields.exportedBefore.selector + '[value="' + fields.exportedBefore.value + '"]')
       .submitForm($form);
   };
 
@@ -68,7 +53,7 @@ var Page = function Page(client) {
     return client
       .elements($errors)
       .then(function elementsResult(res) {
-        return res.value.length === 2;
+        return res.value.length === 1;
       });
   };
 

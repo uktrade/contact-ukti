@@ -47,11 +47,31 @@
       }
     }
   },
-  "country": {
+  "outside-uk": {
     "legend": "Outside the UK",
     "label": "Which country are you in?"
   },
   "enquiry-description": {
     "label": "Give us a brief summary of your enquiry"
+  },
+  "sector": {
+    "label": "Primary operating industry"
+  },
+  "exported-before": {
+    "legend": "Have you sold products or services to overseas customers?",
+    "options": {
+      "no": {
+        "label": "No"
+      },
+      "within-1-yr": {
+        "label": "Yes, within the last year"
+      },
+      "within-2-yr": {
+        "label": "Yes, within the last 2 years"
+      },
+      "more-2-yr": {
+        "label": "Yes, more than 2 years ago"
+      }
+    }
   }
 }

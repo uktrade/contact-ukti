@@ -12,7 +12,7 @@
     "required": "Enter your email address",
     "email": "Enter your email in the correct format, for example name@domain.com"
   },
-  "country": {
+  "outside-uk": {
     "required": "Tell us where you are",
     "equal": "Please select a country from the list"
   },
