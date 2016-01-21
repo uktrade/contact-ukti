@@ -27,11 +27,12 @@
     "lint": "eslint .",
     "style": "jscs **/*.js --config=./.jscsrc.json",
     "test": "npm run lint & npm run style & npm run test:unit",
-    "test:unit": "NODE_ENV=test mocha --opts test/unit/mocha.opts",
+    "test:unit": "istanbul test _mocha -- --opts ./test/unit/mocha.opts -R spec",
     "test:acceptance": "wdio test/acceptance/wdio.conf.js",
     "test:acceptance-wip": "wdio test/acceptance/wdio.wip.conf.js",
     "test:acceptance-headless": "wdio test/acceptance/wdio.headless.conf.js",
-    "quality": "plato -r -x 'node_modules|reports|test' -d reports/plato ."
+    "coverage": "npm_config_coverage=true npm run test:unit",
+    "quality": "plato --recurse --exclude 'node_modules|reports|test|public' --dir reports/plato ."
   },
   "author": "UK Trade & Investment",
   "dependencies": {

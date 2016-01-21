@@ -72,14 +72,27 @@ npm run lint
 
 Run the jscs style checker. Rules are defined in [.jscsrc.json](./.jscsrc.json)
 ```bash
-$ npm run style
+npm run style
+```
+
+## Code coverage
+
+Analyse the test coverage of the codebase (for results - open [./reports/coverage/lcov-report/index.html](./reports/coverage/lcov-report/index.html))
+```bash
+npm run coverage
+```
+or using environment variable on unit tests
+```bash
+export npm_config_coverage=true
+npm run test:unit
 ```
 
 ## Code quality
 
 Analyse the quality of the codebase (for results - open [./reports/plato/index.html](./reports/plato/index.html))
 ```bash
-$ npm run quality
+npm run quality
+```
 
 _____________________________________________________________
 
