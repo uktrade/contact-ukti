@@ -7,6 +7,7 @@ module.exports = {
   env: process.env.NODE_ENV,
   port: process.env.PORT || 8080,
   listen_host: process.env.LISTEN_HOST || '0.0.0.0',
+  trackingId: process.env.TRACKING_ID,
   auth: {
     use: process.env.USE_AUTH,
     user: process.env.AUTH_USER,
