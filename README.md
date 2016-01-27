@@ -1,5 +1,9 @@
 # UKTI Contact Form
 
+[![Dependency Status](https://img.shields.io/david/UKTradeInvestment/contact-ukti.svg?style=flat-square)](https://david-dm.org/UKTradeInvestment/contact-ukti)
+[![devDependency Status](https://img.shields.io/david/dev/UKTradeInvestment/contact-ukti.svg?style=flat-square)](https://david-dm.org/UKTradeInvestment/contact-ukti#info=devDependencies)
+
+
 ## Quick start
 
 Install the dependencies and build the project resources
