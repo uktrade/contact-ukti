@@ -7,5 +7,6 @@ module.exports = _.extend(
   require('./company-location'),
   require('./exported-before'),
   require('./sector'),
-  require('./enquiry')
+  require('./enquiry'),
+  require('./data-protection')
 );

@@ -71,7 +71,9 @@ module.exports = {
   },
   '/confirm': {
     controller: require('../common/controllers/confirm'),
-    fields: [],
+    fields: [
+      'data-protection',
+    ],
     next: '/confirmation',
   },
   '/confirmation': {
