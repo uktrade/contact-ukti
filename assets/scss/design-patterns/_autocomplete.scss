@@ -1,0 +1,23 @@
+.tt-menu {
+  background-color: $white;
+  border: 1px solid $grey-2;
+  width: 65%;
+}
+
+.tt-suggestion {
+  padding: .5em;
+
+  &:hover,
+  &.tt-cursor {
+    color: $white;
+    background-color: $light-blue;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.twitter-typeahead {
+  width: 100%;
+}

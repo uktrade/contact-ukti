@@ -12,19 +12,18 @@ module.exports = {
   },
   'no-email': {
     className: 'inline',
-    label: 'fields.no-email.label',
-    toggle: 'address-group'
+    label: 'fields.no-email.label'
   },
   phone: {
     label: 'fields.phone.label'
   },
   'contact-address-house-number': {
     validate: ['required'],
-      label: 'common-fields.address-house-number.label',
-      dependent: {
-        value: 'true',
-        field: 'no-email'
-      }
+    label: 'common-fields.address-house-number.label',
+    dependent: {
+      value: 'true',
+      field: 'no-email'
+    }
   },
   'contact-address-street': {
     validate: ['required'],
