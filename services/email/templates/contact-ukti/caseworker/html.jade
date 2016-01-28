@@ -1,8 +1,8 @@
-extends ../layouts/ukti
+extends ../../layouts/html
 
 block content
   tr: td
     h1(style='margin:0;padding:0;')
       +text(23)= t('emails.contact-ukti.header')
   tr: td(colspan='2' height='20')
-  include ../includes/contact-ukti-data
+  include ../_data-html

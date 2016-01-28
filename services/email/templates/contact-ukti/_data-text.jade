@@ -1,0 +1,35 @@
+mixin dataRow(field, key)
+  br
+  | #{t(key)}:
+  br
+  = data[field]
+  br
+mixin heading(key)
+  br
+  = t(key)
+  br
+  | -------------------------------------
+  br
+
+if data
+  +heading('pages.confirm.enquiry-table.title')
+  +dataRow('enquiry-reason', 'pages.confirm.enquiry-table.headers.reason')
+  +dataRow('enquiry-description', 'pages.confirm.enquiry-table.headers.description')
+  +heading('pages.confirm.org-details-table.title')
+  +dataRow('country', 'pages.confirm.org-details-table.headers.country')
+  +dataRow('org-name', 'pages.confirm.org-details-table.headers.org-name')
+  +dataRow('org-type', 'pages.confirm.org-details-table.headers.org-type')
+  +dataRow('annual-turnover', 'pages.confirm.org-details-table.headers.annual-turnover')
+  +dataRow('no-employees', 'pages.confirm.org-details-table.headers.no-employees')
+  +dataRow('sector', 'pages.confirm.org-details-table.headers.sector')
+  +dataRow('exported-before', 'pages.confirm.org-details-table.headers.exported-before')
+  if data['org-address-street']
+    +heading('pages.confirm.org-details-table.headers.org-address')
+    | #{data['org-address-house-number']} #{data['org-address-street']},
+    br
+    | #{data['org-address-town']},
+    if data['org-address-county']
+      br
+      | #{data['org-address-county']},
+      br
+      | #{data['org-address-postcode']}

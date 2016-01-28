@@ -25,7 +25,11 @@ module.exports = {
   },
   email: {
     caseworker: {
-      'contact-ukti': process.env.CASEWORKER_CONTACT_EMAIL || 'caseworker_email_address',
+      default: process.env.CASEWORKER_DEFAULT_EMAIL || 'enquiries@ukti.gsi.gov.uk',
+      investment: process.env.CASEWORKER_INVESTMENT_EMAIL || 'enquiries@ukti-invest.com',
+      bizops: process.env.CASEWORKER_BIZOPS_EMAIL || 'bizoppteam@ukti.gov.uk',
+      dso: process.env.CASEWORKER_DSO_EMAIL || 'uktidso.enquiry@ukti.gsi.gov.uk',
+      events: process.env.CASEWORKER_EVENTS_EMAIL || 'enquiries@ukti.gsi.gov.uk',
     },
     port: process.env.EMAIL_PORT || 1025,
     host: process.env.EMAIL_HOST || 'localhost',
@@ -33,7 +37,7 @@ module.exports = {
       user: process.env.SMTP_USER || '',
       pass: process.env.SMTP_PASSWORD || ''
     },
-    from: process.env.FROM_ADDRESS || 'info@ukti.gov.uk'
+    from: process.env.FROM_ADDRESS || 'UKTI <info@ukti.gov.uk>'
   },
   // webdriverio
   webdriver: {

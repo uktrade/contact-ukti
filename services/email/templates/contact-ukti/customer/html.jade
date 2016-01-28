@@ -1,4 +1,4 @@
-extends ../layouts/ukti
+extends ../../layouts/html
 
 block content
   tr: td
@@ -10,7 +10,7 @@ block content
       p #{t('emails.dear')} #{data['fullname']}
       p #{t('emails.customer-instructions')}
       p #{t('emails.you-sent')}:
-  include ../includes/contact-ukti-data
+  include ../_data-html
   tr: td(height='20')
   tr: td
     +text
