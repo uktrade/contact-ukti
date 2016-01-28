@@ -1,16 +1,15 @@
-/*global ga*/
 'use strict';
 
 var $ = require('jquery');
+var analytics = require('./analytics');
 
 module.exports = {
+
   el: '.validation-summary',
 
   init: function init() {
-    $(function ready() {
-      this.cacheEls();
-      this.sendEvents();
-    }.bind(this));
+    this.cacheEls();
+    this.sendErrors();
   },
 
   cacheEls: function cacheEls() {
@@ -18,26 +17,22 @@ module.exports = {
     this.$errors = this.$errorSummary.find('a');
   },
 
-  sendEvents: function sendEvent() {
+  sendErrors: function sendErrors() {
     this.$errors.each(function eachError(i, el) {
       var $el = $(el);
       var id = $el.attr('href').replace('#', '');
 
-      this.sendEvent(id, $el.text());
+      this.sendError(id, $el.text());
     }.bind(this));
   },
 
-  sendEvent: function sendEvent(field, message) {
-    try {
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'ValidationError',
-        eventAction: field,
-        eventLabel: message
-      });
-    } catch(e) {
-      throw e;
-    }
+  sendError: function sendError(field, message) {
+    analytics.sendEvent({
+      hitType: 'event',
+      eventCategory: 'ValidationError',
+      eventAction: field,
+      eventLabel: message
+    });
   }
 
 };
