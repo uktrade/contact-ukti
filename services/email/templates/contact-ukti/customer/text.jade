@@ -1,0 +1,25 @@
+extends ../../layouts/text
+
+block content
+  = t('emails.contact-ukti.header')
+  br
+  | =====================================
+  br
+  br
+  | #{t('emails.dear')} #{data['fullname']}
+  br
+  br
+  = t('emails.customer-instructions')
+  br
+  br
+  | #{t('emails.you-sent')}:
+  br
+  include ../_data-text
+  br
+  br
+  br
+  | #{t('emails.phishing.intro')}:
+  br
+  br
+  | * #{t('emails.phishing.no-reply')}
+  | * #{t('emails.phishing.foward')} phishing@ukti.gsi.gov.uk

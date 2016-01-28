@@ -1,14 +1,16 @@
 'use strict';
 
-var logger = require('../../lib/logger');
-var nodemailer = require('nodemailer');
-var htmlToText = require('nodemailer-html-to-text').htmlToText;
+var path = require('path');
 var config = require('../../config');
-var jadeCompiler = require('../../lib/jade-compiler');
+var logger = require('../../lib/logger');
+var regionFinder = require('../../lib/region-finder');
+var EmailTemplate = require('email-templates').EmailTemplate;
+var nodemailer = require('nodemailer');
+var async = require('async');
 var i18n = require('hof').i18n;
 var i18nLookup = require('hof').i18nLookup;
-var Q = require('q');
-var path = require('path');
+
+var templatesDir = path.resolve(__dirname, 'templates');
 
 var transport = config.email.auth.user === '' ?
   require('nodemailer-stub-transport') : require('nodemailer-smtp-transport');
@@ -36,99 +38,118 @@ function Emailer() {
     host: config.email.host,
     port: config.email.port,
     secure: false,
-    auth: config.email.auth,
-    ignoreTLS: false
+    auth: config.email.auth.user ? config.email.auth : null,
+    ignoreTLS: config.email.auth.user ? false : true,
   }));
-  this.transporter.use('compile', htmlToText());
-
-  this.lookup = null;
 }
 
-Emailer.prototype.send = function send(email, callback) {
-  var locali18n = i18n({
-    path: path.resolve(
-      __dirname, '..', '..', 'apps', email.template, 'translations', '__lng__', '__ns__.json'
-    )
-  });
+Emailer.prototype = {
 
-  locali18n.on('ready', function locali18nLoaded() {
-    this.lookup = i18nLookup(locali18n.translate.bind(locali18n));
+  send: function send(email, callback) {
+    var locali18n = i18n({
+      path: path.resolve(
+        __dirname, '..', '..', 'apps', email.template, 'translations', '__lng__', '__ns__.json'
+      )
+    });
 
-    this
-      .sendToCaseworker(email)
-      .then(function success() {
-        if (email.to) {
-          this
-            .sendToCustomer(email)
-            .then(callback, callback);
-        } else {
-          callback();
+    locali18n.on('ready', function locali18nLoaded() {
+      var locals = {
+        data: email.dataToSend,
+        t: i18nLookup(locali18n.translate.bind(locali18n))
+      };
+      var batch = [
+        {
+          template: new EmailTemplate(path.join(templatesDir, email.template, 'customer')),
+          to: email.to,
+          subject: email.subject,
+          locals: locals
         }
-      }.bind(this), callback);
-  }.bind(this));
-};
+      ];
 
-Emailer.prototype.sendToCaseworker = function sendCaseworker(email) {
-  var deferred = Q.defer();
+      this.getCaseworkerEmail(email.dataToSend['enquiry-reason'], email.dataToSend['org-address-postcode'],
+        function caseworkerEmailCb(error, caseworkerEmail) {
+          if (error) {
+            return callback(error);
+          }
 
-  logger.info('Emailing caseworker: ', email.subject);
-  jadeCompiler.compile(
-    path.resolve(__dirname, 'templates', 'caseworker', email.template),
-    {
-      data: email.dataToSend,
-      t: this.lookup
-    },
-    function compileCb(error, html) {
-      if (error) {
-        return deferred.reject(error);
+          batch.push({
+            template: new EmailTemplate(path.join(templatesDir, email.template, 'caseworker')),
+            to: caseworkerEmail,
+            subject: email.subject,
+            locals: locals
+          });
+
+          this.sendBatch(batch, callback);
+        }.bind(this)
+      );
+    }.bind(this));
+  },
+
+  sendBatch: function sendBatch(batch, callback) {
+    async.each(batch, this.sendBatchItem.bind(this), function allSent(err) {
+      if (err) {
+        return callback(err);
+      }
+      callback();
+    });
+  },
+
+  sendBatchItem: function sendBatchItem(item, next) {
+    logger.verbose('Sending email:', item.subject);
+    item.template.render(item.locals, function templateRender(err, results) {
+      if (err) {
+        return next(err);
       }
 
-      this.sendEmail(config.email.caseworker[email.template], email.subject, html)
-        .then(deferred.resolve, deferred.reject);
-    }.bind(this)
-  );
-  return deferred.promise;
-};
+      this.transporter.sendMail({
+        from: config.email.from,
+        to: item.to,
+        subject: item.subject,
+        html: results.html,
+        text: results.text,
+        attachments: attachments
+      }, function transportCallback(error, responseStatus) {
+        if (error) {
+          return next(error);
+        }
+        logger.info('Email sent:', item.subject);
+        next(null, responseStatus);
+      });
+    }.bind(this));
+  },
 
-Emailer.prototype.sendToCustomer = function sendCustomer(email) {
-  var deferred = Q.defer();
-
-  logger.info('Emailing customer: ', email.subject);
-  jadeCompiler.compile(
-    path.resolve(__dirname, 'templates', 'customer', email.template),
-    {
-      data: email.dataToSend,
-      t: this.lookup
-    },
-    function compileCb(error, html) {
-      if (error) {
-        return deferred.reject(error);
-      }
-
-      this.sendEmail(email.to, email.subject, html)
-        .then(deferred.resolve, deferred.reject);
-    }.bind(this)
-  );
-  return deferred.promise;
-};
-
-Emailer.prototype.sendEmail = function sendEmail(to, subject, html) {
-  var deferred = Q.defer();
-
-  this.transporter.sendMail({
-    from: config.email.from,
-    to: to,
-    subject: subject,
-    html: html,
-    attachments: attachments
-  }, function errorHandler(err) {
-    if (err) {
-      return deferred.reject(err);
+  getCaseworkerEmail: function getCaseworkerEmail(reason, postcode, callback) {
+    if (reason.toLowerCase().indexOf('inward investment') !== -1) {
+      return callback(null, config.email.caseworker.investment);
     }
-    return deferred.resolve();
-  });
 
-  return deferred.promise;
+    if (reason.toLowerCase().indexOf('business opportunities') !== -1) {
+      return callback(null, config.email.caseworker.bizops);
+    }
+
+    if (reason.toLowerCase().indexOf('defence & security organisation') !== -1) {
+      return callback(null, config.email.caseworker.dso);
+    }
+
+    if (reason.toLowerCase().indexOf('events') !== -1) {
+      return callback(null, config.email.caseworker.events);
+    }
+
+    if (reason.toLowerCase().indexOf('export') !== -1 && postcode) {
+      return regionFinder
+        .getByPostcode(postcode)
+        .then(function regionSuccess(region) {
+          if (!region.email) {
+            return callback(new Error('No email contact for region'));
+          }
+
+          callback(null, region.email);
+        }, callback);
+    }
+
+    callback(null, config.email.caseworker.default);
+  }
+
 };
 
 module.exports = new Emailer();
