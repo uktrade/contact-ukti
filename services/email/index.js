@@ -38,8 +38,8 @@ function Emailer() {
     host: config.email.host,
     port: config.email.port,
     secure: false,
-    auth: config.email.auth.user ? config.email.auth : null,
-    ignoreTLS: config.email.auth.user ? false : true,
+    auth: config.email.auth.user && config.email.auth.pass ? config.email.auth : null,
+    ignoreTLS: config.email.auth.user && config.email.auth.pass ? false : true,
   }));
 }
 
