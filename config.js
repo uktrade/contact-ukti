@@ -26,8 +26,8 @@ module.exports = {
     caseworker: {
       'contact-ukti': process.env.CASEWORKER_CONTACT_EMAIL || 'caseworker_email_address',
     },
-    port: process.env.EMAIL_PORT || 587,
-    host: process.env.EMAIL_HOST || 'email-smtp.eu-west-1.amazonaws.com',
+    port: process.env.EMAIL_PORT || 1025,
+    host: process.env.EMAIL_HOST || 'localhost',
     auth: {
       user: process.env.SMTP_USER || '',
       pass: process.env.SMTP_PASSWORD || ''

@@ -98,6 +98,13 @@ Analyse the quality of the codebase (for results - open [./reports/plato/index.h
 npm run quality
 ```
 
+## Development SMTP Server
+
+[Maildev](http://djfarrelly.github.io/MailDev/) can be run as a development SMTP server to catch emails being sent and preview the results.
+```bash
+npm run maildev
+```
+
 _____________________________________________________________
 
 - See the [package.json](./package.json) for a full list of scripts.
