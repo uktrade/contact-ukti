@@ -3,9 +3,9 @@
 // ==========================================================================
 
 
-.icon:before {
+.icon::before {
   cursor: default;
-  content: '\00a0'; /* non-breaking space */
+  content: '\00a0'; // non-breaking space
   display: block;
   height: 22px;
   text-align: center;
@@ -13,18 +13,16 @@
   width: 22px;
 }
 
-
 .icon {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: 50%;
 }
 
-
 .icon-complete {
   float: left;
   margin-right: 10px;
   overflow: hidden;
-  background-image: url("../images/icons/icon-complete.png");
+  background-image: url('../images/icons/icon-complete.png');
   display: block;
 }

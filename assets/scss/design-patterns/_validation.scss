@@ -1,6 +1,6 @@
 .form-group.validation-error {
 
-  label span.error-message {
+  label .error-message {
     position: absolute;
     overflow: hidden;
     clip: rect(0 0 0 0);
@@ -11,7 +11,7 @@
     border: 0;
   }
 
-  label span.visuallyhidden {
+  label .visuallyhidden {
     position: inherit;
     overflow: inherit;
     clip: inherit;
@@ -22,17 +22,17 @@
     border: inherit;
 
     display: block;
-    font-family: "nta", Arial, sans-serif;
+    font-family: 'nta', Arial, sans-serif;
     font-size: 19px;
     line-height: 1.31579;
     font-weight: 700;
     text-transform: none;
-    color: #af1324;
+    color: $error-colour;
   }
 }
 
 .form-date .form-group.validation-error,
 .panel-indent .form-group.validation-error {
-  border-left: none;
+  border-left: 0;
   padding-left: 0;
 }
