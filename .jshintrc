@@ -17,5 +17,5 @@
   "asi": true,
   "loopfunc": true,
   "unused": false,
-  "predef": [ "it", "describe", "before", "window" ]
+  "predef": [ "it", "describe", "before", "chai", "should", "window" ]
 }

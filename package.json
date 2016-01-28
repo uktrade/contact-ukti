@@ -59,13 +59,15 @@
     "nodemailer-smtp-transport": "^1.0.3",
     "nodemailer-stub-transport": "^1.0.0",
     "redis": "^0.12.1",
+    "request": "^2.67.0",
     "typeahead.js-browserify": "^1.0.5",
     "underscore": "^1.8.3",
-    "winston": "^2.1.1"
+    "winston": "^2.1.1",
+    "yamljs": "^0.2.4"
   },
   "devDependencies": {
     "chai": "^3.2.0",
-    "chai-as-promised": "^5.1.0",
+    "chai-as-promised": "^5.2.0",
     "cucumber": "^0.5.3",
     "debug": "^2.2.0",
     "del": "^2.0.2",
@@ -81,6 +83,7 @@
     "mocha": "^2.2.5",
     "mocha-junit-reporter": "^1.4.0",
     "mocha-multi": "^0.7.1",
+    "nock": "^5.2.1",
     "nodemon": "^1.8.1",
     "parallelshell": "^1.1.1",
     "plato": "^1.5.0",
@@ -88,7 +91,6 @@
     "progress": "^1.1.8",
     "proxyquire": "^1.5.0",
     "q": "^1.4.1",
-    "request": "^2.63.0",
     "selenium-standalone": "4.6.0",
     "sinomocha": "^0.2.4",
     "sinon": "^1.15.3",
