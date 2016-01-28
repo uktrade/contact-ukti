@@ -22,7 +22,7 @@ module.exports = {
         label: 'fields.enquiry-reason.options.bisops.label',
       },
       {
-        value: 'Defence and Security Organisation (DSO)',
+        value: 'Defence & Security Organisation (DSO)',
         label: 'fields.enquiry-reason.options.dso.label',
       },
       {
