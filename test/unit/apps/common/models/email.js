@@ -20,9 +20,9 @@ describe('apps/common/models/email', function () {
       var emailData = {
         some: 'email data'
       };
-      /*eslint no-unused-vars: 0*/
+      /*eslint-disable*/
       var model = new EmailModel(emailData);
-      /*eslint no-unused-vars: 1*/
+      /*eslint-enable*/
       hof.Model.should.have.been.calledWith(emailData);
     });
   });
