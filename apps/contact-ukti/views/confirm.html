@@ -38,7 +38,12 @@
             {{#values.enquiry-reason}}
             <tr>
               <td>{{#t}}pages.confirm.enquiry-table.headers.reason{{/t}}</td>
-              <td>{{values.enquiry-reason}}</td>
+              <td>
+                {{values.enquiry-reason}}
+                {{#values.enquiry-reason-other}}
+                  - {{values.enquiry-reason-other}}
+                {{/values.enquiry-reason-other}}
+              </td>
               <td><a href="enquiry-reason/edit#enquiry-reason" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
             {{/values.enquiry-reason}}

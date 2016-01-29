@@ -11,9 +11,14 @@ mixin heading(key)
   | -------------------------------------
   br
 
+- var enqReasonField = 'enquiry-reason'
+
+if data['enquiry-reason-other']
+  - enqReasonField = 'enquiry-reason-other'
+
 if data
   +heading('pages.confirm.enquiry-table.title')
-  +dataRow('enquiry-reason', 'pages.confirm.enquiry-table.headers.reason')
+  +dataRow(enqReasonField, 'pages.confirm.enquiry-table.headers.reason')
   +dataRow('enquiry-description', 'pages.confirm.enquiry-table.headers.description')
   +heading('pages.confirm.org-details-table.title')
   +dataRow('country', 'pages.confirm.org-details-table.headers.country')
