@@ -52,8 +52,7 @@
     "label": "Which country are you in?"
   },
   "enquiry-description": {
-    "label": "Tell us the reason for your enquiry",
-    "hint": "Keep your description to 250 characters"
+    "label": "Tell us the reason for your enquiry"
   },
   "sector": {
     "label": "Primary operating industry"
