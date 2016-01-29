@@ -73,5 +73,10 @@
         "label": "Yes, more than 2 years ago"
       }
     }
+  },
+  "data-protection": {
+    "title": "Data protection",
+    "explanation": "UK Trade & Investment and it's trusted partners may use your details to send you tailored marketing material.",
+    "label": "Yes, I am happy for my details to be used for marketing"
   }
 }

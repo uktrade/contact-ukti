@@ -33,3 +33,9 @@ if data
       | #{data['org-address-county']},
       br
       | #{data['org-address-postcode']}
+  br
+  +heading('fields.data-protection.title')
+  if data['data-protection']
+    = t('emails.data-protection.opted-in')
+  else
+    = t('emails.data-protection.opted-out')
