@@ -1,8 +1,8 @@
 name: UKTI North East
-address: |
-  Aykley Heads Business Centre
-  Durham
-  DH1 5TS
+address:
+  street: Aykley Heads Business Centre
+  city: Durham
+  postcode: DH1 5TS
 email: northeast@mobile.ukti.gov.uk
 phone:
   - 0345 136 0169

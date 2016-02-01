@@ -1,9 +1,10 @@
 name: UKTI North West
-address: |
-  Churchgate House
-  56 Oxford Street
-  Manchester
-  M60 7HJ
+address:
+  street:
+    - Churchgate House
+    - 56 Oxford Street
+  city: Manchester
+  postcode: M60 7HJ
 email: info@uktinorthwest.co.uk
 phone:
   - 0333 320 0392

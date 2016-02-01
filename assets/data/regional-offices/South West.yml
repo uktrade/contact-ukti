@@ -1,9 +1,10 @@
 name: UKTI South West
-address: |
-  Leigh Court
-  Abbots Leigh
-  Bristol
-  BS8 3RA
+address:
+  street:
+    - Leigh Court
+    - Abbots Leigh
+  city: Bristol
+  postcode: BS8 3RA
 email: uktisw@mobile.ukti.gov.uk
 phone:
   - 01275 370 944
