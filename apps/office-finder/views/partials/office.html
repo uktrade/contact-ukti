@@ -37,12 +37,12 @@
 
     <div class="contact-options">
       <p>
-        <span class="type">Email</span>
+        <span class="type">{{#t}}pages.office-finder.offices.contact-types.email.label{{/t}}</span>
         <a href="mailto:{{ email }}" class="email">{{ email }}</a>
       </p>
 
       <p class="tel">
-        <span class="type">Telephone</span>
+        <span class="type">{{#t}}pages.office-finder.offices.contact-types.phone.label{{/t}}</span>
         {{#phone.length}}
           {{#phone}}
             {{ . }}

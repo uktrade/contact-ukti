@@ -3,6 +3,17 @@
 var path = require('path');
 var router = require('express').Router();
 var regionFinder = require('../../lib/region-finder');
+var hof = require('hof');
+var i18nFuture = hof.i18n;
+var mixins = hof.mixins;
+
+var i18n = i18nFuture({
+  path: path.resolve(__dirname, './translations/__lng__/__ns__.json')
+});
+
+router.use(mixins({}, {
+  translate: i18n.translate.bind(i18n)
+}));
 
 router.post('/:postcode?', function postHandler(req, res) {
   if (req.body.postcode) {

@@ -1,12 +1,12 @@
 {{<layout}}
 
 {{$title}}
-  Find a UK Trade & Investment office
+  {{#t}}pages.office-finder.heading{{/t}}
 {{/title}}
 
 {{$header}}
   <header>
-    <h1>Find a UK Trade & Investment office</h1>
+    <h1>{{#t}}pages.office-finder.heading{{/t}}</h1>
   </header>
 {{/header}}
 
@@ -17,7 +17,7 @@
 {{$content}}
   {{#region}}
     <div class="panel">
-      <h2>Your nearest office to {{ postcode }} is</h2>
+      <h2>{{#t}}pages.office-finder.nearest.before-postcode{{/t}} {{postcode}} {{#t}}pages.office-finder.nearest.after-postcode{{/t}}</h2>
       {{> partials-office}}
     </div>
   {{/region}}
@@ -25,7 +25,10 @@
   <form method="POST" action="">
 
     <div class="form-group{{#errorlist}} validation-error{{/errorlist}}" id="postcode-group">
-      <label for="postcode" class="form-label-bold">Enter your postcode</label>
+      <label for="postcode" class="form-label-bold">
+        {{#t}}fields.postcode.label{{/t}}
+        <span id="postcode-hint" class="form-hint">{{#t}}fields.postcode.hint{{/t}}</span>
+      </label>
 
       {{#errorlist}}
         <span class="error-message">{{ message }}</span>
@@ -33,12 +36,12 @@
 
       <input type="text" name="postcode" id="postcode" class="form-control" value="{{ postcode }}">
 
-      <button type="submit" class="button">Submit</button>
+      <button type="submit" class="button">{{#t}}fields.submit.label{{/t}}</button>
     </div>
 
   </form>
 
-  <h2 class="section-heading">UK Trade & Investment regional offices</h2>
+  <h2 class="section-heading">{{#t}}pages.office-finder.offices.heading{{/t}}</h2>
 
   {{#regions}}
     {{> partials-office}}
