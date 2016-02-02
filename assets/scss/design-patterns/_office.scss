@@ -1,0 +1,32 @@
+$office-gutter: 16;
+$office-gutter-half: 16 / 2;
+
+.office {
+  border-bottom: 1px solid $grey-2;
+  margin: 0 0 em($office-gutter);
+
+  .panel & {
+    border-bottom: 0;
+  }
+
+  .contact-address {
+    @include grid-column(1 / 2);
+  }
+
+  .contact-options {
+    @include grid-column(1 / 2);
+
+    .type {
+      display: block;
+    }
+  }
+
+  h3 {
+    @include bold-19;
+    margin-top: 0;
+  }
+
+  p {
+    @include core-16;
+  }
+}

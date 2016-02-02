@@ -1,9 +1,10 @@
-h1 {
+.step-header h1 {
   @include bold-24;
 }
 
 .form-label-bold {
   @include core-19;
+  margin-bottom: 5px;
 }
 
 //custom form styling
@@ -34,4 +35,15 @@ h1 {
 
 .header-proposition {
   margin-top: 5px;
+}
+
+.section-heading {
+  @include heading-27;
+  font-weight: 700;
+  border-bottom: 1px solid $grey-2;
+  padding-bottom: em(12);
+
+  @include media(desktop) {
+    padding-bottom: em(20);
+  }
 }

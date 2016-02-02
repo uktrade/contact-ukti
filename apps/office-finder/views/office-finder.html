@@ -1,0 +1,48 @@
+{{<layout}}
+
+{{$title}}
+  Find a UK Trade & Investment office
+{{/title}}
+
+{{$header}}
+  <header>
+    <h1>Find a UK Trade & Investment office</h1>
+  </header>
+{{/header}}
+
+{{$validationSummary}}
+  {{> partials-validation-summary}}
+{{/validationSummary}}
+
+{{$content}}
+  {{#region}}
+    <div class="panel">
+      <h2>Your nearest office to {{ postcode }} is</h2>
+      {{> partials-office}}
+    </div>
+  {{/region}}
+
+  <form method="POST" action="">
+
+    <div class="form-group{{#errorlist}} validation-error{{/errorlist}}" id="postcode-group">
+      <label for="postcode" class="form-label-bold">Enter your postcode</label>
+
+      {{#errorlist}}
+        <span class="error-message">{{ message }}</span>
+      {{/errorlist}}
+
+      <input type="text" name="postcode" id="postcode" class="form-control" value="{{ postcode }}">
+
+      <button type="submit" class="button">Submit</button>
+    </div>
+
+  </form>
+
+  <h2 class="section-heading">UK Trade & Investment regional offices</h2>
+
+  {{#regions}}
+    {{> partials-office}}
+  {{/regions}}
+{{/content}}
+
+{{/layout}}
