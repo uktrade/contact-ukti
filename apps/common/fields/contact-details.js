@@ -4,7 +4,6 @@ module.exports = {
   email: {
     validate: ['required', 'email'],
     type: 'email',
-    label: 'fields.email.label',
     dependent: {
       value: '',
       field: 'no-email'
@@ -12,11 +11,9 @@ module.exports = {
   },
   'no-email': {
     className: 'inline',
-    label: 'fields.no-email.label'
   },
   phone: {
     validate: ['phonenumber'],
-    label: 'fields.phone.label'
   },
   'contact-address-house-number': {
     validate: ['required'],

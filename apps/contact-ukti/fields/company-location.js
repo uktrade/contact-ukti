@@ -32,6 +32,5 @@ module.exports = {
       value: 'fields.outside-uk.label',
     },
     validate: ['required'],
-    label: 'fields.outside-uk.label',
   },
 };

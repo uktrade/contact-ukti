@@ -3,7 +3,6 @@
 module.exports = {
   'org-name': {
     validate: ['required'],
-    label: 'fields.org-name.label',
   },
   'org-type': {
     className: 'form-group',
@@ -79,21 +78,16 @@ module.exports = {
   },
   'org-address-house-number': {
     validate: ['required'],
-    label: 'fields.org-address-house-number.label'
   },
   'org-address-street': {
     validate: ['required'],
-    label: 'fields.org-address-street.label'
   },
   'org-address-town': {
     validate: ['required'],
-    label: 'fields.org-address-town.label'
   },
   'org-address-county': {
-    label: 'fields.org-address-county.label',
   },
   'org-address-postcode': {
     validate: ['required', 'postcode'],
-    label: 'fields.org-address-postcode.label'
   }
 };

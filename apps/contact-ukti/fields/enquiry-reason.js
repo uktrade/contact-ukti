@@ -38,7 +38,6 @@ module.exports = {
   },
   'enquiry-reason-other': {
     validate: ['required'],
-    label: 'fields.enquiry-reason-other.label',
     dependent: {
       value: 'Other',
       field: 'enquiry-reason',

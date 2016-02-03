@@ -3,7 +3,6 @@
 module.exports = {
   fullname: {
     validate: ['required'],
-    label: 'fields.fullname.label'
   },
   'date-of-birth': {
     legend: 'fields.date-of-birth.legend',
