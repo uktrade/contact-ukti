@@ -6,7 +6,7 @@ module.exports = {
     className: 'form-group',
     legend: {
       className: 'visuallyhidden',
-      value: 'pages.enquiry-reason.header'
+      value: 'pages.previously-sold-overseas.header'
     },
     options: [
       {
