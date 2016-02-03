@@ -3,7 +3,6 @@
 module.exports = {
   fullname: {
     validate: ['required'],
-    label: 'fields.fullname.label'
   },
   'date-of-birth': {
     legend: 'fields.date-of-birth.legend',
@@ -21,17 +20,4 @@ module.exports = {
     validate: ['required', 'numeric'],
     label: 'fields.date-of-birth-year.label'
   },
-  nationality: {
-    validate: ['required'],
-    className: ['typeahead', 'js-hidden'],
-    options: [''].concat(require('../../../assets/countries').nonEuCountries),
-    label: 'fields.nationality.label'
-  },
-  passport: {
-    label: 'fields.passport.label'
-  },
-  'brp-card': {
-    label: 'fields.brp-card.label',
-    hint: 'fields.brp-card.hint'
-  }
 };
