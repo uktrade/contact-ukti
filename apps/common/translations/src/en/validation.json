@@ -31,6 +31,7 @@
     "required": "Enter the town or city"
   },
   "org-address-postcode": {
-    "required": "Enter the postcode"
+    "required": "Enter the postcode",
+    "postcode": "Enter your postcode in the correct format, for example SW1A 1AA"
   }
 }

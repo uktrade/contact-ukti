@@ -93,7 +93,7 @@ module.exports = {
     label: 'fields.org-address-county.label',
   },
   'org-address-postcode': {
-    validate: ['required'],
+    validate: ['required', 'postcode'],
     label: 'fields.org-address-postcode.label'
   }
 };

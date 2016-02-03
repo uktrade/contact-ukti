@@ -15,6 +15,7 @@ module.exports = {
     label: 'fields.no-email.label'
   },
   phone: {
+    validate: ['phonenumber'],
     label: 'fields.phone.label'
   },
   'contact-address-house-number': {

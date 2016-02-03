@@ -54,6 +54,7 @@ module.exports = {
     next: '/company-address',
   },
   '/company-address': {
+    controller: require('./controllers/company-address'),
     fields: [
       'org-address-house-number',
       'org-address-street',

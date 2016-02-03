@@ -12,6 +12,9 @@
     "required": "Enter your email address",
     "email": "Enter your email in the correct format, for example name@domain.com"
   },
+  "phone": {
+    "phonenumber": "Enter your phone number in the correct format, for example 020 7946 0937 or 07700 900579"
+  },
   "inside-uk": {
     "required": "Tell us where you are"
   },
