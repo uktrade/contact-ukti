@@ -47,6 +47,7 @@ app.use(function setBaseUrl(req, res, next) {
 
 // pass tracking id to template
 app.locals.trackingId = config.trackingId;
+app.locals.feedbackEmail = config.feedbackEmail;
 
 /*************************************/
 /******* Redis session storage *******/
