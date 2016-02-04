@@ -6,10 +6,18 @@ module.exports = {
     next: '/enquiry-reason',
   },
   '/enquiry-reason': {
+    controller: require('./controllers/reason'),
     fields: [
       'enquiry-reason',
       'enquiry-reason-other',
     ],
+    next: '/personal-details',
+  },
+  '/previously-sold-overseas': {
+    fields: [
+      'exported-before',
+    ],
+    backLink: 'enquiry-reason',
     next: '/personal-details',
   },
   '/personal-details': {
@@ -27,40 +35,32 @@ module.exports = {
       'inside-uk',
       'outside-uk',
     ],
-    next: '/company-details',
-  },
-  '/company-details': {
-    controller: require('./controllers/company-details'),
-    fields: [
-      'org-name',
-      'org-type',
-      'annual-turnover',
-      'no-employees',
-    ],
-    next: '/operating-industry',
-  },
-  '/operating-industry': {
-    controller: require('./controllers/operating-industry'),
-    fields: [
-      'sector',
-    ],
-    next: '/company-address',
-  },
-  '/previously-sold-overseas': {
-    fields: [
-      'exported-before',
-    ],
-    backLink: 'operating-industry',
     next: '/company-address',
   },
   '/company-address': {
     controller: require('./controllers/company-address'),
     fields: [
+      'org-name',
       'org-address-house-number',
       'org-address-street',
       'org-address-town',
       'org-address-county',
       'org-address-postcode',
+    ],
+    next: '/operating-industry',
+  },
+  '/operating-industry': {
+    fields: [
+      'sector',
+    ],
+    next: '/company-details',
+  },
+  '/company-details': {
+    controller: require('./controllers/company-details'),
+    fields: [
+      'org-type',
+      'annual-turnover',
+      'no-employees',
     ],
     next: '/enquiry',
   },
@@ -75,6 +75,7 @@ module.exports = {
     fields: [
       'data-protection',
     ],
+    backLink: false,
     next: '/confirmation',
   },
   '/confirmation': {
