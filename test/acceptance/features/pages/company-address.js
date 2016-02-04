@@ -14,6 +14,10 @@ var Page = function Page(client) {
 
   var url = '/contact-ukti/company-address';
   var fields = {
+    orgName: {
+      selector: '#org-name',
+      value: 'My company Ltd'
+    },
     orgAddressHouseNumber: {
       selector: '#org-address-house-number',
       value: '1'
@@ -56,6 +60,7 @@ var Page = function Page(client) {
 
   this.complete = function completeForm() {
     return client
+      .setValue(fields.orgName.selector, fields.orgName.value)
       .setValue(fields.orgAddressHouseNumber.selector, fields.orgAddressHouseNumber.value)
       .setValue(fields.orgAddressStreet.selector, fields.orgAddressStreet.value)
       .setValue(fields.orgAddressTown.selector, fields.orgAddressTown.value)
@@ -73,7 +78,7 @@ var Page = function Page(client) {
     return client
       .elements($errors)
       .then(function elementsResult(res) {
-        return res.value.length === 4;
+        return res.value.length === 5;
       });
   };
 

@@ -14,10 +14,6 @@ var Page = function Page(client) {
 
   var url = '/contact-ukti/company-details';
   var fields = {
-    orgName: {
-      selector: '#org-name',
-      value: 'My company Ltd'
-    },
     orgType: {
       selector: '[name="org-type"]',
       value: 'Company or organisation'
@@ -52,7 +48,6 @@ var Page = function Page(client) {
 
   this.complete = function completeForm() {
     return client
-      .setValue(fields.orgName.selector, fields.orgName.value)
       .click(fields.orgType.selector + '[value="' + fields.orgType.value + '"]')
       .click(fields.turnover.selector + '[value="' + fields.turnover.value + '"]')
       .click(fields.noEmployees.selector + '[value="' + fields.noEmployees.value + '"]')
@@ -68,7 +63,7 @@ var Page = function Page(client) {
     return client
       .elements($errors)
       .then(function elementsResult(res) {
-        return res.value.length === 2;
+        return res.value.length === 1;
       });
   };
 
