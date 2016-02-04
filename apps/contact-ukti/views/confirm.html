@@ -46,6 +46,14 @@
             </tr>
             {{/values.enquiry-reason}}
 
+            {{#values.exported-before}}
+            <tr>
+              <td>{{#t}}pages.confirm.org-details-table.headers.exported-before{{/t}}</td>
+              <td>{{values.exported-before}}</td>
+              <td><a href="previously-sold-overseas/edit#sector" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+            {{/values.exported-before}}
+
             {{#values.enquiry-description}}
             <tr>
               <td>{{#t}}pages.confirm.enquiry-table.headers.description{{/t}}</td>
@@ -101,9 +109,30 @@
             <tr>
               <td>{{#t}}pages.confirm.org-details-table.headers.org-name{{/t}}</td>
               <td>{{values.org-name}}</td>
-              <td><a href="company-details/edit#org-name" class="button">{{#t}}buttons.change{{/t}}</a></td>
+              <td><a href="company-address/edit#org-name" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
             {{/values.org-name}}
+
+            {{#values.org-address-street}}
+            <tr>
+              <td>{{#t}}pages.confirm.org-details-table.headers.org-address{{/t}}</td>
+              <td>
+                {{values.org-address-house-number}} {{values.org-address-street}},
+                {{values.org-address-town}},
+                {{#values.org-address-county}}{{values.org-address-county}},{{/values.org-address-county}}
+                {{values.org-address-postcode}}
+              </td>
+              <td><a href="company-address/edit#address-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+            {{/values.org-address-street}}
+
+            {{#values.sector}}
+            <tr>
+              <td>{{#t}}pages.confirm.org-details-table.headers.sector{{/t}}</td>
+              <td>{{values.sector}}</td>
+              <td><a href="operating-industry/edit#sector" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+            {{/values.sector}}
 
             {{#values.org-type}}
             <tr>
@@ -128,35 +157,6 @@
               <td><a href="company-details/edit#no-employees" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
             {{/values.no-employees}}
-
-            {{#values.sector}}
-            <tr>
-              <td>{{#t}}pages.confirm.org-details-table.headers.sector{{/t}}</td>
-              <td>{{values.sector}}</td>
-              <td><a href="operating-industry/edit#sector" class="button">{{#t}}buttons.change{{/t}}</a></td>
-            </tr>
-            {{/values.sector}}
-
-            {{#values.exported-before}}
-            <tr>
-              <td>{{#t}}pages.confirm.org-details-table.headers.exported-before{{/t}}</td>
-              <td>{{values.exported-before}}</td>
-              <td><a href="previously-sold-overseas/edit#sector" class="button">{{#t}}buttons.change{{/t}}</a></td>
-            </tr>
-            {{/values.exported-before}}
-
-            {{#values.org-address-street}}
-            <tr>
-              <td>{{#t}}pages.confirm.org-details-table.headers.org-address{{/t}}</td>
-              <td>
-                {{values.org-address-house-number}} {{values.org-address-street}},
-                {{values.org-address-town}},
-                {{#values.org-address-county}}{{values.org-address-county}},{{/values.org-address-county}}
-                {{values.org-address-postcode}}
-              </td>
-              <td><a href="company-address/edit#address-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
-            </tr>
-            {{/values.org-address-street}}
           </tbody>
         </table>
 
