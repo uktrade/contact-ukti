@@ -12,7 +12,7 @@ var Page = function Page(client) {
    * Private
    */
 
-  var url = '/contact-ukti/confirm';
+  var url = '/confirm';
   var $form = 'form';
 
   /**

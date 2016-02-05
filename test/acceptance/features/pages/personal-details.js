@@ -12,7 +12,7 @@ var Page = function Page(client) {
    * Private
    */
 
-  var url = '/contact-ukti/personal-details';
+  var url = '/personal-details';
   var fields = {
     fullname: {
       selector: '#fullname',

@@ -12,7 +12,7 @@ var Page = function Page(client) {
    * Private
    */
 
-  var url = '/contact-ukti/enquiry-reason';
+  var url = '/enquiry-reason';
   var fields = {
     reason: {
       selector: '[name="enquiry-reason"]',

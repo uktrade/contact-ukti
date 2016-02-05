@@ -12,7 +12,7 @@ var Page = function Page(client) {
    * Private
    */
 
-  var url = '/contact-ukti/company-location';
+  var url = '/company-location';
   var fields = {
     insideUk: {
       selector: '[name="inside-uk"]',

@@ -12,7 +12,7 @@ var Page = function Page(client) {
    * Private
    */
 
-  var url = '/contact-ukti/operating-industry';
+  var url = '/operating-industry';
   var fields = {
     sector: {
       selector: '#sector',
