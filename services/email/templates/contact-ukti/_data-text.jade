@@ -6,6 +6,7 @@ mixin dataRow(field, key)
   br
 mixin heading(key)
   br
+  br
   = t(key)
   br
   | -------------------------------------
@@ -17,19 +18,20 @@ if data['enquiry-reason-other']
   - enqReasonField = 'enquiry-reason-other'
 
 if data
-  +heading('pages.confirm.enquiry-table.title')
-  +dataRow(enqReasonField, 'pages.confirm.enquiry-table.headers.reason')
-  +dataRow('enquiry-description', 'pages.confirm.enquiry-table.headers.description')
-  +heading('pages.confirm.org-details-table.title')
-  +dataRow('country', 'pages.confirm.org-details-table.headers.country')
-  +dataRow('org-name', 'pages.confirm.org-details-table.headers.org-name')
-  +dataRow('org-type', 'pages.confirm.org-details-table.headers.org-type')
-  +dataRow('annual-turnover', 'pages.confirm.org-details-table.headers.annual-turnover')
-  +dataRow('no-employees', 'pages.confirm.org-details-table.headers.no-employees')
-  +dataRow('sector', 'pages.confirm.org-details-table.headers.sector')
-  +dataRow('exported-before', 'pages.confirm.org-details-table.headers.exported-before')
+  +heading('pages.confirm.step-titles.enquiry-reason')
+  +dataRow(enqReasonField, 'pages.confirm.table-headers.reason')
+  +heading('pages.confirm.step-titles.exported-before')
+  +dataRow('exported-before', 'pages.confirm.table-headers.exported-before')
+  +heading('pages.confirm.step-titles.personal-details')
+  +dataRow('fullname', 'pages.confirm.table-headers.fullname')
+  +dataRow('email', 'pages.confirm.table-headers.email')
+  +dataRow('phone', 'pages.confirm.table-headers.phone')
+  +heading('pages.confirm.step-titles.company-location')
+  +dataRow('country', 'pages.confirm.table-headers.country')
+  +heading('pages.confirm.step-titles.company-address')
+  +dataRow('org-name', 'pages.confirm.table-headers.org-name')
   if data['org-address-street']
-    +heading('pages.confirm.org-details-table.headers.org-address')
+    br
     | #{data['org-address-house-number']} #{data['org-address-street']},
     br
     | #{data['org-address-town']},
@@ -38,6 +40,15 @@ if data
       | #{data['org-address-county']},
       br
       | #{data['org-address-postcode']}
+    br
+  +heading('pages.confirm.step-titles.sector')
+  +dataRow('sector', 'pages.confirm.table-headers.sector')
+  +heading('pages.confirm.step-titles.company-details')
+  +dataRow('org-type', 'pages.confirm.table-headers.org-type')
+  +dataRow('annual-turnover', 'pages.confirm.table-headers.annual-turnover')
+  +dataRow('no-employees', 'pages.confirm.table-headers.no-employees')
+  +heading('pages.confirm.step-titles.enquiry-description')
+  +dataRow('enquiry-description', 'pages.confirm.table-headers.description')
   br
   +heading('fields.data-protection.title')
   if data['data-protection']
