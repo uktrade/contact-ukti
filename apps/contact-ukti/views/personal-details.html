@@ -1,5 +1,4 @@
 {{<layout}}
-  {{$step}}Step 2{{/step}}
 
   {{$journeyHeader}}
     {{#t}}journeys.contact-us.header{{/t}}
@@ -21,6 +20,7 @@
     {{<partials-page-header}}
       {{$page-header}}
         {{#t}}pages.personal-details.header{{/t}}
+        <p class="font-small">{{#t}}pages.personal-details.subheader{{/t}}</p>
       {{/page-header}}
     {{/partials-page-header}}
   {{/header}}
@@ -40,6 +40,8 @@
         {{#input-phone}}phone{{/input-phone}}
 
         {{#input-submit}}continue{{/input-submit}}
+
+        {{> partials-back}}
 
       {{/form}}
 

@@ -5,7 +5,7 @@
   },
   "personal-details": {
     "header": "What are your personal details?",
-    "subheader": ""
+    "subheader": "We need these details so that we can contact you about your enquiry"
   },
   "company-location": {
     "header": "Where is your company based?",
@@ -34,33 +34,30 @@
   "confirm": {
     "header": "Is the information you have given us correct?",
     "subheader": "Check and make sure the information below is right. If it isn't you can change it here.",
-    "personal-details-table": {
-      "title": "Your personal details",
-      "headers": {
-        "fullname": "Full name",
-        "email": "Email address",
-        "phone": "Phone number"
-      }
+    "table-headers": {
+      "reason": "Reason",
+      "exported-before": "Previously sold overseas",
+      "description": "Description",
+      "fullname": "Full name",
+      "email": "Email address",
+      "phone": "Phone number",
+      "country": "Country",
+      "org-name": "Company name",
+      "org-address": "Company address",
+      "sector": "Primary operating industry",
+      "org-type": "Company type",
+      "annual-turnover": "Annual turnover",
+      "no-employees": "Number of employees"
     },
-    "enquiry-table": {
-      "title": "Enquiry details",
-      "headers": {
-        "reason": "Reason",
-        "description": "Description"
-      }
-    },
-    "org-details-table": {
-      "title": "Your company details",
-      "headers": {
-        "org-name": "Company name",
-        "org-type": "Company type",
-        "sector": "Primary operating industry",
-        "exported-before": "Previously sold overseas",
-        "annual-turnover": "Annual turnover",
-        "no-employees": "Number of employees",
-        "org-address": "Company address",
-        "country": "Country"
-      }
+    "step-titles": {
+      "enquiry-reason": "What your enquiry is related to",
+      "exported-before": "Your exporting experience",
+      "personal-details": "Your personal details",
+      "company-location": "Where your company is based",
+      "company-address": "Your company address",
+      "sector": "Your primary operating industry",
+      "company-details": "Your company details",
+      "enquiry-description": "Further details about your enquiry"
     }
   },
   "confirmation": {

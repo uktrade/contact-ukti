@@ -3,12 +3,12 @@
 var Q = require('q');
 var steps = [
   'Enquiry Reason',
+  'Exported Before',
   'Personal Details',
   'Company Location',
-  'Company Details',
-  'Industry',
-  'Exported Before',
   'Company Address',
+  'Industry',
+  'Company Details',
   'Enquiry',
   'Check Details',
   'Confirmation'

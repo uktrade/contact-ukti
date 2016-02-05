@@ -1,12 +1,21 @@
-mixin dataRow(field, key)
+mixin dataRow(field, title)
   if data[field]
     tr: td(colspan='2' height='15')
     tr
       th(width='35%' valign='top' align='left')
-        +text(16, 500, '#6f777b')= t(key)
+        +text(16, 500, '#6f777b')= title
       td(width='65%' valign='top')
+        +text= data[field]
     tr: td(colspan='2' height='15')
     tr: td(colspan='2' height='1' bgcolor='#6f777b')
+    
+mixin sectionHeader(title)
+  tr: td(colspan='2' height='20')
+  tr: td(colspan='2')
+    h2(style='margin:0;padding:0;')
+      +text(19, 700)= title
+  tr: td(colspan='2' height='10')
+  tr: td(colspan='2' height='1' bgcolor='#6f777b')
 
 - var enqReasonField = 'enquiry-reason'
 
@@ -16,45 +25,31 @@ if data['enquiry-reason-other']
 if data
   tr: td
     +tbl
-      tr: td(colspan='2' height='10')
-      tr: td(colspan='2')
-        h2(style='margin:0;padding:0;')
-          +text(19, 700)= t('pages.confirm.enquiry-table.title')
-      tr: td(colspan='2' height='20')
-      tr: td(colspan='2' height='1' bgcolor='#6f777b')
-      +dataRow(enqReasonField, 'pages.confirm.enquiry-table.headers.reason')
-      +dataRow('enquiry-description', 'pages.confirm.enquiry-table.headers.description')
+      +sectionHeader(t('pages.confirm.step-titles.enquiry-reason'))
+      +dataRow(enqReasonField, t('pages.confirm.table-headers.reason'))
   tr: td
     +tbl
-      tr: td(colspan='2' height='30')
-      tr: td(colspan='2')
-        h2(style='margin:0;padding:0;')
-          +text(19, 700)= t('pages.confirm.personal-details-table.title')
-      tr: td(colspan='2' height='20')
-      tr: td(colspan='2' height='1' bgcolor='#6f777b')
-      +dataRow('fullname', 'pages.confirm.personal-details-table.headers.fullname')
-      +dataRow('email', 'pages.confirm.personal-details-table.headers.email')
-      +dataRow('phone', 'pages.confirm.personal-details-table.headers.phone')
+      +sectionHeader(t('pages.confirm.step-titles.exported-before'))
+      +dataRow('exported-before', t('pages.confirm.table-headers.exported-before'))
   tr: td
     +tbl
-      tr: td(colspan='2' height='30')
-      tr: td(colspan='2')
-        h2(style='margin:0;padding:0;')
-          +text(19, 700)= t('pages.confirm.org-details-table.title')
-      tr: td(colspan='2' height='20')
-      tr: td(colspan='2' height='1' bgcolor='#6f777b')
-      +dataRow('country', 'pages.confirm.org-details-table.headers.country')
-      +dataRow('org-name', 'pages.confirm.org-details-table.headers.org-name')
-      +dataRow('org-type', 'pages.confirm.org-details-table.headers.org-type')
-      +dataRow('annual-turnover', 'pages.confirm.org-details-table.headers.annual-turnover')
-      +dataRow('no-employees', 'pages.confirm.org-details-table.headers.no-employees')
-      +dataRow('sector', 'pages.confirm.org-details-table.headers.sector')
-      +dataRow('exported-before', 'pages.confirm.org-details-table.headers.exported-before')
+      +sectionHeader(t('pages.confirm.step-titles.personal-details'))
+      +dataRow('fullname', t('pages.confirm.table-headers.fullname'))
+      +dataRow('email', t('pages.confirm.table-headers.email'))
+      +dataRow('phone', t('pages.confirm.table-headers.phone'))
+  tr: td
+    +tbl
+      +sectionHeader(t('pages.confirm.step-titles.company-location'))
+      +dataRow('country', t('pages.confirm.table-headers.country'))
+  tr: td
+    +tbl
+      +sectionHeader(t('pages.confirm.step-titles.company-address'))
+      +dataRow('org-name', t('pages.confirm.table-headers.org-name'))
       if data['org-address-street']
         tr: td(colspan='2' height='15')
         tr
           th(width='35%' valign='top' align='left')
-            +text(16, 500, '#6f777b')= t('pages.confirm.org-details-table.headers.org-address')
+            +text(16, 500, '#6f777b')= t('pages.confirm.table-headers.org-address')
           td(width='65%' valign='top')
             +text #{data['org-address-house-number']} #{data['org-address-street']},
             br
@@ -66,6 +61,16 @@ if data
             +text= data['org-address-postcode']
         tr: td(colspan='2' height='15')
         tr: td(colspan='2' height='1' bgcolor='#6f777b')
+  tr: td
+    +tbl
+      +sectionHeader(t('pages.confirm.step-titles.sector'))
+      +dataRow('sector', t('pages.confirm.table-headers.sector'))
+  tr: td
+    +tbl
+      +sectionHeader(t('pages.confirm.step-titles.company-details'))
+      +dataRow('org-type', t('pages.confirm.table-headers.org-type'))
+      +dataRow('annual-turnover', t('pages.confirm.table-headers.annual-turnover'))
+      +dataRow('no-employees', t('pages.confirm.table-headers.no-employees'))
   tr: td
     +tbl
       tr: td(colspan='2' height='30')

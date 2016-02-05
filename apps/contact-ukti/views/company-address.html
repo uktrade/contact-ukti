@@ -1,5 +1,4 @@
 {{<layout}}
-  {{$step}}Step 7{{/step}}
 
   {{$journeyHeader}}
     {{#t}}journeys.contact-us.header{{/t}}
@@ -36,6 +35,8 @@
             {{#t}}fields.org-address.legend{{/t}}
           </legend>
 
+          {{#input-text}}org-name{{/input-text}}
+
           {{#input-text}}org-address-house-number{{/input-text}}
 
           {{#input-text}}org-address-street{{/input-text}}
@@ -49,6 +50,8 @@
         </fieldset>
 
         {{#input-submit}}continue{{/input-submit}}
+
+        {{> partials-back}}
 
       {{/form}}
 
