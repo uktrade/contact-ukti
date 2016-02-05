@@ -12,7 +12,7 @@ var Page = function Page(client) {
    * Private
    */
 
-  var url = '/contact-ukti/previously-sold-overseas';
+  var url = '/previously-sold-overseas';
   var fields = {
     exportedBefore: {
       selector: '[name="exported-before"]',
