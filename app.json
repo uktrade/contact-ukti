@@ -5,9 +5,9 @@
     "SESSION_SECRET": {
       "description": "A secret key for verifying the integrity of signed cookies.",
       "generator": "secret"
-    },
+    }
   },
   "addons": [
-    "redistogo:nano"
+    "memcachedcloud:30"
   ]
 }

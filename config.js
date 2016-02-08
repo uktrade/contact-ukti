@@ -17,12 +17,10 @@ module.exports = {
   },
   session: {
     secret: process.env.SESSION_SECRET || 'howdoesyourgardengrow',
-    ttl: process.env.SESSION_TTL || 1800 /* 30 mins timeout */
+    ttl: process.env.SESSION_TTL || (30 * 60 * 1000) /* 30 mins timeout */
   },
-  redis: {
-    url: process.env.REDIS_URL || process.env.REDISTOGO_URL,
-    port: process.env.REDIS_PORT_6379_TCP_PORT || process.env.REDIS_PORT || 6379,
-    host: process.env.REDIS_PORT_6379_TCP_ADDR || process.env.REDIS_HOST || '127.0.0.1'
+  memcached: {
+    hosts: process.env.MEMCACHEDCLOUD_SERVERS || 'localhost:11211'
   },
   email: {
     caseworker: {
