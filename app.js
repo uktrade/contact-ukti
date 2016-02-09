@@ -75,7 +75,7 @@ function initSession(req, res, next) {
       secure: (req.protocol === 'https'),
       maxAge: config.session.ttl
     },
-    key: 'hmbrp.sid',
+    key: 'ukticontact.sid',
     secret: config.session.secret,
     resave: true,
     saveUninitialized: true
