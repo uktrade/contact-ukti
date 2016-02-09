@@ -22,6 +22,17 @@ function getPage(pageName) {
   return new browser.pages[pageName](browser);
 }
 
+function getPreviousPage(pageName) {
+  var stepIndex = steps.indexOf(pageName);
+  var prevPageName = steps[stepIndex - 1];
+
+  if (!browser.pages[prevPageName]) {
+    var errStr = 'Could not find page named "' + prevPageName + '" in the PageObjectMap, did you remember to add it?';
+    throw new Error(errStr);
+  }
+  return new browser.pages[prevPageName](browser);
+}
+
 function completeSteps(pageName) {
   var deferred = Q.defer();
   var stepIndex = steps.indexOf(pageName);
@@ -44,5 +55,6 @@ function completeSteps(pageName) {
 module.exports = {
   steps: steps,
   getPage: getPage,
+  getPreviousPage: getPreviousPage,
   completeSteps: completeSteps
 };

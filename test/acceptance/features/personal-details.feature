@@ -15,3 +15,8 @@ Feature: Personal Details
   Scenario: Submitted complete
     When I complete the "Personal Details" form
     Then I should not be on the "Personal Details" page
+
+  @navigation
+  Scenario: Step backwards
+    When I go back a step
+    Then I should be on the step before the "Personal Details" page

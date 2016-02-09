@@ -8,3 +8,7 @@ Feature: Check details
 
   Scenario: On correct page
     Then I should see "Is the information you have given us correct? – GOV.UK" as the page title
+
+  @navigation
+  Scenario: Step backwards
+    Then I should not see "Back"

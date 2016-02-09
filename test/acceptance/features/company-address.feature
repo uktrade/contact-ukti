@@ -15,3 +15,8 @@ Feature: Company address
   Scenario: Submitted complete
     When I complete the "Company Address" form
     Then I should not be on the "Company Address" page
+
+  @navigation
+  Scenario: Step backwards
+    When I go back a step
+    Then I should be on the step before the "Company Address" page
