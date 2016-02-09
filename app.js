@@ -7,9 +7,7 @@ var logger = require('./lib/logger');
 var auth = require('./lib/basic-auth');
 var churchill = require('churchill');
 var session = require('express-session');
-var url = require('url');
-var redis = require('redis');
-var RedisStore = require('connect-redis-crypto')(session);
+var MemcachedStore = require('connect-memcached')(session);
 var config = require('./config');
 require('moment-business');
 
@@ -50,28 +48,11 @@ app.locals.trackingId = config.trackingId;
 app.locals.feedbackEmail = config.feedbackEmail;
 
 /*************************************/
-/******* Redis session storage *******/
+/***** Memcached session storage *****/
 /*************************************/
-var client;
 
-if (config.redis.url) {
-  var redisURL = url.parse(config.redis.url);
-  /*eslint-disable camelcase*/
-  client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
-  /*eslint-enable camelcase*/
-  client.auth(redisURL.auth.split(':')[1]);
-} else {
-  client = redis.createClient(config.redis.port, config.redis.host);
-}
-
-client.on('error', function clientErrorHandler(e) {
-  throw e;
-});
-
-var redisStore = new RedisStore({
-  client: client,
-  ttl: config.session.ttl,
-  secret: config.session.secret
+var memcachedStore = new MemcachedStore({
+  hosts: config.memcached.hosts,
 });
 
 function secureCookies(req, res, next) {
@@ -87,9 +68,10 @@ function secureCookies(req, res, next) {
 }
 function initSession(req, res, next) {
   session({
-    store: redisStore,
+    store: memcachedStore,
     cookie: {
-      secure: (req.protocol === 'https')
+      secure: (req.protocol === 'https'),
+      maxAge: config.session.ttl
     },
     key: 'hmbrp.sid',
     secret: config.session.secret,
