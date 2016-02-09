@@ -7,7 +7,7 @@ var logger = require('./lib/logger');
 var auth = require('./lib/basic-auth');
 var churchill = require('churchill');
 var session = require('express-session');
-var MemcachedStore = require('connect-memcached')(session);
+var MemcachedStore = require('connect-memjs')(session);
 var config = require('./config');
 require('moment-business');
 
@@ -52,7 +52,9 @@ app.locals.feedbackEmail = config.feedbackEmail;
 /*************************************/
 
 var memcachedStore = new MemcachedStore({
-  hosts: config.memcached.hosts,
+  servers: [config.memcached.hosts],
+  username: config.memcached.username,
+  password: config.memcached.password,
 });
 
 function secureCookies(req, res, next) {
