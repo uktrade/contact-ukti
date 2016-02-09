@@ -1,15 +1,19 @@
 {{< govuk-template}}
 
 {{$head}}
-    {{> partials-head}}
+  {{> partials-head}}
 {{/head}}
 
 {{$pageTitle}}
-    {{$title}}{{/title}} &ndash; GOV.UK
+  {{$title}}{{/title}} &ndash; GOV.UK
 {{/pageTitle}}
 
 {{$headerClass}}with-proposition{{/headerClass}}
 {{$insideHeader}}{{/insideHeader}}
+
+{{$cookieMessage}}
+  This service uses cookies to make the site simpler. <a href="/cookies">Find out more about cookies</a>
+{{/cookieMessage}}
 
 {{$main}}
   <main id="content" class="main" role="main">
@@ -19,7 +23,7 @@
         <span>This is a new service{{#feedbackEmail}} – your <a href="mailto:{{ feedbackEmail }}?subject=Contact Form Feedback">feedback</a> will help us to improve it{{/feedbackEmail}}.</span>
       </p>
     </div>
-    
+
     <div class="grid-row">
       {{> partials-maincontent-left}}
     </div>
