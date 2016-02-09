@@ -15,3 +15,8 @@ Feature: Operating Industry
   Scenario: Submitted complete
     When I complete the "Industry" form
     Then I should not be on the "Industry" page
+
+  @navigation
+  Scenario: Step backwards
+    When I go back a step
+    Then I should be on the step before the "Industry" page

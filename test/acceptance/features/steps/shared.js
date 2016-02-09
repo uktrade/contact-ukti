@@ -49,6 +49,17 @@ var sharedSteps = function sharedSteps() {
   });
 
   /**
+   * Navigate back one step
+   *
+   * Usage: When I go back a step
+   *
+   */
+  this.When(/^I go back a step$/, function submitForm() {
+    return browser
+      .click('=Back');
+  });
+
+  /**
    * Check that the validation summary is present for given page object
    *
    * Usage: Then I should see the validation for the "Enquiry" page
@@ -77,7 +88,24 @@ var sharedSteps = function sharedSteps() {
 
     browser
       .getUrl()
-      .should.eventually.not.equal(url)
+      .should.eventually.not.contain(url)
+      .and.notify(next);
+  });
+
+  /**
+   * Check url matches the previous step for given page object
+   *
+   * Usage: I should be on the step before the "Enquiry" page
+   *
+   * @params {string} pageName The requested page object name
+   * @params {function} next The callback function of the scenario
+   */
+  this.Then(/^I should be on the step before the "([^"]*)" page$/, function previousStep(pageName, next) {
+    var previousStepUrl = browser.utils.getPreviousPage(pageName).getUrl();
+
+    browser
+      .getUrl()
+      .should.eventually.contain(previousStepUrl)
       .and.notify(next);
   });
 
