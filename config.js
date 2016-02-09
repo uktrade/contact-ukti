@@ -19,6 +19,9 @@ module.exports = {
     secret: process.env.SESSION_SECRET || 'howdoesyourgardengrow',
     ttl: process.env.SESSION_TTL || (30 * 60 * 1000) /* 30 mins timeout */
   },
+  sentry: {
+    dsn: process.env.SENTRY_DSN
+  },
   memcached: {
     hosts: process.env.MEMCACHEDCLOUD_SERVERS || 'localhost:11211',
     username: process.env.MEMCACHEDCLOUD_USERNAME,

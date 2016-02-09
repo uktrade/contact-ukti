@@ -6,10 +6,14 @@ var path = require('path');
 var logger = require('./lib/logger');
 var auth = require('./lib/basic-auth');
 var churchill = require('churchill');
+var raven = require('raven');
 var session = require('express-session');
 var MemcachedStore = require('connect-memjs')(session);
 var config = require('./config');
 require('moment-business');
+
+// sentry error monitoring
+app.use(raven.middleware.express.requestHandler(config.sentry.dsn));
 
 /*************************************/
 /******* Basic Authentication ********/
@@ -97,7 +101,9 @@ app.get('/terms-and-conditions', function renderTerms(req, res) {
 });
 
 // errors
+app.use(raven.middleware.express.errorHandler(config.sentry.dsn));
 app.use(require('./errors/'));
+
 
 /*eslint camelcase: 0*/
 app.listen(config.port, config.listen_host);
