@@ -20,7 +20,9 @@ module.exports = {
     ttl: process.env.SESSION_TTL || (30 * 60 * 1000) /* 30 mins timeout */
   },
   memcached: {
-    hosts: process.env.MEMCACHEDCLOUD_SERVERS || 'localhost:11211'
+    hosts: process.env.MEMCACHEDCLOUD_SERVERS || 'localhost:11211',
+    username: process.env.MEMCACHEDCLOUD_USERNAME,
+    password: process.env.MEMCACHEDCLOUD_PASSWORD
   },
   email: {
     caseworker: {
