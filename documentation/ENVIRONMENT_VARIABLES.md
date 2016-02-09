@@ -9,6 +9,7 @@
 * `AUTH_PASS` password for authentication. No default.
 * `SESSION_SECRET` session secret.
 * `SESSION_TTL` number of seconds before session expires.
+* `SENTRY_DSN` data source name for [Sentry](https://getsentry.com). No default
 * `MEMCACHEDCLOUD_SERVERS` Memcached Cloud server locations. Should be comma separated string. Defaults to 'localhost:11211'.
 * `MEMCACHEDCLOUD_USERNAME` Memcached Cloud username. No default.
 * `MEMCACHEDCLOUD_PASSWORD` Memcached Cloud password. No default.

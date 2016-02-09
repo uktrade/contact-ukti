@@ -7,9 +7,9 @@ var i18n = hof.i18n({
 var config = require('../config');
 var logger = require('../lib/logger');
 
-/*eslint no-unused-vars: 0*/
+/* eslint-disable no-unused-vars */
 module.exports = function errorHandler(err, req, res, next) {
-  /*eslint no-unused-vars: 1*/
+  /* eslint-enable no-unused-vars */
   var content = {};
 
   if (err.code === 'SESSION_TIMEOUT') {
@@ -28,6 +28,6 @@ module.exports = function errorHandler(err, req, res, next) {
     error: err,
     content: content,
     showStack: config.env === 'development',
-    startLink: req.path.replace(/^\/([^\/]*).*$/, '$1')
+    startLink: ''
   });
 };
