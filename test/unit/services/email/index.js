@@ -13,7 +13,7 @@ var emailFixture = {
   }
 };
 
-describe('Email service', function () {
+describe('Email service', function() {
 
   describe('#send()', function() {
     it('should send an inward investment email', function(done) {

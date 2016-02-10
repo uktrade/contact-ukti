@@ -16,7 +16,7 @@ require('moment-business');
 app.use(raven.middleware.express.requestHandler(config.sentry.dsn));
 
 /*************************************/
-/******* Basic Authentication ********/
+/* Basic Authentication              */
 /*************************************/
 if (config.auth.use === 'true') {
   app.use(auth());
@@ -52,7 +52,7 @@ app.locals.trackingId = config.trackingId;
 app.locals.feedbackEmail = config.feedbackEmail;
 
 /*************************************/
-/***** Memcached session storage *****/
+/* Memcached session storage         */
 /*************************************/
 
 var memcachedStore = new MemcachedStore({
@@ -109,7 +109,5 @@ app.use(require('./errors/'));
 require('events').EventEmitter.prototype._maxListeners = 0;
 /* eslint-enable no-underscore-dangle */
 
-/*eslint camelcase: 0*/
-app.listen(config.port, config.listen_host);
-/*eslint camelcase: 1*/
+app.listen(config.port, config.listenHost);
 logger.info('App listening on port', config.port);

@@ -17,9 +17,9 @@ var ConfirmController = proxyquire('../../../../../apps/common/controllers/confi
   '../routes/fields': {foo: {}, bar: {}}
 });
 
-describe('apps/common/controllers/confirm', function () {
+describe('apps/common/controllers/confirm', function() {
 
-  describe('.saveValues()', function () {
+  describe('.saveValues()', function() {
 
     var controller;
     var expected = {foo: 'bar'};
@@ -32,27 +32,27 @@ describe('apps/common/controllers/confirm', function () {
     var res = {};
     var callback = sinon.stub();
 
-    beforeEach(function () {
+    beforeEach(function() {
       controller = new ConfirmController({template: 'index'});
       controller.saveValues(req, res, callback);
     });
 
-    it('saves the session data to the a model', function () {
+    it('saves the session data to the a model', function() {
       Model.should.have.been.calledWith(expected);
       Model.prototype.save.should.have.been.called;
     });
 
-    it('sets a template for contact ukti journey', function () {
+    it('sets a template for contact ukti journey', function() {
       req.originalUrl = '/confirm';
       controller.saveValues(req, res, callback);
 
       modelProto.set.should.have.been.calledWith('template', 'contact-ukti');
     });
 
-    it('throws an error if its not part of a recognised journey', function () {
+    it('throws an error if its not part of a recognised journey', function() {
       req.originalUrl = '/unrecognised-journey';
 
-      (function () {
+      (function() {
         controller.saveValues(req, res, callback);
       }).should.throw('no service found');
     });

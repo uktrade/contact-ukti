@@ -6,20 +6,20 @@ var PersonalDetailsController = proxyquire('../../../../../apps/common/controlle
   '../../../lib/date-controller': DateController
 });
 
-describe('apps/common/controllers/personal-details', function () {
+describe('apps/common/controllers/personal-details', function() {
 
   var controller;
   var args = {template: 'index'};
 
-  beforeEach(function () {
+  beforeEach(function() {
     controller = new PersonalDetailsController(args);
   });
 
-  it('has a dateKey equal to date-of-birth', function () {
+  it('has a dateKey equal to date-of-birth', function() {
     controller.dateKey.should.equal('date-of-birth');
   });
 
-  it('calls DateController with the arguments', function () {
+  it('calls DateController with the arguments', function() {
     DateController.should.have.been.calledWith(args);
   });
 

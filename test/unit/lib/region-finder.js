@@ -18,7 +18,7 @@ function regionPromiseAssertions(promise) {
 }
 
 
-describe('Regional Office', function () {
+describe('Regional Office', function() {
   // set POSTCODE_API TO DUMMY ONE
   before(function() {
     config.postcodeApi = 'http://example.com';
