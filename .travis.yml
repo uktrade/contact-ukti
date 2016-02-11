@@ -3,14 +3,11 @@ node_js:
   - "0.12"
 
 services:
-  - redis-server
+  - memcached
 
-cache:
-  directories:
-    - node_modules
-
-before_script: "npm run sass; NODE_ENV='ci' npm start&"
+before_script:
+  - NODE_ENV='ci' npm start&
 
 script:
-  - npm run test:ci
-  - npm run test:acceptance
+  - npm run test
+  - npm run test:acceptance-headless
