@@ -28,13 +28,15 @@ rules:
   # disallow empty statements
   no-empty: 2
   # disallow the use of empty character classes in regular expressions
-  no-empty-class: 2
+  no-empty-character-class: 2
   # disallow assigning to the exception in a catch block
   no-ex-assign: 2
   # disallow double-negation boolean casts in a boolean context
   no-extra-boolean-cast: 2
   # disallow unnecessary parentheses
-  no-extra-parens: 0
+  no-extra-parens:
+    - 2
+    - functions
   # disallow unnecessary semicolons
   no-extra-semi: 2
   # disallow overwriting functions written as function declarations
@@ -180,15 +182,11 @@ rules:
   # ## Strict Mode
   # These rules relate to using strict mode.
 
-  # require or disallow the "use strict" pragma in the global scope
-  global-strict:
+  # require that all functions are run in strict mode
+  strict:
     - 2
     # Enforce global strict by default
-    - "always"
-  # disallow unnecessary use of "use strict"; when already in strict mode
-  no-extra-strict: 2
-  # require that all functions are run in strict mode
-  strict: 2
+    - "global"
 
 
   # ## Variables
@@ -240,6 +238,10 @@ rules:
   # ## Stylistic Issues
   # These rules are purely matters of style and are quite subjective.
 
+  # require or disallow spaces inside array brackets
+  array-bracket-spacing:
+    - 2
+    - never
   # enforce one true brace style
   brace-style:
     - 2
@@ -261,6 +263,10 @@ rules:
     - 2
     # enforce comma on the first line, or the last line
     - last
+  # require or disallow spaces inside of computed properties
+  computed-property-spacing:
+    - 2
+    - never
   # enforces consistent naming when capturing the current execution context
   consistent-this:
     - 2
@@ -308,7 +314,7 @@ rules:
   # disallow use of the Object constructor
   no-new-object: 2
   # disallow space before semicolon
-  no-space-before-semi: 2
+  semi-spacing: 2
   # disallow space between function identifier and application
   no-spaced-func: 2
   # disallow the use of ternary operators
@@ -317,8 +323,10 @@ rules:
   no-trailing-spaces: 2
   # disallow dangling underscores in identifiers
   no-underscore-dangle: 2
-  # disallow wrapping of non-IIFE statements in parens
-  no-wrap-func: 2
+  # require or disallow spaces inside curly brackets
+  object-curly-spacing:
+    - 2
+    - never
   # allow just one var statement per function
   one-var: 0
   # require assignment operator shorthand where possible or prohibit it entirely
@@ -346,7 +354,7 @@ rules:
   # sort variables within the same declaration block
   sort-vars: 0
   # require a space after function names
-  space-after-function-name:
+  space-before-function-paren:
     - 2
     # enforce them to be "always" used when possible, or "never" used
     - never
@@ -360,11 +368,6 @@ rules:
     - 2
     # enforce them to be "always" used when possible, or "never" used
     - always
-  # require or disallow spaces inside brackets
-  space-in-brackets:
-    - 2
-    # enforce them to be "always" used when possible, or "never" used
-    - never
   # require or disallow spaces inside parentheses
   space-in-parens:
     - 2
@@ -377,10 +380,14 @@ rules:
   # Require or disallow spaces before/after unary operators
   space-unary-ops: 2
   # require or disallow a space immediately following the // in a line comment
-  spaced-line-comment:
+  spaced-comment:
     - 2
     # enforce them to be "always" used when possible, or "never" used
     - always
+    -
+      block:
+        exceptions:
+          - "*"
   # require regex literals to be wrapped in parentheses
   wrap-regex: 0
 
@@ -390,7 +397,7 @@ rules:
   # require let or const instead of var
   no-var: 0
   # enforce the position of the * in generator functions
-  generator-star: 2
+  generator-star-spacing: 2
 
   # ## Legacy
   # The following rules are included for compatibility with JSHint and JSLint.

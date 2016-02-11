@@ -12,40 +12,40 @@ var CompanyDetailsController = proxyquire('../../../../../apps/contact-ukti/cont
   }
 });
 
-describe('apps/contact-ukti/controllers/company-details', function () {
+describe('apps/contact-ukti/controllers/company-details', function() {
 
   var controller;
   var args = {template: 'index'};
 
-  describe('instantiated', function () {
+  describe('instantiated', function() {
 
-    it('calls Controller with the arguments', function () {
-      /*eslint no-new: 0*/
+    it('calls Controller with the arguments', function() {
+      /* eslint-disable no-new */
       new CompanyDetailsController(args);
-
+      /* eslint-enable no-new */
       Controller.should.have.been.calledWith(args);
     });
   });
 
-  describe('.locals()', function () {
+  describe('.locals()', function() {
     var res = {};
     var req = {
       sessionModel: {
-        get: function () {
+        get: function() {
           return '';
         }
       },
     };
 
-    beforeEach(function () {
+    beforeEach(function() {
       controller = new CompanyDetailsController(args);
     });
 
-    it('extends form the parent controller', function () {
+    it('extends form the parent controller', function() {
       controller.locals(req, res).should.have.property('foo').and.equal('bar');
     });
 
-    it('returns a value indicating whether the person is in the UK"', function () {
+    it('returns a value indicating whether the person is in the UK"', function() {
       req.sessionModel.get = function() {
         return 'yes';
       };
@@ -58,7 +58,7 @@ describe('apps/contact-ukti/controllers/company-details', function () {
 
   });
 
-  describe('.validateField()', function () {
+  describe('.validateField()', function() {
 
     var key = 'org-type';
     var req = {
@@ -68,13 +68,13 @@ describe('apps/contact-ukti/controllers/company-details', function () {
       sessionModel: {},
     };
 
-    describe('when outside of the uk', function () {
+    describe('when outside of the uk', function() {
 
-      beforeEach(function () {
+      beforeEach(function() {
         controller = new CompanyDetailsController(args);
       });
 
-      it('does not validate address org type', function () {
+      it('does not validate address org type', function() {
         req.sessionModel.get = function() {
           return 'no';
         };
@@ -84,14 +84,14 @@ describe('apps/contact-ukti/controllers/company-details', function () {
 
     });
 
-    describe('when inside of the uk', function () {
+    describe('when inside of the uk', function() {
 
-      beforeEach(function () {
+      beforeEach(function() {
         Controller.prototype.validateField = sinon.stub();
         controller = new CompanyDetailsController(args);
       });
 
-      it('does validate address postcode', function () {
+      it('does validate address postcode', function() {
         req.sessionModel.get = function() {
           return 'yes';
         };

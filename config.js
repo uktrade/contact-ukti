@@ -1,12 +1,10 @@
 'use strict';
 
-/*eslint no-process-env: 0*/
-/*eslint no-inline-comments: 0*/
-/*eslint camelcase: 0*/
+/* eslint no-process-env: 0*/
 module.exports = {
   env: process.env.NODE_ENV,
   port: process.env.PORT || 8080,
-  listen_host: process.env.LISTEN_HOST || '0.0.0.0',
+  listenHost: process.env.LISTEN_HOST || '0.0.0.0',
   trackingId: process.env.TRACKING_ID,
   feedbackEmail: process.env.FEEDBACK_EMAIL_ADDRESS,
   postcodeApi: process.env.POSTCODE_API || 'http://api.postcodes.io/postcodes',
@@ -17,7 +15,8 @@ module.exports = {
   },
   session: {
     secret: process.env.SESSION_SECRET || 'howdoesyourgardengrow',
-    ttl: process.env.SESSION_TTL || (30 * 60 * 1000) /* 30 mins timeout */
+    // 30 mins timeout
+    ttl: process.env.SESSION_TTL || (30 * 60 * 1000)
   },
   sentry: {
     dsn: process.env.SENTRY_DSN

@@ -5,7 +5,7 @@ module.exports = {
   sendEvent: function sendEvent(options) {
     try {
       window.ga('send', options);
-    } catch(e) {
+    } catch (e) {
       throw e;
     }
   }

@@ -5,9 +5,9 @@ var emailService = {
   send: sinon.stub()
 };
 
-describe('apps/common/models/email', function () {
+describe('apps/common/models/email', function() {
 
-  describe('instantiated', function () {
+  describe('instantiated', function() {
     var hof = {
       Model: sinon.stub()
     };
@@ -16,7 +16,7 @@ describe('apps/common/models/email', function () {
       'hof': hof
     });
 
-    it('calls hmpo-model Model with the arguments', function () {
+    it('calls hmpo-model Model with the arguments', function() {
       var emailData = {
         some: 'email data'
       };
@@ -27,7 +27,7 @@ describe('apps/common/models/email', function () {
     });
   });
 
-  describe('.save()', function () {
+  describe('.save()', function() {
 
     var model;
     var callback;
@@ -35,7 +35,7 @@ describe('apps/common/models/email', function () {
       '../../../services/email': emailService
     });
 
-    beforeEach(function () {
+    beforeEach(function() {
       callback = sinon.stub();
 
       model = new EmailModel({
@@ -50,7 +50,7 @@ describe('apps/common/models/email', function () {
       model.save(callback);
     });
 
-    it('calls the send endpoint on the email service with the model data', function () {
+    it('calls the send endpoint on the email service with the model data', function() {
 
       emailService.send.should.have.been.calledWith({
         template: 'test_template',

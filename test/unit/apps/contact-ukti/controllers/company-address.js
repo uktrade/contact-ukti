@@ -11,9 +11,9 @@ var CompanyAddressController = proxyquire('../../../../../apps/contact-ukti/cont
   }
 });
 
-describe('apps/contact-ukti/controllers/company-address', function () {
+describe('apps/contact-ukti/controllers/company-address', function() {
 
-  describe('when outside of the uk', function () {
+  describe('when outside of the uk', function() {
 
     var controller;
     var key = 'org-address-postcode';
@@ -22,23 +22,23 @@ describe('apps/contact-ukti/controllers/company-address', function () {
         'org-address-postcode': 'INTERNATIONAL POSTCODE'
       },
       sessionModel: {
-        get: function () {
+        get: function() {
           return 'no';
         }
       },
     };
 
-    beforeEach(function () {
+    beforeEach(function() {
       controller = new CompanyAddressController({template: 'index'});
     });
 
-    it('does not validate address postcode', function () {
+    it('does not validate address postcode', function() {
       should.equal(controller.validateField(key, req), undefined);
     });
 
   });
 
-  describe('when inside of the uk', function () {
+  describe('when inside of the uk', function() {
 
     var controller;
     var key = 'org-address-postcode';
@@ -47,18 +47,18 @@ describe('apps/contact-ukti/controllers/company-address', function () {
         'org-address-postcode': 'INTERNATIONAL POSTCODE'
       },
       sessionModel: {
-        get: function () {
+        get: function() {
           return 'yes';
         }
       },
     };
 
-    beforeEach(function () {
+    beforeEach(function() {
       Controller.prototype.validateField = sinon.stub();
       controller = new CompanyAddressController({template: 'index'});
     });
 
-    it('does validate address postcode', function () {
+    it('does validate address postcode', function() {
       controller.validateField(key, req);
       Controller.prototype.validateField.should.have.been.calledWith(key, req);
     });

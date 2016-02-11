@@ -3,16 +3,16 @@
 var StartController = require('../../../../../apps/common/controllers/start');
 var Controller = require('../../../../../lib/base-controller');
 
-describe('apps/common/controllers/start', function () {
+describe('apps/common/controllers/start', function() {
 
-  describe('.getValues()', function () {
+  describe('.getValues()', function() {
 
     var controller;
     var req;
     var res;
     var callback;
 
-    beforeEach(function () {
+    beforeEach(function() {
       req = {
         params: {},
         form: {
@@ -32,13 +32,13 @@ describe('apps/common/controllers/start', function () {
       controller = new StartController({template: 'index'});
     });
 
-    it('resets the session', function () {
+    it('resets the session', function() {
       controller.getValues(req, res, callback);
 
       req.sessionModel.reset.should.have.been.calledOnce;
     });
 
-    it('successfully handles the request', function () {
+    it('successfully handles the request', function() {
       controller.getValues(req, res, callback);
 
       Controller.prototype.successHandler.should.have.been.calledWithExactly(req, res, callback);
