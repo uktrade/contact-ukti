@@ -104,6 +104,10 @@ app.get('/terms-and-conditions', function renderTerms(req, res) {
 app.use(raven.middleware.express.errorHandler(config.sentry.dsn));
 app.use(require('./errors/'));
 
+// prevent event listeners warning
+/* eslint-disable no-underscore-dangle */
+require('events').EventEmitter.prototype._maxListeners = 0;
+/* eslint-enable no-underscore-dangle */
 
 /*eslint camelcase: 0*/
 app.listen(config.port, config.listen_host);
