@@ -32,7 +32,7 @@ function startSelenium() {
 
       logger.info('Installing selenium standalone');
       selenium.install({
-        version: '2.48.0',
+        version: '2.50.1',
         drivers: {
           chrome: {
             version: '2.9'
@@ -51,13 +51,13 @@ function startSelenium() {
         }
       }, function seleniumInstall(installError) {
         if (installError) {
-          deferred.reject(installError);
+          throw installError;
         }
 
         logger.info('Starting selenium');
         selenium.start(function seleniumStart(startError, child) {
           if (startError) {
-            deferred.reject(startError);
+            throw startError;
           }
 
           selenium.child = child;
