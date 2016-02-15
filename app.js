@@ -102,6 +102,7 @@ app.get('/terms-and-conditions', function renderTerms(req, res) {
 
 // errors
 app.use(raven.middleware.express.errorHandler(config.sentry.dsn));
+app.use(require('./errors/page-not-found'));
 app.use(require('./errors/'));
 
 // prevent event listeners warning
