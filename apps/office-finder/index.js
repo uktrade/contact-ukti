@@ -4,15 +4,16 @@ var path = require('path');
 var router = require('express').Router();
 var regionFinder = require('../../lib/region-finder');
 var hof = require('hof');
-var i18nFuture = hof.i18n;
+var validators = hof.wizard.Controller.validators;
+var i18n = hof.i18n;
 var mixins = hof.mixins;
 
-var i18n = i18nFuture({
+var locali18n = i18n({
   path: path.resolve(__dirname, './translations/__lng__/__ns__.json')
 });
 
 router.use(mixins({}, {
-  translate: i18n.translate.bind(i18n)
+  translate: locali18n.translate.bind(locali18n)
 }));
 
 router.post('/:postcode?', function postHandler(req, res) {
@@ -23,15 +24,22 @@ router.post('/:postcode?', function postHandler(req, res) {
 });
 
 router.param('postcode', function postcodeParam(req, res, next, postcode) {
+  var errors = req.errorlist || [];
+
+  if (!validators.postcode(postcode)) {
+    errors.push({key: 'postcode', message: locali18n.translate('validation.postcode.invalid')});
+    req.errorlist = errors;
+
+    return next();
+  }
+
   regionFinder
     .getByPostcode(postcode)
     .then(function success(result) {
       req.region = result;
       next();
     }, function fail() {
-      var errors = req.errorlist || [];
-
-      errors.push({key: 'postcode', message: 'Error message'});
+      errors.push({key: 'postcode', message: locali18n.translate('validation.postcode.not-exist')});
       req.errorlist = errors;
 
       next();
