@@ -8,7 +8,6 @@ var EmailTemplate = require('email-templates').EmailTemplate;
 var nodemailer = require('nodemailer');
 var async = require('async');
 var i18n = require('hof').i18n;
-var i18nLookup = require('hof').i18nLookup;
 
 var templatesDir = path.resolve(__dirname, 'templates');
 
@@ -55,7 +54,9 @@ Emailer.prototype = {
     locali18n.on('ready', function locali18nLoaded() {
       var locals = {
         data: email.dataToSend,
-        t: i18nLookup(locali18n.translate.bind(locali18n))
+        t: function t(text) {
+          return locali18n.translate(text);
+        }
       };
       var batch = [
         {
