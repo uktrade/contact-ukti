@@ -27,10 +27,11 @@ if data
     +tbl
       +sectionHeader(t('pages.confirm.step-titles.enquiry-reason'))
       +dataRow(enqReasonField, t('pages.confirm.table-headers.reason'))
-  tr: td
-    +tbl
-      +sectionHeader(t('pages.confirm.step-titles.exported-before'))
-      +dataRow('exported-before', t('pages.confirm.table-headers.exported-before'))
+  if data['exported-before']
+    tr: td
+      +tbl
+        +sectionHeader(t('pages.confirm.step-titles.exported-before'))
+        +dataRow('exported-before', t('pages.confirm.table-headers.exported-before'))
   tr: td
     +tbl
       +sectionHeader(t('pages.confirm.step-titles.personal-details'))
