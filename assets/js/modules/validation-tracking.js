@@ -29,7 +29,7 @@ module.exports = {
   sendError: function sendError(field, message) {
     analytics.sendEvent({
       hitType: 'event',
-      eventCategory: 'ValidationError',
+      eventCategory: 'Validation error',
       eventAction: field,
       eventLabel: message
     });

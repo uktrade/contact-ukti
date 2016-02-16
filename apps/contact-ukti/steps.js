@@ -54,6 +54,7 @@ module.exports = {
     next: '/operating-industry',
   },
   '/operating-industry': {
+    controller: require('./controllers/operating-industry'),
     fields: [
       'sector',
     ],
