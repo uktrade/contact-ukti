@@ -48,18 +48,18 @@
           </tbody>
         </table>
 
+        {{#values.exported-before}}
         <h3>{{#t}}pages.confirm.step-titles.exported-before{{/t}}</h3>
         <table id="enquiry-details" class="table-details">
           <tbody>
-            {{#values.exported-before}}
             <tr>
               <td>{{#t}}pages.confirm.table-headers.exported-before{{/t}}</td>
               <td>{{values.exported-before}}</td>
               <td><a href="previously-sold-overseas/edit#sector" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
-            {{/values.exported-before}}
           </tbody>
         </table>
+        {{/values.exported-before}}
 
         <h3>{{#t}}pages.confirm.step-titles.personal-details{{/t}}</h3>
         <table id="personal-details" class="table-details">
@@ -81,27 +81,27 @@
             {{/values.email}}
 
             {{#values.phone}}
-              <tr>
-                <td>{{#t}}pages.confirm.table-headers.phone{{/t}}</td>
-                <td>{{values.phone}}</td>
-                <td><a href="personal-details/edit#phone" class="button">{{#t}}buttons.change{{/t}}</a></td>
-              </tr>
+            <tr>
+              <td>{{#t}}pages.confirm.table-headers.phone{{/t}}</td>
+              <td>{{values.phone}}</td>
+              <td><a href="personal-details/edit#phone" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
             {{/values.phone}}
           </tbody>
         </table>
 
+        {{#values.country}}
         <h3>{{#t}}pages.confirm.step-titles.company-location{{/t}}</h3>
         <table id="enquiry-details" class="table-details">
           <tbody>
-            {{#values.country}}
             <tr>
               <td>{{#t}}pages.confirm.table-headers.country{{/t}}</td>
               <td>{{values.country}}</td>
               <td><a href="company-location/edit#inside-uk-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
-            {{/values.country}}
           </tbody>
         </table>
+        {{/values.country}}
 
         <h3>{{#t}}pages.confirm.step-titles.company-address{{/t}}</h3>
         <table id="enquiry-details" class="table-details">
@@ -129,18 +129,18 @@
           </tbody>
         </table>
 
+        {{#values.sector}}
         <h3>{{#t}}pages.confirm.step-titles.sector{{/t}}</h3>
         <table id="org-details" class="table-details">
           <tbody>
-            {{#values.sector}}
             <tr>
               <td>{{#t}}pages.confirm.table-headers.sector{{/t}}</td>
               <td>{{values.sector}}</td>
               <td><a href="operating-industry/edit#sector" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
-            {{/values.sector}}
           </tbody>
         </table>
+        {{/values.sector}}
 
         <h3>{{#t}}pages.confirm.step-titles.company-details{{/t}}</h3>
         <table id="org-details" class="table-details">
@@ -171,18 +171,18 @@
           </tbody>
         </table>
 
+        {{#values.enquiry-description}}
         <h3>{{#t}}pages.confirm.step-titles.enquiry-description{{/t}}</h3>
         <table id="enquiry-details" class="table-details">
           <tbody>
-            {{#values.enquiry-description}}
             <tr>
               <td>{{#t}}pages.confirm.table-headers.description{{/t}}</td>
               <td>{{values.enquiry-description}}</td>
               <td><a href="enquiry/edit#email" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
-            {{/values.enquiry-description}}
           </tbody>
         </table>
+        {{/values.enquiry-description}}
 
         <fieldset>
           <h2>{{#t}}fields.data-protection.title{{/t}}</h2>

@@ -20,8 +20,9 @@ if data['enquiry-reason-other']
 if data
   +heading('pages.confirm.step-titles.enquiry-reason')
   +dataRow(enqReasonField, 'pages.confirm.table-headers.reason')
-  +heading('pages.confirm.step-titles.exported-before')
-  +dataRow('exported-before', 'pages.confirm.table-headers.exported-before')
+  if data['exported-before']
+    +heading('pages.confirm.step-titles.exported-before')
+    +dataRow('exported-before', 'pages.confirm.table-headers.exported-before')
   +heading('pages.confirm.step-titles.personal-details')
   +dataRow('fullname', 'pages.confirm.table-headers.fullname')
   +dataRow('email', 'pages.confirm.table-headers.email')
