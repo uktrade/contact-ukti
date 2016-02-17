@@ -6,7 +6,6 @@ var steps = [
   'Exported Before',
   'Personal Details',
   'Company Location',
-  'Company Address',
   'Industry',
   'Company Details',
   'Enquiry',

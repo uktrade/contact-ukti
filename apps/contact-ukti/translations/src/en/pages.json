@@ -23,10 +23,6 @@
     "header": "Have you sold products or services to customers overseas?",
     "subheader": ""
   },
-  "company-address": {
-    "header": "What is your company address?",
-    "subheader": ""
-  },
   "enquiry": {
     "header": "Is there anything else we need to know?",
     "subheader": ""
@@ -43,7 +39,6 @@
       "phone": "Phone number",
       "country": "Country",
       "org-name": "Company name",
-      "org-address": "Company address",
       "sector": "Industry",
       "org-type": "Type",
       "annual-turnover": "Annual turnover",
@@ -54,7 +49,6 @@
       "exported-before": "Your experience of selling overseas",
       "personal-details": "Your details",
       "company-location": "Where your organisation is based",
-      "company-address": "Your company address",
       "sector": "Your main operating industry",
       "company-details": "Your company details",
       "enquiry-description": "Additional information"

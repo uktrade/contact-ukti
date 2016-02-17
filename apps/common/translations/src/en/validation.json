@@ -1,16 +1,4 @@
 {
-  "address-house-number": {
-    "required": "Enter your house name or number"
-  },
-  "address-street": {
-    "required": "Enter your street"
-  },
-  "address-town": {
-    "required": "Enter the town or city"
-  },
-  "address-postcode": {
-    "required": "Enter the postcode"
-  },
   "org-name": {
     "required": "Enter your company name"
   },
@@ -20,18 +8,5 @@
   "sector": {
     "required": "Enter your primary operating industry",
     "equal": "Please select an industry from the list"
-  },
-  "org-address-house-number": {
-    "required": "Enter the building name or number"
-  },
-  "org-address-street": {
-    "required": "Enter the street"
-  },
-  "org-address-town": {
-    "required": "Enter the town or city"
-  },
-  "org-address-postcode": {
-    "required": "Enter the postcode",
-    "postcode": "Enter your postcode in the correct format, for example SW1A 1AA"
   }
 }

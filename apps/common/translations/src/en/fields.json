@@ -58,23 +58,5 @@
         "label": "More than 250"
       }
     }
-  },
-  "org-address": {
-    "legend": "Company address"
-  },
-  "org-address-house-number": {
-    "label": "Building name or number"
-  },
-  "org-address-street": {
-    "label": "Street"
-  },
-  "org-address-town": {
-    "label": "Town/City"
-  },
-  "org-address-county": {
-    "label": "County (optional)"
-  },
-  "org-address-postcode": {
-    "label": "Postcode"
   }
 }

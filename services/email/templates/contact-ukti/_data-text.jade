@@ -29,19 +29,6 @@ if data
   +dataRow('phone', 'pages.confirm.table-headers.phone')
   +heading('pages.confirm.step-titles.company-location')
   +dataRow('country', 'pages.confirm.table-headers.country')
-  +heading('pages.confirm.step-titles.company-address')
-  +dataRow('org-name', 'pages.confirm.table-headers.org-name')
-  if data['org-address-street']
-    br
-    | #{data['org-address-house-number']} #{data['org-address-street']},
-    br
-    | #{data['org-address-town']},
-    if data['org-address-county']
-      br
-      | #{data['org-address-county']},
-      br
-      | #{data['org-address-postcode']}
-    br
   +heading('pages.confirm.step-titles.sector')
   +dataRow('sector', 'pages.confirm.table-headers.sector')
   +heading('pages.confirm.step-titles.company-details')

@@ -44,26 +44,6 @@ if data
       +dataRow('country', t('pages.confirm.table-headers.country'))
   tr: td
     +tbl
-      +sectionHeader(t('pages.confirm.step-titles.company-address'))
-      +dataRow('org-name', t('pages.confirm.table-headers.org-name'))
-      if data['org-address-street']
-        tr: td(colspan='2' height='15')
-        tr
-          th(width='35%' valign='top' align='left')
-            +text(16, 500, '#6f777b')= t('pages.confirm.table-headers.org-address')
-          td(width='65%' valign='top')
-            +text #{data['org-address-house-number']} #{data['org-address-street']},
-            br
-            +text #{data['org-address-town']},
-            if data['org-address-county']
-              br
-              +text #{data['org-address-county']}, 
-            br
-            +text= data['org-address-postcode']
-        tr: td(colspan='2' height='15')
-        tr: td(colspan='2' height='1' bgcolor='#6f777b')
-  tr: td
-    +tbl
       +sectionHeader(t('pages.confirm.step-titles.sector'))
       +dataRow('sector', t('pages.confirm.table-headers.sector'))
   tr: td
