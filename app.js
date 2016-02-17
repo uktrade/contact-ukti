@@ -72,23 +72,20 @@ function secureCookies(req, res, next) {
   };
   next();
 }
-function initSession(req, res, next) {
-  session({
-    store: memcachedStore,
-    cookie: {
-      secure: (req.protocol === 'https'),
-      maxAge: config.session.ttl
-    },
-    key: 'ukticontact.sid',
-    secret: config.session.secret,
-    resave: true,
-    saveUninitialized: true
-  })(req, res, next);
-}
 
 app.use(require('cookie-parser')(config.session.secret));
 app.use(secureCookies);
-app.use(initSession);
+app.use(session({
+  store: memcachedStore,
+  cookie: {
+    secure: (config.env === 'development' || config.env === 'ci') ? false : true,
+    maxAge: config.session.ttl
+  },
+  key: 'ukticontact.sid',
+  secret: config.session.secret,
+  resave: true,
+  saveUninitialized: true
+}));
 
 // apps
 app.use(require('./apps/contact-ukti/'));
@@ -104,11 +101,6 @@ app.get('/terms-and-conditions', function renderTerms(req, res) {
 app.use(raven.middleware.express.errorHandler(config.sentry.dsn));
 app.use(require('./errors/page-not-found'));
 app.use(require('./errors/'));
-
-// prevent event listeners warning
-/* eslint-disable no-underscore-dangle */
-require('events').EventEmitter.prototype._maxListeners = 0;
-/* eslint-enable no-underscore-dangle */
 
 app.listen(config.port, config.listenHost);
 logger.info('App listening on port', config.port);
