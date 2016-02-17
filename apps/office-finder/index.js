@@ -2,6 +2,7 @@
 
 var path = require('path');
 var router = require('express').Router();
+var analytics = require('../../lib/analytics');
 var regionFinder = require('../../lib/region-finder');
 var hof = require('hof');
 var validators = hof.wizard.Controller.validators;
@@ -18,7 +19,12 @@ router.use(mixins({}, {
 
 router.post('/:postcode?', function postHandler(req, res) {
   if (req.body.postcode) {
-    return res.redirect(req.baseUrl + '/' + req.body.postcode);
+    return analytics.event({
+      category: 'Postcode',
+      action: 'search'
+    }, function analyticsCB() {
+      res.redirect(req.baseUrl + '/' + req.body.postcode);
+    });
   }
   res.redirect(req.baseUrl);
 });
@@ -30,7 +36,13 @@ router.param('postcode', function postcodeParam(req, res, next, postcode) {
     errors.push({key: 'postcode', message: locali18n.translate('validation.postcode.invalid')});
     req.errorlist = errors;
 
-    return next();
+    return analytics.event({
+      category: 'Postcode',
+      action: 'invalid format',
+      label: postcode
+    }, function analyticsCB() {
+      next();
+    });
   }
 
   regionFinder
@@ -42,7 +54,13 @@ router.param('postcode', function postcodeParam(req, res, next, postcode) {
       errors.push({key: 'postcode', message: locali18n.translate('validation.postcode.not-exist')});
       req.errorlist = errors;
 
-      next();
+      analytics.event({
+        category: 'Postcode',
+        action: 'not found',
+        label: postcode
+      }, function analyticsCB() {
+        next();
+      });
     });
 });
 
