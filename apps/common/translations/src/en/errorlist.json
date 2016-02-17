@@ -1,6 +1,7 @@
 {
-  "title": {
-    "single": "Fix the following error",
-    "multiple": "Fix the following errors"
+  "title": "There was a problem submitting the form",
+  "para": {
+    "single": "Please correct the following error",
+    "multiple": "Please correct the following errors"
   }
 }

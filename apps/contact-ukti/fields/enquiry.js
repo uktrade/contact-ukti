@@ -3,10 +3,7 @@
 module.exports = {
   'enquiry-description': {
     validate: ['required', {type: 'maxlength', arguments: [5000]}],
-    legend: {
-      className: 'visuallyhidden',
-      value: 'pages.company-location.header',
-    },
+    labelClassName: 'visuallyhidden',
     attributes: [
       {
         attribute: 'rows',

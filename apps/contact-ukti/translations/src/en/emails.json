@@ -1,10 +1,10 @@
 {
-  "customer-instructions": "We will get back to you within 5 working days. For example, if you contact us on a Monday you will hear back by the following Monday.",
+  "customer-instructions": "Thanks for getting in touch. We'll get back to you within 5 working days. For example, if you contacted us on a Monday, you'll hear back by the following Monday.",
   "contact-ukti": {
-    "header": "Contact us"
+    "header": "Your enquiry"
   },
   "data-protection": {
-    "opted-in": "You have chosen to receive marketing from UKTI and its trusted partners.",
-    "opted-out": "You have chosen not to receive marketing from UKTI and its trusted partners."
+    "opted-in": "You have chosen to receive marketing from UKTI and its partners",
+    "opted-out": "You have chosen not to receive marketing from UKTI and its partners"
   }
 }

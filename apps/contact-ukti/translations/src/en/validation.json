@@ -25,5 +25,8 @@
   "enquiry-description": {
     "required": "Tell us about your enquiry",
     "maxlength": "Please use less than 5000 characters"
+  },
+  "exported-before": {
+    "required": "Tell us if you have sold products or services to customers overseas"
   }
 }

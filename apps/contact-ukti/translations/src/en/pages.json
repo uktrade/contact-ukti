@@ -1,14 +1,14 @@
 {
   "enquiry-reason": {
-    "header": "What is your enquiry related to?",
+    "header": "What are you enquiring about?",
     "subheader": ""
   },
   "personal-details": {
-    "header": "What are your personal details?",
-    "subheader": "We need these details so that we can contact you about your enquiry"
+    "header": "What are your details?",
+    "subheader": "We'll use these to contact you about your enquiry"
   },
   "company-location": {
-    "header": "Where is your company based?",
+    "header": "Where's your organisation based?",
     "subheader": ""
   },
   "company-details": {
@@ -16,11 +16,11 @@
     "subheader": ""
   },
   "operating-industry": {
-    "header": "What industry do you primarily operate in?",
-    "subheader": ""
+    "header": "What industry do you mainly operate in?",
+    "subheader": "Start typing in the box below to find the most relevant description"
   },
   "previously-sold-overseas": {
-    "header": "Have you sold products or services to overseas customers?",
+    "header": "Have you sold products or services to customers overseas?",
     "subheader": ""
   },
   "company-address": {
@@ -28,15 +28,15 @@
     "subheader": ""
   },
   "enquiry": {
-    "header": "What is the reason for your enquiry?",
+    "header": "Is there anything else we need to know?",
     "subheader": ""
   },
   "confirm": {
-    "header": "Is the information you have given us correct?",
-    "subheader": "Check and make sure the information below is right. If it isn't you can change it here.",
+    "header": "Is your information correct?",
+    "subheader": "If it isn’t, you can change it here.",
     "table-headers": {
-      "reason": "Reason",
-      "exported-before": "Previously sold overseas",
+      "reason": "Topic",
+      "exported-before": "Frequency",
       "description": "Description",
       "fullname": "Full name",
       "email": "Email address",
@@ -44,29 +44,29 @@
       "country": "Country",
       "org-name": "Company name",
       "org-address": "Company address",
-      "sector": "Primary operating industry",
-      "org-type": "Company type",
+      "sector": "Industry",
+      "org-type": "Type",
       "annual-turnover": "Annual turnover",
       "no-employees": "Number of employees"
     },
     "step-titles": {
-      "enquiry-reason": "What your enquiry is related to",
-      "exported-before": "Your exporting experience",
-      "personal-details": "Your personal details",
-      "company-location": "Where your company is based",
+      "enquiry-reason": "What your enquiry is about",
+      "exported-before": "Your experience of selling overseas",
+      "personal-details": "Your details",
+      "company-location": "Where your organisation is based",
       "company-address": "Your company address",
-      "sector": "Your primary operating industry",
+      "sector": "Your main operating industry",
       "company-details": "Your company details",
-      "enquiry-description": "Further details about your enquiry"
+      "enquiry-description": "Additional information"
     }
   },
   "confirmation": {
-    "header": "Thank you, we have received your information.",
-    "email": "We have sent you an email containing the information you have provided to",
+    "header": "Thank you, we’ve received your enquiry.",
+    "email": "We’ve also sent an email with the information you’ve provided to",
     "next": {
       "header": "What happens next",
       "para": {
-        "one": "Our staff will review your enquiry and get back to you shortly"
+        "one": "Our team will take a look at what you need and get back to you soon."
       }
     }
   }

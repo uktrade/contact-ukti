@@ -1,3 +1,4 @@
+@wip
 Feature: Check details
   As a user
   I want to be able to see all the details I have entered before submitting
@@ -7,7 +8,7 @@ Feature: Check details
     Given I am on the "Check Details" page
 
   Scenario: On correct page
-    Then I should see "Is the information you have given us correct? – GOV.UK" as the page title
+    Then I should be on the "Check Details" page
 
   @navigation
   Scenario: Step backwards

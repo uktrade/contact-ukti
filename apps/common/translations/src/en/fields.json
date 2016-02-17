@@ -3,7 +3,7 @@
     "label": "Company name"
   },
   "org-type": {
-    "legend": "Company type",
+    "legend": "Where do you work?",
     "options": {
       "company": {
         "label": "Company or organisation"
@@ -11,14 +11,14 @@
       "govt": {
         "label": "Government department"
       },
-      "individual": {
-        "label": "Individual"
-      },
       "intermediary": {
-        "label": "Intermediary"
+        "label": "As an intermediary"
       },
       "student": {
-        "label": "Student"
+        "label": "I am a student"
+      },
+      "other": {
+        "label": "Other"
       }
     }
   },
