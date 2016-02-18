@@ -61,22 +61,21 @@ var memcachedStore = new MemcachedStore({
   password: config.memcached.password,
 });
 
-function secureCookies(req, res, next) {
+app.use(require('cookie-parser')(config.session.secret));
+app.use(function secureCookies(req, res, next) {
   var cookie = res.cookie.bind(res);
   res.cookie = function cookieHandler(name, value, options) {
     options = options || {};
-    options.secure = (req.protocol === 'https');
+    options.secure = (config.env === 'development' || config.env === 'ci') ? false : true;
     options.httpOnly = true;
     options.path = '/';
     cookie(name, value, options);
   };
   next();
-}
-
-app.use(require('cookie-parser')(config.session.secret));
-app.use(secureCookies);
+});
 app.use(session({
   store: memcachedStore,
+  proxy: (config.env === 'development' || config.env === 'ci') ? false : true,
   cookie: {
     secure: (config.env === 'development' || config.env === 'ci') ? false : true,
     maxAge: config.session.ttl
