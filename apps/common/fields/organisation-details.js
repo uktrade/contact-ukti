@@ -17,16 +17,16 @@ module.exports = {
         label: 'fields.org-type.options.govt.label',
       },
       {
-        value: 'Individual',
-        label: 'fields.org-type.options.individual.label',
-      },
-      {
         value: 'Intermediary',
         label: 'fields.org-type.options.intermediary.label',
       },
       {
         value: 'Student',
         label: 'fields.org-type.options.student.label',
+      },
+      {
+        value: 'Other',
+        label: 'fields.org-type.options.other.label',
       },
     ]
   },

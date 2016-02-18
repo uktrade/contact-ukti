@@ -41,15 +41,13 @@ app.engine('html', require('hogan-express-strict'));
 
 app.use(require('body-parser').urlencoded({extended: true}));
 app.use(require('body-parser').json());
-
-app.use(function setBaseUrl(req, res, next) {
+// pass locals to views
+app.use(function setViewLocals(req, res, next) {
   res.locals.baseUrl = req.baseUrl;
+  res.locals.trackingId = config.trackingId;
+  res.locals.feedbackEmail = config.feedbackEmail;
   next();
 });
-
-// pass tracking id to template
-app.locals.trackingId = config.trackingId;
-app.locals.feedbackEmail = config.feedbackEmail;
 
 /*************************************/
 /* Memcached session storage         */

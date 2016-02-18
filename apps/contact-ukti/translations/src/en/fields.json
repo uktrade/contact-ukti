@@ -1,21 +1,23 @@
 {
   "enquiry-reason": {
-    "label": "Label",
     "options": {
       "export": {
-        "label": "Exporting from the UK or investing overseas (for UK companies)"
+        "label": "Exporting from the UK"
+      },
+      "overseas-investment": {
+        "label": "Investing overseas"
       },
       "investment": {
-        "label": "Inward investment into the UK (for non-UK companies)"
+        "label": "Investment in the UK from overseas"
       },
       "bisops": {
-        "label": "Business opportunities service"
+        "label": "Export opportunities"
       },
       "dso": {
-        "label": "UK Trade & Invesment Defence & Security Organisation (DSO)"
+        "label": "Defence & Security Organisation (DSO)"
       },
       "events": {
-        "label": "UK Trade & Investment events"
+        "label": "Events"
       },
       "other": {
         "label": "Other"
@@ -23,7 +25,7 @@
     }
   },
   "enquiry-reason-other": {
-    "label": "What is your reason?"
+    "label": "Briefly describe your topic"
   },
   "fullname": {
     "label": "Full name"
@@ -32,7 +34,7 @@
     "label": "Email address"
   },
   "no-email": {
-    "label": "I do not have an email address"
+    "label": "I don't have an email address"
   },
   "phone": {
     "label": "Phone number (optional)"
@@ -40,10 +42,10 @@
   "inside-uk": {
     "options": {
       "yes": {
-        "label": "UK"
+        "label": "In the UK"
       },
       "no": {
-        "label": "Outside UK"
+        "label": "Outside the UK"
       }
     }
   },
@@ -55,28 +57,28 @@
     "label": "Tell us the reason for your enquiry"
   },
   "sector": {
-    "label": "Primary operating industry"
+    "label": "What industry do you mainly operate in?",
+    "hint": "Start typing in the box below to find the most relevant description"
   },
   "exported-before": {
-    "legend": "Have you sold products or services to overseas customers?",
     "options": {
       "no": {
-        "label": "No"
+        "label": "Never"
       },
       "within-1-yr": {
-        "label": "Yes, within the last year"
+        "label": "Yes in the last year"
       },
       "within-2-yr": {
-        "label": "Yes, within the last 2 years"
+        "label": "Yes in the last 2 years"
       },
       "more-2-yr": {
-        "label": "Yes, more than 2 years ago"
+        "label": "Yes over 2 years ago"
       }
     }
   },
   "data-protection": {
     "title": "Data protection",
-    "explanation": "UK Trade & Investment and it's trusted partners may use your details to send you tailored marketing material.",
-    "label": "Yes, I am happy for my details to be used for marketing"
+    "explanation": "UK Trade &amp; Investment and its partners might use your details to send you relevant news and information.",
+    "label": "Yes, I'd like to receive this information"
   }
 }

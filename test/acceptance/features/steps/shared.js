@@ -93,6 +93,23 @@ var sharedSteps = function sharedSteps() {
   });
 
   /**
+   * Check url matches the given page object
+   *
+   * Usage: I should be on the "Enquiry" page
+   *
+   * @params {string} pageName The requested page object name
+   * @params {function} next The callback function of the scenario
+   */
+  this.Then(/^I should be on the "([^"]*)" page$/, function previousStep(pageName, next) {
+    var pageUrl = browser.utils.getPage(pageName).getUrl();
+
+    browser
+      .getUrl()
+      .should.eventually.contain(pageUrl)
+      .and.notify(next);
+  });
+
+  /**
    * Check url matches the previous step for given page object
    *
    * Usage: I should be on the step before the "Enquiry" page
