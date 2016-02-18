@@ -10,15 +10,19 @@ module.exports = {
     },
     options: [
       {
-        value: 'Exporting from the UK or investing overseas',
+        value: 'Exporting from the UK',
         label: 'fields.enquiry-reason.options.export.label',
       },
       {
-        value: 'Inward investment into the UK',
+        value: 'Investing overseas',
+        label: 'fields.enquiry-reason.options.overseas-investment.label',
+      },
+      {
+        value: 'Investment in the UK from overseas',
         label: 'fields.enquiry-reason.options.investment.label',
       },
       {
-        value: 'Business opportunities service',
+        value: 'Export opportunities',
         label: 'fields.enquiry-reason.options.bisops.label',
       },
       {
@@ -26,7 +30,7 @@ module.exports = {
         label: 'fields.enquiry-reason.options.dso.label',
       },
       {
-        value: 'UK Trade & Investment events',
+        value: 'Events',
         label: 'fields.enquiry-reason.options.events.label',
       },
       {

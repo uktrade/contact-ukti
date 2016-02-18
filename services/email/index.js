@@ -43,20 +43,21 @@ function Emailer() {
 }
 
 Emailer.prototype = {
+  locali18n: null,
 
   send: function send(email, callback) {
-    var locali18n = i18n({
+    this.locali18n = i18n({
       path: path.resolve(
         __dirname, '..', '..', 'apps', email.template, 'translations', '__lng__', '__ns__.json'
       )
     });
 
-    locali18n.on('ready', function locali18nLoaded() {
+    this.locali18n.on('ready', function locali18nLoaded() {
       var locals = {
         data: email.dataToSend,
         t: function t(text) {
-          return locali18n.translate(text);
-        }
+          return this.locali18n.translate(text);
+        }.bind(this)
       };
       var batch = [
         {
@@ -120,23 +121,26 @@ Emailer.prototype = {
   },
 
   getCaseworkerEmail: function getCaseworkerEmail(reason, postcode, callback) {
-    if (reason.toLowerCase().indexOf('inward investment') !== -1) {
+    if (reason === this.locali18n.translate('fields.enquiry-reason.options.investment.label')) {
       return callback(null, config.email.caseworker.investment);
     }
 
-    if (reason.toLowerCase().indexOf('business opportunities') !== -1) {
+    if (reason === this.locali18n.translate('fields.enquiry-reason.options.bisops.label')) {
       return callback(null, config.email.caseworker.bizops);
     }
 
-    if (reason.toLowerCase().indexOf('defence & security organisation') !== -1) {
+    if (reason === this.locali18n.translate('fields.enquiry-reason.options.dso.label')) {
       return callback(null, config.email.caseworker.dso);
     }
 
-    if (reason.toLowerCase().indexOf('events') !== -1) {
+    if (reason === this.locali18n.translate('fields.enquiry-reason.options.events.label')) {
       return callback(null, config.email.caseworker.events);
     }
 
-    if (reason.toLowerCase().indexOf('export') !== -1 && postcode) {
+    if (
+      (reason === this.locali18n.translate('fields.enquiry-reason.options.export.label') ||
+        reason === this.locali18n.translate('fields.enquiry-reason.options.overseas-investment.label')) && postcode
+    ) {
       return regionFinder
         .getByPostcode(postcode)
         .then(function regionSuccess(region) {
