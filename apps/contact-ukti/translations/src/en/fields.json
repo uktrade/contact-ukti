@@ -51,6 +51,7 @@
   },
   "outside-uk": {
     "legend": "Outside the UK",
+    "hint": "Start typing in the box below to find a country",
     "label": "Which country are you in?"
   },
   "enquiry-description": {
