@@ -12,6 +12,7 @@ module.exports = {
       {
         value: 'yes',
         label: 'fields.inside-uk.options.yes.label',
+        toggle: 'postcode-group',
       },
       {
         value: 'no',
@@ -32,5 +33,12 @@ module.exports = {
       value: 'fields.outside-uk.label',
     },
     validate: ['required'],
+  },
+  'uk-postcode': {
+    dependent: {
+      field: 'inside-uk',
+      value: 'yes',
+    },
+    validate: ['required', 'postcode'],
   },
 };

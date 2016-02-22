@@ -99,6 +99,13 @@
               <td>{{values.country}}</td>
               <td><a href="company-location/edit#inside-uk-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
+            {{#values.uk-postcode}}
+            <tr>
+              <td>{{#t}}pages.confirm.table-headers.uk-postcode{{/t}}</td>
+              <td>{{values.uk-postcode}}</td>
+              <td><a href="company-location/edit#postcode-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+            {{/values.uk-postcode}}
           </tbody>
         </table>
         {{/values.country}}

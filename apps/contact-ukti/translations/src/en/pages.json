@@ -38,6 +38,7 @@
       "email": "Email address",
       "phone": "Phone number",
       "country": "Country",
+      "uk-postcode": "UK Postcode",
       "org-name": "Company name",
       "sector": "Industry",
       "org-type": "Type",

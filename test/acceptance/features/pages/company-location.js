@@ -21,6 +21,10 @@ var Page = function Page(client) {
     country: {
       selector: '#country',
       value: 'United Arab Emirates'
+    },
+    postcode: {
+      selector: '#uk-postcode',
+      value: 'SW1A 1AA'
     }
   };
   var $errors = '.validation-error';
@@ -45,6 +49,7 @@ var Page = function Page(client) {
   this.complete = function completeForm() {
     return client
       .click(fields.insideUk.selector + '[value="' + fields.insideUk.value + '"]')
+      .setValue(fields.postcode.selector, fields.postcode.value)
       .submitForm($form);
   };
 

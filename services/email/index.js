@@ -68,7 +68,7 @@ Emailer.prototype = {
         }
       ];
 
-      this.getCaseworkerEmail(email.dataToSend['enquiry-reason'], email.dataToSend['org-address-postcode'],
+      this.getCaseworkerEmail(email.dataToSend['enquiry-reason'], email.dataToSend['uk-postcode'],
         function caseworkerEmailCb(error, caseworkerEmail) {
           if (error) {
             return callback(error);

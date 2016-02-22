@@ -32,18 +32,18 @@
 
         {{#radio-group}}inside-uk{{/radio-group}}
 
-        <fieldset id="country-group" class="panel-indent {{#errors.outside-uk}}validation-error{{/errors.outside-uk}}">
+        <fieldset id="postcode-group" class="panel-indent {{#errors.uk-postcode}}validation-error{{/errors.uk-postcode}}">
+          {{#input-text}}uk-postcode{{/input-text}}
+        </fieldset>
 
-          <legend class="visuallyhidden">
-            <span class="form-label-bold">{{#t}}fields.outside-uk.legend{{/t}}</span>
-          </legend>
+        <fieldset id="country-group" class="panel-indent {{#errors.outside-uk}}validation-error{{/errors.outside-uk}}">
 
           {{#select}}outside-uk{{/select}}
 
         </fieldset>
 
         {{#input-submit}}continue{{/input-submit}}
-        
+
         {{> partials-back}}
 
       {{/form}}

@@ -22,6 +22,10 @@
     "required": "Tell us where you are",
     "equal": "Please select a country from the list"
   },
+  "uk-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter your postcode in the correct format, for example SW1A 1AA"
+  },
   "enquiry-description": {
     "required": "Tell us about your enquiry",
     "maxlength": "Please use less than 5000 characters"

@@ -36,6 +36,7 @@ module.exports = {
     fields: [
       'inside-uk',
       'outside-uk',
+      'uk-postcode',
     ],
     backLink: '/personal-details',
     next: '/operating-industry',

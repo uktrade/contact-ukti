@@ -40,7 +40,7 @@ describe('Email service', function() {
       i18n.on('ready', function() {
         emailFixture.dataToSend = {
           'enquiry-reason': i18n.translate('fields.enquiry-reason.options.export.label'),
-          'org-address-postcode': 'AAA'
+          'uk-postcode': 'AAA'
         };
 
         emailService.send(emailFixture, function(error) {
