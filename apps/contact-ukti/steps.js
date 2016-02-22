@@ -54,7 +54,6 @@ module.exports = {
     next: '/company-details',
   },
   '/company-details': {
-    controller: require('./controllers/company-details'),
     fields: [
       'org-type',
       'annual-turnover',
