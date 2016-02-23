@@ -12,7 +12,7 @@ var Page = function Page(client) {
    * Private
    */
 
-  var url = '/personal-details';
+  var url = '/enquiry/personal-details';
   var fields = {
     fullname: {
       selector: '#fullname',

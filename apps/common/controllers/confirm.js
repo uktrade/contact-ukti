@@ -15,7 +15,7 @@ var ConfirmController = function ConfirmController() {
 util.inherits(ConfirmController, BaseController);
 
 var serviceMap = {
-  '/confirm': function contactUkti() {
+  '/enquiry/confirm': function contactUkti() {
     return {
       template: 'contact-ukti',
       subject: 'Form submitted: Contact UK Trade & Investment'

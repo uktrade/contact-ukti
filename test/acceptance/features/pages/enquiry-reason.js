@@ -12,7 +12,7 @@ var Page = function Page(client) {
    * Private
    */
 
-  var url = '/enquiry-reason';
+  var url = '/enquiry/enquiry-reason';
   var fields = {
     reason: {
       selector: '[name="enquiry-reason"]',

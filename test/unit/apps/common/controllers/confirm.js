@@ -27,7 +27,7 @@ describe('apps/common/controllers/confirm', function() {
       sessionModel: {
         toJSON: sinon.stub().returns(expected)
       },
-      originalUrl: '/confirm'
+      originalUrl: '/enquiry/confirm'
     };
     var res = {};
     var callback = sinon.stub();
@@ -43,7 +43,7 @@ describe('apps/common/controllers/confirm', function() {
     });
 
     it('sets a template for contact ukti journey', function() {
-      req.originalUrl = '/confirm';
+      req.originalUrl = '/enquiry/confirm';
       controller.saveValues(req, res, callback);
 
       modelProto.set.should.have.been.calledWith('template', 'contact-ukti');

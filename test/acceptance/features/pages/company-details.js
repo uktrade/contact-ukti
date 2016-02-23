@@ -12,7 +12,7 @@ var Page = function Page(client) {
    * Private
    */
 
-  var url = '/company-details';
+  var url = '/enquiry/company-details';
   var fields = {
     orgType: {
       selector: '[name="org-type"]',

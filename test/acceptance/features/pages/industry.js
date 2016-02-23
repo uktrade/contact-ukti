@@ -12,7 +12,7 @@ var Page = function Page(client) {
    * Private
    */
 
-  var url = '/operating-industry';
+  var url = '/enquiry/operating-industry';
   var fields = {
     sector: {
       selector: '#sector',
