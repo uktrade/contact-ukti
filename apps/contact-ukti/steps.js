@@ -3,32 +3,38 @@
 module.exports = {
   '/': {
     controller: require('../common/controllers/start'),
-    next: '/enquiry-reason',
+    next: '/topic',
   },
-  '/enquiry-reason': {
-    controller: require('./controllers/reason'),
+  '/topic': {
     fields: [
       'enquiry-reason',
       'enquiry-reason-other',
     ],
     next: '/personal-details',
+    forks: [
+      {
+        target: '/previously-sold-overseas',
+        condition: {
+          field: 'enquiry-reason',
+          value: 'Exporting from the UK'
+        }
+      }
+    ]
   },
   '/previously-sold-overseas': {
     fields: [
       'exported-before',
     ],
-    backLink: '/enquiry-reason',
+    backLink: 'topic',
     next: '/personal-details',
   },
   '/personal-details': {
-    controller: require('./controllers/personal-details'),
     fields: [
       'fullname',
       'email',
       'no-email',
       'phone',
     ],
-    backLink: '/enquiry-reason',
     next: '/company-location',
   },
   '/company-location': {
@@ -38,7 +44,6 @@ module.exports = {
       'outside-uk',
       'uk-postcode',
     ],
-    backLink: '/personal-details',
     next: '/operating-industry',
   },
   '/operating-industry': {
@@ -46,7 +51,6 @@ module.exports = {
     fields: [
       'sector',
     ],
-    backLink: '/company-location',
     next: '/company-details',
   },
   '/company-details': {
@@ -56,14 +60,12 @@ module.exports = {
       'annual-turnover',
       'no-employees',
     ],
-    backLink: '/operating-industry',
-    next: '/enquiry',
+    next: '/anything-else',
   },
-  '/enquiry': {
+  '/anything-else': {
     fields: [
       'enquiry-description'
     ],
-    backLink: '/company-details',
     next: '/confirm',
   },
   '/confirm': {

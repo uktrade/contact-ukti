@@ -1,5 +1,5 @@
 {
-  "enquiry-reason": {
+  "topic": {
     "header": "What are you enquiring about?",
     "subheader": ""
   },
@@ -31,7 +31,7 @@
     "header": "Is your information correct?",
     "subheader": "If it isn’t, you can change it here.",
     "table-headers": {
-      "reason": "Topic",
+      "topic": "Topic",
       "exported-before": "Frequency",
       "description": "Description",
       "fullname": "Full name",
@@ -46,7 +46,7 @@
       "no-employees": "Number of employees"
     },
     "step-titles": {
-      "enquiry-reason": "What your enquiry is about",
+      "topic": "What your enquiry is about",
       "exported-before": "Your experience of selling overseas",
       "personal-details": "Your details",
       "company-location": "Where your organisation is based",

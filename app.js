@@ -84,9 +84,15 @@ app.use(session({
   saveUninitialized: true
 }));
 
-// apps
-app.use(require('./apps/contact-ukti/'));
+// redirect base root to enquiry app
+app.get('/', function rootRedirect(req, res) {
+  res.redirect('/enquiry');
+});
 
+// apps
+app.use('/enquiry', require('./apps/contact-ukti/'));
+
+// static routes
 app.get('/cookies', function renderCookies(req, res) {
   res.render('cookies');
 });

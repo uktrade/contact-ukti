@@ -5,14 +5,14 @@
  * Detaches UI interactions from step definitions
  *
  */
-var name = 'Enquiry Reason';
+var name = 'Topic';
 var Page = function Page(client) {
 
   /**
    * Private
    */
 
-  var url = '/enquiry-reason';
+  var url = '/enquiry/topic';
   var fields = {
     reason: {
       selector: '[name="enquiry-reason"]',
