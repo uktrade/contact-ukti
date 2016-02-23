@@ -5,11 +5,11 @@ var BaseController = require('hof').controllers.base;
 var analytics = require('../../../lib/analytics');
 var logger = require('../../../lib/logger');
 
-var OperatingIndustryController = function OperatingIndustryController() {
+var CompanyDetailsController = function CompanyDetailsController() {
   BaseController.apply(this, arguments);
 };
 
-util.inherits(OperatingIndustryController, BaseController);
+util.inherits(CompanyDetailsController, BaseController);
 
 function getValue(req, key) {
   if (req.form && req.form.values) {
@@ -17,7 +17,7 @@ function getValue(req, key) {
   }
 }
 
-OperatingIndustryController.prototype.validateField = function validateField(key, req) {
+CompanyDetailsController.prototype.validateField = function validateField(key, req) {
   var industryValue = getValue(req, 'sector');
 
   if (industryValue && industryValue !== '') {
@@ -39,4 +39,4 @@ OperatingIndustryController.prototype.validateField = function validateField(key
   return BaseController.prototype.validateField.apply(this, arguments);
 };
 
-module.exports = OperatingIndustryController;
+module.exports = CompanyDetailsController;

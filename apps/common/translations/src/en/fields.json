@@ -2,26 +2,6 @@
   "org-name": {
     "label": "Company name"
   },
-  "org-type": {
-    "legend": "Where do you work?",
-    "options": {
-      "company": {
-        "label": "Company or organisation"
-      },
-      "govt": {
-        "label": "Government department"
-      },
-      "intermediary": {
-        "label": "As an intermediary"
-      },
-      "student": {
-        "label": "I am a student"
-      },
-      "other": {
-        "label": "Other"
-      }
-    }
-  },
   "annual-turnover": {
     "legend": "Annual turnover (optional)",
     "options": {

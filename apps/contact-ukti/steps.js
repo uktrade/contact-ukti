@@ -44,18 +44,18 @@ module.exports = {
       'outside-uk',
       'uk-postcode',
     ],
-    next: '/operating-industry',
+    next: '/organisation-type',
   },
-  '/operating-industry': {
-    controller: require('./controllers/operating-industry'),
+  '/organisation-type': {
     fields: [
-      'sector',
+      'org-type',
     ],
     next: '/company-details',
   },
   '/company-details': {
+    controller: require('./controllers/company-details'),
     fields: [
-      'org-type',
+      'sector',
       'annual-turnover',
       'no-employees',
     ],

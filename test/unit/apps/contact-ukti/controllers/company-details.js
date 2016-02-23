@@ -1,10 +1,10 @@
 'use strict';
 
-var OperatingIndustryController = require('../../../../../apps/contact-ukti/controllers/operating-industry');
+var Controller = require('../../../../../apps/contact-ukti/controllers/company-details');
 var BaseController = require('hof').controllers.base;
 var analytics = require('../../../../../lib/analytics');
 
-describe('apps/contact-ukti/controllers/operating-industry', function() {
+describe('apps/contact-ukti/controllers/company-details', function() {
 
   describe('.validateField()', function() {
 
@@ -20,7 +20,7 @@ describe('apps/contact-ukti/controllers/operating-industry', function() {
 
     beforeEach(function() {
       analytics.event = sinon.stub();
-      controller = new OperatingIndustryController({template: 'index'});
+      controller = new Controller({template: 'index'});
     });
 
     it('validates empty if no value submitted', function() {

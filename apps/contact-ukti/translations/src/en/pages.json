@@ -15,9 +15,8 @@
     "header": "What are your company details?",
     "subheader": ""
   },
-  "operating-industry": {
-    "header": "What industry do you mainly operate in?",
-    "subheader": "Start typing in the box below to find the most relevant description"
+  "organisation-type": {
+    "header": "Where do you work?"
   },
   "previously-sold-overseas": {
     "header": "Have you sold products or services to customers overseas?",
