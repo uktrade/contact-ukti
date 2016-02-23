@@ -5,18 +5,18 @@
  * Detaches UI interactions from step definitions
  *
  */
-var name = 'Industry';
+var name = 'Organisation Type';
 var Page = function Page(client) {
 
   /**
    * Private
    */
 
-  var url = '/enquiry/operating-industry';
+  var url = '/enquiry/organisation-type';
   var fields = {
-    sector: {
-      selector: '#sector',
-      value: 'Advanced Engineering'
+    type: {
+      selector: '[name="org-type"]',
+      value: 'Company or organisation'
     },
   };
   var $errors = '.validation-error';
@@ -40,7 +40,7 @@ var Page = function Page(client) {
 
   this.complete = function completeForm() {
     return client
-      .setValue(fields.sector.selector, fields.sector.value)
+      .click(fields.type.selector + '[value="' + fields.type.value + '"]')
       .submitForm($form);
   };
 

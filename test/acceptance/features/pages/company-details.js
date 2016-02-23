@@ -14,9 +14,13 @@ var Page = function Page(client) {
 
   var url = '/enquiry/company-details';
   var fields = {
-    orgType: {
-      selector: '[name="org-type"]',
-      value: 'Company or organisation'
+    orgName: {
+      selector: '#org-name',
+      value: 'Company name'
+    },
+    sector: {
+      selector: '#sector',
+      value: 'Advanced Engineering'
     },
     turnover: {
       selector: '[name="annual-turnover"]',
@@ -48,7 +52,8 @@ var Page = function Page(client) {
 
   this.complete = function completeForm() {
     return client
-      .click(fields.orgType.selector + '[value="' + fields.orgType.value + '"]')
+      .setValue(fields.orgName.selector, fields.orgName.value)
+      .setValue(fields.sector.selector, fields.sector.value)
       .click(fields.turnover.selector + '[value="' + fields.turnover.value + '"]')
       .click(fields.noEmployees.selector + '[value="' + fields.noEmployees.value + '"]')
       .submitForm($form);
@@ -63,7 +68,7 @@ var Page = function Page(client) {
     return client
       .elements($errors)
       .then(function elementsResult(res) {
-        return res.value.length === 1;
+        return res.value.length === 2;
       });
   };
 
