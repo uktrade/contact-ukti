@@ -50,15 +50,26 @@ module.exports = {
     fields: [
       'org-type',
     ],
-    next: '/company-details',
+    next: '/anything-else',
+    forks: [
+      {
+        target: '/company-details',
+        condition: {
+          field: 'org-type',
+          value: 'Company or organisation'
+        }
+      }
+    ]
   },
   '/company-details': {
     controller: require('./controllers/company-details'),
     fields: [
+      'org-name',
       'sector',
       'annual-turnover',
       'no-employees',
     ],
+    backLink: 'organisation-type',
     next: '/anything-else',
   },
   '/anything-else': {
