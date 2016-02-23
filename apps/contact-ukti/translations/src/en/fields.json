@@ -99,6 +99,9 @@
       }
     }
   },
+  "org-type-other": {
+    "label": "How would you describe yourself?"
+  },
   "inside-uk": {
     "options": {
       "yes": {

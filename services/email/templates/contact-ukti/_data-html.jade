@@ -17,16 +17,17 @@ mixin sectionHeader(title)
   tr: td(colspan='2' height='10')
   tr: td(colspan='2' height='1' bgcolor='#6f777b')
 
-- var enqReasonField = 'enquiry-reason'
-
+// custom reason overrides
 if data['enquiry-reason-other']
-  - enqReasonField = 'enquiry-reason-other'
+  - data['enquiry-reason'] = data['enquiry-reason-other']
+if data['org-type-other']
+  - data['org-type'] = data['org-type-other']
 
 if data
   tr: td
     +tbl
       +sectionHeader(t('pages.confirm.step-titles.topic'))
-      +dataRow(enqReasonField, t('pages.confirm.table-headers.topic'))
+      +dataRow('enquiry-reason', t('pages.confirm.table-headers.topic'))
   if data['exported-before']
     tr: td
       +tbl
@@ -38,15 +39,17 @@ if data
       +dataRow('fullname', t('pages.confirm.table-headers.fullname'))
       +dataRow('email', t('pages.confirm.table-headers.email'))
       +dataRow('phone', t('pages.confirm.table-headers.phone'))
-  tr: td
-    +tbl
-      +sectionHeader(t('pages.confirm.step-titles.company-location'))
-      +dataRow('country', t('pages.confirm.table-headers.country'))
-      +dataRow('uk-postcode', t('pages.confirm.table-headers.uk-postcode'))
-  tr: td
-    +tbl
-      +sectionHeader(t('pages.confirm.step-titles.sector'))
-      +dataRow('sector', t('pages.confirm.table-headers.sector'))
+  if data['country']
+    tr: td
+      +tbl
+        +sectionHeader(t('pages.confirm.step-titles.company-location'))
+        +dataRow('country', t('pages.confirm.table-headers.country'))
+        +dataRow('uk-postcode', t('pages.confirm.table-headers.uk-postcode'))
+  if data['sector']
+    tr: td
+      +tbl
+        +sectionHeader(t('pages.confirm.step-titles.sector'))
+        +dataRow('sector', t('pages.confirm.table-headers.sector'))
   tr: td
     +tbl
       +sectionHeader(t('pages.confirm.step-titles.company-details'))

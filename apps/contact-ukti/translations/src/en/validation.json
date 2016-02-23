@@ -36,6 +36,9 @@
   "org-type": {
     "required": "Choose what type of company you are"
   },
+  "org-type-other": {
+    "required": "Enter how you would describe yourself"
+  },
   "org-name": {
     "required": "Enter your company name"
   },

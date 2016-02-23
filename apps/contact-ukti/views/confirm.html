@@ -129,7 +129,12 @@
             {{#values.org-type}}
             <tr>
               <td>{{#t}}pages.confirm.table-headers.org-type{{/t}}</td>
-              <td>{{values.org-type}}</td>
+              <td>
+                {{values.org-type}}
+                {{#values.org-type-other}}
+                  - {{values.org-type-other}}
+                {{/values.org-type-other}}
+              </td>
               <td><a href="company-details/edit#org-type" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
             {{/values.org-type}}

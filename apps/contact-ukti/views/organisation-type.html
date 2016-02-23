@@ -32,6 +32,16 @@
 
         {{#radio-group}}org-type{{/radio-group}}
 
+        <fieldset id="org-type-other-toggle" class="panel-indent {{#errors.org-type-other}}validation-error{{/errors.org-type-other}}">
+
+          <legend class="visuallyhidden">
+            <span class="form-label-bold">{{#t}}fields.org-type-other.label{{/t}}</span>
+          </legend>
+
+          {{#input-text}}org-type-other{{/input-text}}
+
+        </fieldset>
+
         {{#input-submit}}continue{{/input-submit}}
 
         {{> partials-back}}
