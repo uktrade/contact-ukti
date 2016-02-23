@@ -32,5 +32,15 @@
   },
   "exported-before": {
     "required": "Tell us if you have sold products or services to customers overseas"
+  },
+  "org-type": {
+    "required": "Choose what type of company you are"
+  },
+  "org-name": {
+    "required": "Enter your company name"
+  },
+  "sector": {
+    "required": "Enter your primary operating industry",
+    "equal": "Please select an industry from the list"
   }
 }

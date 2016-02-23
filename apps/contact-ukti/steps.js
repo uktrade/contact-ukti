@@ -35,7 +35,22 @@ module.exports = {
       'no-email',
       'phone',
     ],
-    next: '/company-location',
+    next: '/organisation-type',
+  },
+  '/organisation-type': {
+    fields: [
+      'org-type',
+    ],
+    next: '/anything-else',
+    forks: [
+      {
+        target: '/company-location',
+        condition: {
+          field: 'org-type',
+          value: 'Company or organisation'
+        }
+      }
+    ]
   },
   '/company-location': {
     controller: require('./controllers/company-location'),
@@ -44,19 +59,14 @@ module.exports = {
       'outside-uk',
       'uk-postcode',
     ],
-    next: '/operating-industry',
-  },
-  '/operating-industry': {
-    controller: require('./controllers/operating-industry'),
-    fields: [
-      'sector',
-    ],
+    backLink: 'organisation-type',
     next: '/company-details',
   },
   '/company-details': {
     controller: require('./controllers/company-details'),
     fields: [
-      'org-type',
+      'org-name',
+      'sector',
       'annual-turnover',
       'no-employees',
     ],

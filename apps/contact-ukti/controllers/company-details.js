@@ -1,8 +1,9 @@
 'use strict';
 
 var util = require('util');
-var _ = require('underscore');
 var BaseController = require('hof').controllers.base;
+var analytics = require('../../../lib/analytics');
+var logger = require('../../../lib/logger');
 
 var CompanyDetailsController = function CompanyDetailsController() {
   BaseController.apply(this, arguments);
@@ -10,16 +11,29 @@ var CompanyDetailsController = function CompanyDetailsController() {
 
 util.inherits(CompanyDetailsController, BaseController);
 
-CompanyDetailsController.prototype.locals = function contactDetailsLocals(req) {
-  var locals = BaseController.prototype.locals.apply(this, arguments);
-  return (req.sessionModel.get('inside-uk') === 'yes') ? _.extend({}, locals, {
-    insideUk: true
-  }) : locals;
-};
+function getValue(req, key) {
+  if (req.form && req.form.values) {
+    return req.form.values[key];
+  }
+}
 
 CompanyDetailsController.prototype.validateField = function validateField(key, req) {
-  if (key === 'org-type' && req.sessionModel.get('inside-uk') === 'no') {
-    return undefined;
+  var industryValue = getValue(req, 'sector');
+
+  if (industryValue && industryValue !== '') {
+    var valid = BaseController.prototype.validateField.apply(this, arguments);
+
+    if (valid !== undefined) {
+      analytics.event({
+        category: 'Invalid autocomplete',
+        action: 'industry',
+        label: industryValue
+      }, function cb() {
+        logger.verbose('Invalid industry tracking event sent');
+      });
+    }
+
+    return valid;
   }
 
   return BaseController.prototype.validateField.apply(this, arguments);

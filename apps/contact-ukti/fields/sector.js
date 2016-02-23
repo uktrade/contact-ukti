@@ -6,6 +6,5 @@ module.exports = {
     className: ['typeahead'],
     hint: 'fields.sector.hint',
     options: [''].concat(require('../../../assets/data/industries')),
-    labelClassName: 'visuallyhidden'
   },
 };

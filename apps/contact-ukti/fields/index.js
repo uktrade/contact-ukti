@@ -8,5 +8,9 @@ module.exports = _.extend(
   require('./exported-before'),
   require('./sector'),
   require('./enquiry'),
-  require('./data-protection')
+  require('./data-protection'),
+  require('./org-type'),
+  require('./org-name'),
+  require('./annual-turnover'),
+  require('./no-employees')
 );

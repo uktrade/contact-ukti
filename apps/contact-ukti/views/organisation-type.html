@@ -13,14 +13,13 @@
   {{/propositionHeader}}
 
   {{$title}}
-    {{#t}}pages.operating-industry.header{{/t}}
+    {{#t}}pages.organisation-type.header{{/t}}
   {{/title}}
 
   {{$header}}
     {{<partials-page-header}}
       {{$page-header}}
-        {{#t}}pages.operating-industry.header{{/t}}
-        <p class="font-small">{{#t}}pages.operating-industry.subheader{{/t}}</p>
+        {{#t}}pages.organisation-type.header{{/t}}
       {{/page-header}}
     {{/partials-page-header}}
   {{/header}}
@@ -31,7 +30,7 @@
 
       {{$form}}
 
-        {{#select}}sector{{/select}}
+        {{#radio-group}}org-type{{/radio-group}}
 
         {{#input-submit}}continue{{/input-submit}}
 
