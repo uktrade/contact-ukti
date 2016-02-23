@@ -3,9 +3,9 @@
 module.exports = {
   '/': {
     controller: require('../common/controllers/start'),
-    next: '/enquiry-reason',
+    next: '/topic',
   },
-  '/enquiry-reason': {
+  '/topic': {
     fields: [
       'enquiry-reason',
       'enquiry-reason-other',
@@ -25,7 +25,7 @@ module.exports = {
     fields: [
       'exported-before',
     ],
-    backLink: 'enquiry-reason',
+    backLink: 'topic',
     next: '/personal-details',
   },
   '/personal-details': {
@@ -60,9 +60,9 @@ module.exports = {
       'annual-turnover',
       'no-employees',
     ],
-    next: '/enquiry',
+    next: '/anything-else',
   },
-  '/enquiry': {
+  '/anything-else': {
     fields: [
       'enquiry-description'
     ],

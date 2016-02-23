@@ -30,19 +30,19 @@
 
       {{$form}}
 
-        <h3>{{#t}}pages.confirm.step-titles.enquiry-reason{{/t}}</h3>
+        <h3>{{#t}}pages.confirm.step-titles.topic{{/t}}</h3>
         <table id="enquiry-details" class="table-details">
           <tbody>
             {{#values.enquiry-reason}}
             <tr>
-              <td>{{#t}}pages.confirm.table-headers.reason{{/t}}</td>
+              <td>{{#t}}pages.confirm.table-headers.topic{{/t}}</td>
               <td>
                 {{values.enquiry-reason}}
                 {{#values.enquiry-reason-other}}
                   - {{values.enquiry-reason-other}}
                 {{/values.enquiry-reason-other}}
               </td>
-              <td><a href="enquiry-reason/edit#enquiry-reason" class="button">{{#t}}buttons.change{{/t}}</a></td>
+              <td><a href="topic/edit#enquiry-reason" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
             {{/values.enquiry-reason}}
           </tbody>
@@ -159,7 +159,7 @@
             <tr>
               <td>{{#t}}pages.confirm.table-headers.description{{/t}}</td>
               <td>{{values.enquiry-description}}</td>
-              <td><a href="enquiry/edit#email" class="button">{{#t}}buttons.change{{/t}}</a></td>
+              <td><a href="anything-else/edit#email" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
           </tbody>
         </table>

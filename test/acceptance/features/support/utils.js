@@ -2,7 +2,7 @@
 
 var Q = require('q');
 var steps = [
-  'Enquiry Reason',
+  'Topic',
   'Exported Before',
   'Personal Details',
   'Company Location',

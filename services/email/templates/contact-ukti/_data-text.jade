@@ -18,8 +18,8 @@ if data['enquiry-reason-other']
   - enqReasonField = 'enquiry-reason-other'
 
 if data
-  +heading('pages.confirm.step-titles.enquiry-reason')
-  +dataRow(enqReasonField, 'pages.confirm.table-headers.reason')
+  +heading('pages.confirm.step-titles.topic')
+  +dataRow(enqReasonField, 'pages.confirm.table-headers.topic')
   if data['exported-before']
     +heading('pages.confirm.step-titles.exported-before')
     +dataRow('exported-before', 'pages.confirm.table-headers.exported-before')
