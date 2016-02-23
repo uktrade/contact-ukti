@@ -99,35 +99,16 @@
               <td>{{values.country}}</td>
               <td><a href="company-location/edit#inside-uk-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
+            {{#values.uk-postcode}}
+            <tr>
+              <td>{{#t}}pages.confirm.table-headers.uk-postcode{{/t}}</td>
+              <td>{{values.uk-postcode}}</td>
+              <td><a href="company-location/edit#postcode-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+            {{/values.uk-postcode}}
           </tbody>
         </table>
         {{/values.country}}
-
-        <h3>{{#t}}pages.confirm.step-titles.company-address{{/t}}</h3>
-        <table id="enquiry-details" class="table-details">
-          <tbody>
-            {{#values.org-name}}
-            <tr>
-              <td>{{#t}}pages.confirm.table-headers.org-name{{/t}}</td>
-              <td>{{values.org-name}}</td>
-              <td><a href="company-address/edit#org-name" class="button">{{#t}}buttons.change{{/t}}</a></td>
-            </tr>
-            {{/values.org-name}}
-
-            {{#values.org-address-street}}
-            <tr>
-              <td>{{#t}}pages.confirm.table-headers.org-address{{/t}}</td>
-              <td>
-                {{values.org-address-house-number}} {{values.org-address-street}},
-                {{values.org-address-town}},
-                {{#values.org-address-county}}{{values.org-address-county}},{{/values.org-address-county}}
-                {{values.org-address-postcode}}
-              </td>
-              <td><a href="company-address/edit#address-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
-            </tr>
-            {{/values.org-address-street}}
-          </tbody>
-        </table>
 
         {{#values.sector}}
         <h3>{{#t}}pages.confirm.step-titles.sector{{/t}}</h3>

@@ -1,4 +1,3 @@
-@wip
 Feature: Check details
   As a user
   I want to be able to see all the details I have entered before submitting

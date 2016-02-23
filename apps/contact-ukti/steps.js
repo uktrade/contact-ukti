@@ -36,21 +36,9 @@ module.exports = {
     fields: [
       'inside-uk',
       'outside-uk',
+      'uk-postcode',
     ],
     backLink: '/personal-details',
-    next: '/company-address',
-  },
-  '/company-address': {
-    controller: require('./controllers/company-address'),
-    fields: [
-      'org-name',
-      'org-address-house-number',
-      'org-address-street',
-      'org-address-town',
-      'org-address-county',
-      'org-address-postcode',
-    ],
-    backLink: '/company-location',
     next: '/operating-industry',
   },
   '/operating-industry': {
@@ -58,7 +46,7 @@ module.exports = {
     fields: [
       'sector',
     ],
-    backLink: '/company-address',
+    backLink: '/company-location',
     next: '/company-details',
   },
   '/company-details': {

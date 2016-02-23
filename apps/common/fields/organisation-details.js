@@ -76,18 +76,4 @@ module.exports = {
       },
     ]
   },
-  'org-address-house-number': {
-    validate: ['required'],
-  },
-  'org-address-street': {
-    validate: ['required'],
-  },
-  'org-address-town': {
-    validate: ['required'],
-  },
-  'org-address-county': {
-  },
-  'org-address-postcode': {
-    validate: ['required', 'postcode'],
-  }
 };

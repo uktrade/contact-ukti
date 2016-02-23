@@ -91,7 +91,7 @@ describe('apps/contact-ukti/controllers/company-details', function() {
         controller = new CompanyDetailsController(args);
       });
 
-      it('does validate address postcode', function() {
+      it('does validate org type', function() {
         req.sessionModel.get = function() {
           return 'yes';
         };

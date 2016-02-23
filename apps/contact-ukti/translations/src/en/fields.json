@@ -50,8 +50,11 @@
     }
   },
   "outside-uk": {
-    "legend": "Outside the UK",
+    "hint": "Start typing in the box below to find a country",
     "label": "Which country are you in?"
+  },
+  "uk-postcode": {
+    "label": "Enter your postcode"
   },
   "enquiry-description": {
     "label": "Tell us the reason for your enquiry"
