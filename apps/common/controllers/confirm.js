@@ -4,7 +4,7 @@ var util = require('util');
 var _ = require('underscore');
 var async = require('async');
 
-var BaseController = require('../../../lib/base-controller');
+var BaseController = require('hof').controllers.base;
 var analytics = require('../../../lib/analytics');
 var Model = require('../models/email');
 
