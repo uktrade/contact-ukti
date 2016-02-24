@@ -30,7 +30,7 @@ describe('Email service', function() {
       });
     });
 
-    it('should fail to get an email address', function(done) {
+    it('should get a fallback email address', function(done) {
       nock(config.postcodeApi)
         .get('/AAA')
         .reply(404, {
@@ -44,7 +44,7 @@ describe('Email service', function() {
         };
 
         emailService.send(emailFixture, function(error) {
-          error.should.be.an.instanceof(Error);
+          should.not.exist(error);
           done();
         });
       });
@@ -117,7 +117,7 @@ describe('Email service', function() {
       });
     });
 
-    it('should return an error if region lookup fails', function() {
+    it('hould return default email address if region lookup fails', function() {
       var postcode = 'AAA';
       var reason = i18n.translate('fields.enquiry-reason.options.export.label');
       nock(config.postcodeApi)
@@ -126,8 +126,8 @@ describe('Email service', function() {
           status: 404
         });
 
-      return emailService.getCaseworkerEmail(reason, postcode, function(error) {
-        error.should.be.an.instanceof(Error);
+      return emailService.getCaseworkerEmail(reason, postcode, function(e, result) {
+        result.should.equal(config.email.caseworker.default);
       });
     });
   });
