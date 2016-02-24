@@ -44,11 +44,17 @@ ConfirmController.prototype.saveValues = function saveValues(req, res, callback)
       }
 
       var isCustomReason = data['enquiry-reason-other'] !== undefined;
+      var isCustomType = data['org-type-other'] !== undefined;
       var events = [
         {
           category: 'Enquiry type',
           action: isCustomReason ? 'custom' : 'standard',
           label: isCustomReason ? data['enquiry-reason-other'] : data['enquiry-reason']
+        },
+        {
+          category: 'Organisation type',
+          action: isCustomType ? 'custom' : 'standard',
+          label: isCustomType ? data['org-type-other'] : data['org-type']
         },
         {
           category: 'Enquiry description',

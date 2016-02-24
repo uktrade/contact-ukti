@@ -1,9 +1,10 @@
 mixin dataRow(field, key)
-  br
-  | #{t(key)}:
-  br
-  = data[field]
-  br
+  if data[field]
+    br
+    | #{t(key)}:
+    br
+    = data[field]
+    br
 mixin heading(key)
   br
   br
@@ -12,14 +13,15 @@ mixin heading(key)
   | -------------------------------------
   br
 
-- var enqReasonField = 'enquiry-reason'
-
+// custom reason overrides
 if data['enquiry-reason-other']
-  - enqReasonField = 'enquiry-reason-other'
+  - data['enquiry-reason'] = data['enquiry-reason-other']
+if data['org-type-other']
+  - data['org-type'] = data['org-type-other']
 
 if data
   +heading('pages.confirm.step-titles.topic')
-  +dataRow(enqReasonField, 'pages.confirm.table-headers.topic')
+  +dataRow('enquiry-reason', 'pages.confirm.table-headers.topic')
   if data['exported-before']
     +heading('pages.confirm.step-titles.exported-before')
     +dataRow('exported-before', 'pages.confirm.table-headers.exported-before')
@@ -27,11 +29,13 @@ if data
   +dataRow('fullname', 'pages.confirm.table-headers.fullname')
   +dataRow('email', 'pages.confirm.table-headers.email')
   +dataRow('phone', 'pages.confirm.table-headers.phone')
-  +heading('pages.confirm.step-titles.company-location')
-  +dataRow('country', 'pages.confirm.table-headers.country')
-  +dataRow('uk-postcode', 'pages.confirm.table-headers.uk-postcode')
-  +heading('pages.confirm.step-titles.sector')
-  +dataRow('sector', 'pages.confirm.table-headers.sector')
+  if data['country']
+    +heading('pages.confirm.step-titles.company-location')
+    +dataRow('country', 'pages.confirm.table-headers.country')
+    +dataRow('uk-postcode', 'pages.confirm.table-headers.uk-postcode')
+  if data['sector']
+    +heading('pages.confirm.step-titles.sector')
+    +dataRow('sector', 'pages.confirm.table-headers.sector')
   +heading('pages.confirm.step-titles.company-details')
   +dataRow('org-type', 'pages.confirm.table-headers.org-type')
   +dataRow('annual-turnover', 'pages.confirm.table-headers.annual-turnover')

@@ -40,6 +40,7 @@ module.exports = {
   '/organisation-type': {
     fields: [
       'org-type',
+      'org-type-other',
     ],
     next: '/anything-else',
     forks: [

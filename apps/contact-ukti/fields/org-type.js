@@ -27,7 +27,15 @@ module.exports = {
       {
         value: 'Other',
         label: 'fields.org-type.options.other.label',
+        toggle: 'org-type-other-toggle'
       },
     ]
+  },
+  'org-type-other': {
+    validate: ['required'],
+    dependent: {
+      value: 'Other',
+      field: 'org-type',
+    },
   },
 };
