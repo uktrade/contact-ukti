@@ -13,6 +13,7 @@ module.exports = {
     className: 'inline',
   },
   phone: {
+    formatter: ['removespaces'],
     validate: ['phonenumber'],
   },
 };
