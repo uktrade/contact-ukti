@@ -45,17 +45,23 @@ if data
         +sectionHeader(t('pages.confirm.step-titles.company-location'))
         +dataRow('country', t('pages.confirm.table-headers.country'))
         +dataRow('uk-postcode', t('pages.confirm.table-headers.uk-postcode'))
-  if data['sector']
+  if data['org-type']
     tr: td
       +tbl
-        +sectionHeader(t('pages.confirm.step-titles.sector'))
+        +sectionHeader(t('pages.confirm.step-titles.type'))
+        +dataRow('org-type', t('pages.confirm.table-headers.org-type'))
+  if data['org-name']
+    tr: td
+      +tbl
+        +sectionHeader(t('pages.confirm.step-titles.company-details'))
+        +dataRow('org-name', t('pages.confirm.table-headers.org-name'))
         +dataRow('sector', t('pages.confirm.table-headers.sector'))
+        +dataRow('annual-turnover', t('pages.confirm.table-headers.annual-turnover'))
+        +dataRow('no-employees', t('pages.confirm.table-headers.no-employees'))
   tr: td
     +tbl
-      +sectionHeader(t('pages.confirm.step-titles.company-details'))
-      +dataRow('org-type', t('pages.confirm.table-headers.org-type'))
-      +dataRow('annual-turnover', t('pages.confirm.table-headers.annual-turnover'))
-      +dataRow('no-employees', t('pages.confirm.table-headers.no-employees'))
+      +sectionHeader(t('pages.confirm.step-titles.enquiry-description'))
+      +dataRow('enquiry-description', t('pages.confirm.table-headers.description'))
   tr: td
     +tbl
       tr: td(colspan='2' height='30')
