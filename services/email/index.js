@@ -7,7 +7,10 @@ var regionFinder = require('../../lib/region-finder');
 var EmailTemplate = require('email-templates').EmailTemplate;
 var nodemailer = require('nodemailer');
 var async = require('async');
+var raven = require('raven');
 var i18n = require('hof').i18n;
+
+var ravenClient = new raven.Client(config.sentry.dsn);
 
 var templatesDir = path.resolve(__dirname, 'templates');
 
@@ -149,7 +152,16 @@ Emailer.prototype = {
           }
 
           callback(null, region.email);
-        }, callback);
+        }, function regionError(error) {
+          // log warning to console and sentry
+          logger.warn(error);
+          ravenClient.captureMessage('Invalid postcode: ' + postcode, {
+            level: 'warning'
+          });
+
+          // but return default email address
+          callback(null, config.email.caseworker.default);
+        });
     }
 
     callback(null, config.email.caseworker.default);

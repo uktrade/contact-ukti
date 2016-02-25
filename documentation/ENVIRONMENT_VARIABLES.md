@@ -1,6 +1,8 @@
 ## Environment Variables
 
+* `NODE_ENV` the application will log with lots of debug when it's set to 'development'. No default.
 * `PORT` server port. Defaults to 8080.
+* `LISTEN_HOST` the host to listen on. Defaults to '0.0.0.0'.
 * `TRACKING_ID` analytics tracking id. No default.
 * `FEEDBACK_EMAIL_ADDRESS` email address for service feedback. No default.
 * `POSTCODE_API` API endpoint for postcode server. Defaults to 'http://api.postcodes.io/postcodes'.
@@ -9,13 +11,12 @@
 * `AUTH_PASS` password for authentication. No default.
 * `SESSION_SECRET` session secret.
 * `SESSION_TTL` number of seconds before session expires.
+* `LOG_LEVEL` Level of logging to user. Defaults to 'warn'.
 * `SENTRY_DSN` data source name for [Sentry](https://getsentry.com). No default
 * `MEMCACHEDCLOUD_SERVERS` Memcached Cloud server locations. Should be comma separated string. Defaults to 'localhost:11211'.
 * `MEMCACHEDCLOUD_USERNAME` Memcached Cloud username. No default.
 * `MEMCACHEDCLOUD_PASSWORD` Memcached Cloud password. No default.
-* `LISTEN_HOST` the host to listen on. Defaults to '0.0.0.0'.
 * `WDIO_BASEURL` base URL for webdriver to use for acceptance tests. No default.
-* `NODE_ENV` the application will log with lots of debug when it's set to 'development'. No default.
 
 ### Email service environment variables
 (Will be removed from the app when the email service is created)

@@ -18,6 +18,7 @@ module.exports = {
     // 30 mins timeout
     ttl: process.env.SESSION_TTL || (30 * 60 * 1000)
   },
+  logLevel: process.env.LOG_LEVEL || 'warn',
   sentry: {
     dsn: process.env.SENTRY_DSN
   },
