@@ -33,13 +33,15 @@ if data
     +heading('pages.confirm.step-titles.company-location')
     +dataRow('country', 'pages.confirm.table-headers.country')
     +dataRow('uk-postcode', 'pages.confirm.table-headers.uk-postcode')
-  if data['sector']
-    +heading('pages.confirm.step-titles.sector')
+  if data['org-type']
+    +heading('pages.confirm.step-titles.type')
+    +dataRow('org-type', 'pages.confirm.table-headers.org-type')
+  if data['org-name'] || data['sector']
+    +heading('pages.confirm.step-titles.company-details')
+    +dataRow('org-name', 'pages.confirm.table-headers.org-name')
     +dataRow('sector', 'pages.confirm.table-headers.sector')
-  +heading('pages.confirm.step-titles.company-details')
-  +dataRow('org-type', 'pages.confirm.table-headers.org-type')
-  +dataRow('annual-turnover', 'pages.confirm.table-headers.annual-turnover')
-  +dataRow('no-employees', 'pages.confirm.table-headers.no-employees')
+    +dataRow('annual-turnover', 'pages.confirm.table-headers.annual-turnover')
+    +dataRow('no-employees', 'pages.confirm.table-headers.no-employees')
   +heading('pages.confirm.step-titles.enquiry-description')
   +dataRow('enquiry-description', 'pages.confirm.table-headers.description')
   br

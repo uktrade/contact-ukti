@@ -103,30 +103,17 @@
             <tr>
               <td>{{#t}}pages.confirm.table-headers.uk-postcode{{/t}}</td>
               <td>{{values.uk-postcode}}</td>
-              <td><a href="company-location/edit#postcode-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
+              <td><a href="company-location/edit#uk-postcode" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
             {{/values.uk-postcode}}
           </tbody>
         </table>
         {{/values.country}}
 
-        {{#values.sector}}
-        <h3>{{#t}}pages.confirm.step-titles.sector{{/t}}</h3>
+        {{#values.org-type}}
+        <h3>{{#t}}pages.confirm.step-titles.type{{/t}}</h3>
         <table id="org-details" class="table-details">
           <tbody>
-            <tr>
-              <td>{{#t}}pages.confirm.table-headers.sector{{/t}}</td>
-              <td>{{values.sector}}</td>
-              <td><a href="operating-industry/edit#sector" class="button">{{#t}}buttons.change{{/t}}</a></td>
-            </tr>
-          </tbody>
-        </table>
-        {{/values.sector}}
-
-        <h3>{{#t}}pages.confirm.step-titles.company-details{{/t}}</h3>
-        <table id="org-details" class="table-details">
-          <tbody>
-            {{#values.org-type}}
             <tr>
               <td>{{#t}}pages.confirm.table-headers.org-type{{/t}}</td>
               <td>
@@ -135,15 +122,33 @@
                   - {{values.org-type-other}}
                 {{/values.org-type-other}}
               </td>
-              <td><a href="company-details/edit#org-type" class="button">{{#t}}buttons.change{{/t}}</a></td>
+              <td><a href="organisation-type/edit#org-type-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
-            {{/values.org-type}}
+          </tbody>
+        </table>
+        {{/values.org-type}}
+
+        {{#values.org-name}}
+        <h3>{{#t}}pages.confirm.step-titles.company-details{{/t}}</h3>
+        <table id="org-details" class="table-details">
+          <tbody>
+            <tr>
+              <td>{{#t}}pages.confirm.table-headers.org-name{{/t}}</td>
+              <td>{{values.org-name}}</td>
+              <td><a href="company-details/edit#org-name" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+
+            <tr>
+              <td>{{#t}}pages.confirm.table-headers.sector{{/t}}</td>
+              <td>{{values.sector}}</td>
+              <td><a href="company-details/edit#sector" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
 
             {{#values.annual-turnover}}
             <tr>
               <td>{{#t}}pages.confirm.table-headers.annual-turnover{{/t}}</td>
               <td>{{values.annual-turnover}}</td>
-              <td><a href="company-details/edit#annual-turnover" class="button">{{#t}}buttons.change{{/t}}</a></td>
+              <td><a href="company-details/edit#annual-turnover-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
             {{/values.annual-turnover}}
 
@@ -151,11 +156,12 @@
             <tr>
               <td>{{#t}}pages.confirm.table-headers.no-employees{{/t}}</td>
               <td>{{values.no-employees}}</td>
-              <td><a href="company-details/edit#no-employees" class="button">{{#t}}buttons.change{{/t}}</a></td>
+              <td><a href="company-details/edit#no-employees-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
             {{/values.no-employees}}
           </tbody>
         </table>
+        {{/values.org-name}}
 
         {{#values.enquiry-description}}
         <h3>{{#t}}pages.confirm.step-titles.enquiry-description{{/t}}</h3>
