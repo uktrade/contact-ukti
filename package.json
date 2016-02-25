@@ -28,7 +28,7 @@
     "lint": "eslint .",
     "style": "jscs **/*.js --config=./.jscsrc.json",
     "test": "npm run lint & npm run style & npm run test:unit",
-    "test:unit": "NODE_ENV=test istanbul test _mocha -- --opts ./test/unit/mocha.opts -R spec",
+    "test:unit": "NODE_ENV=test LOG_LEVEL=silent istanbul test _mocha -- --opts ./test/unit/mocha.opts -R spec",
     "test:acceptance": "wdio test/acceptance/wdio.conf.js",
     "test:acceptance-wip": "wdio test/acceptance/wdio.wip.conf.js",
     "test:acceptance-headless": "wdio test/acceptance/wdio.headless.conf.js",
