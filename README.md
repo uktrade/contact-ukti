@@ -2,6 +2,7 @@
 
 [![Dependency Status](https://img.shields.io/david/UKTradeInvestment/contact-ukti.svg?style=flat-square)](https://david-dm.org/UKTradeInvestment/contact-ukti)
 [![devDependency Status](https://img.shields.io/david/dev/UKTradeInvestment/contact-ukti.svg?style=flat-square)](https://david-dm.org/UKTradeInvestment/contact-ukti#info=devDependencies)
+[![Build Status](https://travis-ci.org/UKTradeInvestment/contact-ukti.svg?branch=master)](https://travis-ci.org/UKTradeInvestment/contact-ukti)
 
 
 ## Quick start
