@@ -1,17 +1,15 @@
 language: node_js
-node_js:
-  - "0.12"
-
+node_js: '0.12'
 services:
   - memcached
-
 cache:
   directories:
     - node_modules
-
 before_script:
   - NODE_ENV='ci' LOG_LEVEL='info' npm start&
-
 script:
   - npm run test
   - npm run test:acceptance-headless
+notifications:
+  slack:
+    secure: xPPZJw7ZtJ7BKpeObd9g0qd6FpqM+9pOrKz9d5QxBstPsP7xfJpsKc8qcAwtT8CLHxslNNjFOrhpUr2TYy36Bwi7CLitkOHj9aRsvTht8NtEXfNwiDRB+a9sKO3iANmlfOJDNMdaD9iA3xr5kRc3ROMcUfKwsTrnRJ9w/GWSLR1t+ZAsl+0xOFXADMNVcomBnzqdmm3Tln7S5DMHy27SIRzGrWMmXUyviFaAwzXr6JvP2IxycR2Qed/YcMawpWu7zIcBNj8KON1DphHzQWZ2sddEr9YoRodzIVvZmZYHcGXVbPETJioCxu4Jg9THQNvUx0Yu6wDT8ypK7EHv6C4pjKO5P5qOYPc0zwh1GfaT9Ej8qcAZH1RhNEb4nQtFHAJVg6b6QNmQUR2z73ibqvcnMa1xqnH76Zz19ZJwY4rOffexdjK18hVNNbZQVLwPv1jCdifnL+dopbVq0fnMLAVbA1C0FxltpsM1X6pOSiVjTFo7EWG6OSqtw5XPUDW5qFFdHKx3K/oeSRkZbrb5VAYZU6wkzU4RoXCLCthVaHQVpI3Z2tAQI2keWmgZpnZQCXiMR4f82B9uYqH5vMek3a0LsHSaD3ESh4upHzoAMDjwfC70G/SjwFCYJ0qBvF3h71iGTJFdV8AHoZAPh3AYWlqMwv57rIiDSlAksQ7qJoD01aE=
