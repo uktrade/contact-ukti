@@ -10,19 +10,19 @@ module.exports = {
     },
     options: [
       {
-        value: 'No',
+        value: 'None',
         label: 'fields.exported-before.options.no.label',
       },
       {
-        value: 'Yes, within the last year',
+        value: 'In the last year',
         label: 'fields.exported-before.options.within-1-yr.label',
       },
       {
-        value: 'Yes, within the last 2 years',
+        value: 'In the last 2 years',
         label: 'fields.exported-before.options.within-2-yr.label',
       },
       {
-        value: 'Yes, more than 2 years ago',
+        value: 'Over 2 years ago',
         label: 'fields.exported-before.options.more-2-yr.label',
       },
     ],

@@ -100,7 +100,7 @@
     }
   },
   "org-type-other": {
-    "label": "How would you describe yourself?"
+    "label": "Describe your occupation"
   },
   "inside-uk": {
     "options": {
@@ -113,17 +113,17 @@
     }
   },
   "outside-uk": {
-    "hint": "Start typing in the box below to find a country",
-    "label": "Which country are you in?"
+    "label": "Enter the country it’s in",
+    "hint": "Start typing in the box below to find a country"
   },
   "uk-postcode": {
-    "label": "Enter your postcode"
+    "label": "Enter its postcode"
   },
   "enquiry-description": {
     "label": "Tell us the reason for your enquiry"
   },
   "sector": {
-    "label": "What industry do you mainly operate in?",
+    "label": "Main operating industry",
     "hint": "Start typing in the box below to find the most relevant description"
   },
   "exported-before": {

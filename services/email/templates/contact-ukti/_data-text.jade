@@ -29,13 +29,13 @@ if data
   +dataRow('fullname', 'pages.confirm.table-headers.fullname')
   +dataRow('email', 'pages.confirm.table-headers.email')
   +dataRow('phone', 'pages.confirm.table-headers.phone')
+  if data['org-type']
+    +heading('pages.confirm.step-titles.type')
+    +dataRow('org-type', 'pages.confirm.table-headers.org-type')
   if data['country']
     +heading('pages.confirm.step-titles.company-location')
     +dataRow('country', 'pages.confirm.table-headers.country')
     +dataRow('uk-postcode', 'pages.confirm.table-headers.uk-postcode')
-  if data['org-type']
-    +heading('pages.confirm.step-titles.type')
-    +dataRow('org-type', 'pages.confirm.table-headers.org-type')
   if data['org-name'] || data['sector']
     +heading('pages.confirm.step-titles.company-details')
     +dataRow('org-name', 'pages.confirm.table-headers.org-name')
@@ -46,7 +46,12 @@ if data
   +dataRow('enquiry-description', 'pages.confirm.table-headers.description')
   br
   +heading('fields.data-protection.title')
+  br
+  | #{t('emails.data-protection.table-header')}:
+  br
   if data['data-protection']
-    = t('emails.data-protection.opted-in')
+    = t('emails.data-protection.yes')
   else
-    = t('emails.data-protection.opted-out')
+    = t('emails.data-protection.no')
+  br
+  
