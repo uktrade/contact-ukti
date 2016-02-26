@@ -90,6 +90,24 @@
           </tbody>
         </table>
 
+        {{#values.org-type}}
+        <h3>{{#t}}pages.confirm.step-titles.type{{/t}}</h3>
+        <table id="org-details" class="table-details">
+          <tbody>
+            <tr>
+              <td>{{#t}}pages.confirm.table-headers.org-type{{/t}}</td>
+              <td>
+                {{values.org-type}}
+                {{#values.org-type-other}}
+                  - {{values.org-type-other}}
+                {{/values.org-type-other}}
+              </td>
+              <td><a href="organisation-type/edit#org-type-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+          </tbody>
+        </table>
+        {{/values.org-type}}
+
         {{#values.country}}
         <h3>{{#t}}pages.confirm.step-titles.company-location{{/t}}</h3>
         <table id="enquiry-details" class="table-details">
@@ -109,24 +127,6 @@
           </tbody>
         </table>
         {{/values.country}}
-
-        {{#values.org-type}}
-        <h3>{{#t}}pages.confirm.step-titles.type{{/t}}</h3>
-        <table id="org-details" class="table-details">
-          <tbody>
-            <tr>
-              <td>{{#t}}pages.confirm.table-headers.org-type{{/t}}</td>
-              <td>
-                {{values.org-type}}
-                {{#values.org-type-other}}
-                  - {{values.org-type-other}}
-                {{/values.org-type-other}}
-              </td>
-              <td><a href="organisation-type/edit#org-type-group" class="button">{{#t}}buttons.change{{/t}}</a></td>
-            </tr>
-          </tbody>
-        </table>
-        {{/values.org-type}}
 
         {{#values.org-name}}
         <h3>{{#t}}pages.confirm.step-titles.company-details{{/t}}</h3>

@@ -4,7 +4,8 @@
     "header": "Your enquiry"
   },
   "data-protection": {
-    "opted-in": "You have chosen to receive marketing from UKTI and its partners",
-    "opted-out": "You have chosen not to receive marketing from UKTI and its partners"
+    "table-header": "Receiving information",
+    "yes": "Yes",
+    "no": "No"
   }
 }

@@ -23,7 +23,7 @@
     "subheader": ""
   },
   "enquiry": {
-    "header": "Is there anything else we need to know?",
+    "header": "What else will help us answer your enquiry?",
     "subheader": ""
   },
   "confirm": {
@@ -40,7 +40,7 @@
       "uk-postcode": "UK Postcode",
       "org-name": "Company name",
       "sector": "Industry",
-      "org-type": "Type",
+      "org-type": "Description",
       "annual-turnover": "Annual turnover",
       "no-employees": "Number of employees"
     },

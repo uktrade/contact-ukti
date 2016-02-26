@@ -1,9 +1,9 @@
 {
   "enquiry-reason": {
-    "required": "What is your enquiry related to?"
+    "required": "Tell us what your enquiry is about"
   },
   "enquiry-reason-other": {
-    "required": "Tell us the reason you want to get in touch"
+    "required": "Tell us the topic you’re getting in touch about"
   },
   "fullname": {
     "required": "Enter your full name"
@@ -16,34 +16,34 @@
     "phonenumber": "Enter your phone number in the correct format, for example 020 7946 0937 or 07700 900579"
   },
   "inside-uk": {
-    "required": "Tell us where you are"
+    "required": "Tell us where your organisation is based"
   },
   "outside-uk": {
-    "required": "Tell us where you are",
-    "equal": "Please select a country from the list"
+    "required": "Enter a country",
+    "equal": "Select a country from the list"
   },
   "uk-postcode": {
     "required": "Enter a postcode",
     "postcode": "Enter your postcode in the correct format, for example SW1A 1AA"
   },
   "enquiry-description": {
-    "required": "Tell us about your enquiry",
-    "maxlength": "Please use less than 5000 characters"
+    "required": "Tell us what else will help us answer your enquiry",
+    "maxlength": "Enter less than 5000 characters"
   },
   "exported-before": {
-    "required": "Tell us if you have sold products or services to customers overseas"
+    "required": "Tell us if you’ve sold products or services to customers overseas"
   },
   "org-type": {
-    "required": "Choose what type of company you are"
+    "required": "Choose the description that best fits where you work"
   },
   "org-type-other": {
-    "required": "Enter how you would describe yourself"
+    "required": "Enter a description of your occupation"
   },
   "org-name": {
     "required": "Enter your company name"
   },
   "sector": {
-    "required": "Enter your primary operating industry",
-    "equal": "Please select an industry from the list"
+    "required": "Enter the industry you mainly operate in",
+    "equal": "Select an industry from the list"
   }
 }

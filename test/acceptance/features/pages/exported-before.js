@@ -16,7 +16,7 @@ var Page = function Page(client) {
   var fields = {
     exportedBefore: {
       selector: '[name="exported-before"]',
-      value: 'No'
+      value: 'None'
     },
   };
   var $errors = '.validation-error';
