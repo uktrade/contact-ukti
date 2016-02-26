@@ -1,11 +1,12 @@
 name: UKTI South East
-address: |
-  Unit 10
-  Fulcrum
-  2 Solent Way
-  Whiteley
-  Fareham
-  PO15 7FN
+address:
+  street:
+    - Unit 10
+    - Fulcrum
+    - 2 Solent Way
+  city: Whiteley
+  city: Fareham
+  postcode: PO15 7FN
 email: info@uktisoutheast.com
 phone:
   - 0330 300 0012

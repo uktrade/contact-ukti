@@ -1,12 +1,17 @@
-h1 {
+.step-header h1 {
   @include bold-24;
 }
 
 .form-label-bold {
-  @include core-19;
+  @include bold-19;
+  margin-bottom: 5px;
 }
 
-//custom form styling
+.form-hint {
+  margin-top: 0;
+}
+
+// override form control styles to latest version
 .form-control {
   padding: .4em .4em .2em;
   border: 2px solid $grey-1;
@@ -16,22 +21,31 @@ h1 {
   }
 }
 
-// GOVUK Elements `.form-date` overrides
-.form-date {
-  border-left: 0;
-  padding-left: 0;
+.header-proposition {
+  margin-top: 5px;
+}
 
-  label {
-    @include core-19();
-  }
+.section-heading {
+  @include heading-27;
+  font-weight: 700;
+  border-bottom: 1px solid $grey-2;
+  padding-bottom: em(12);
 
-  .form-group input {
-    &[id$='-year'] {
-      width: 70px;
-    }
+  @include media(desktop) {
+    padding-bottom: em(20);
   }
 }
 
-.header-proposition {
-  margin-top: 5px;
+hr {
+  display: block;
+  background: $border-colour;
+  border: 0;
+  height: 1px;
+  margin-top: $gutter;
+  margin-bottom: $gutter;
+  padding: 0;
+
+  @include ie-lte(7) {
+    color: $border-colour;
+  }
 }

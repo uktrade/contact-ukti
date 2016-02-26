@@ -1,0 +1,20 @@
+{
+  "office-finder": {
+    "heading": "Find a UK Trade & Investment office",
+    "nearest": {
+      "before-postcode": "The nearest office for",
+      "after-postcode": "is"
+    },
+    "offices": {
+      "heading": "UK Trade & Investment regional offices",
+      "contact-types": {
+        "email": {
+          "label": "Email"
+        },
+        "phone": {
+          "label": "Telephone"
+        }
+      }
+    }
+  }
+}

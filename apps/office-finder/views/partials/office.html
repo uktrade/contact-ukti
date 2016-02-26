@@ -1,0 +1,58 @@
+<div class="office adr">
+  <h3 class="fn">{{ name }}</h3>
+
+  <div class="grid-row">
+    <div class="contact-address">
+      {{#address}}
+        <p>
+          {{#address.street.length}}
+            <span class="street-address">
+              {{#address.street}}
+                {{ . }}
+                <br>
+              {{/address.street}}
+            </span>
+          {{/address.street.length}}
+          {{^address.street.length}}
+            <span class="street-address">{{ address.street }}</span>
+            <br>
+          {{/address.street.length}}
+
+          {{#address.city}}
+            <span class="locality">{{ address.city }}</span>
+            <br>
+          {{/address.city}}
+
+          {{#address.region}}
+            <span class="region">{{ address.region }}</span>
+            <br>
+          {{/address.region}}
+
+          {{#address.postcode}}
+            <span class="postal-code">{{ address.postcode }}</span>
+          {{/address.postcode}}
+        </p>
+      {{/address}}
+    </div>
+
+    <div class="contact-options">
+      <p>
+        <span class="type">{{#t}}pages.office-finder.offices.contact-types.email.label{{/t}}</span>
+        <a href="mailto:{{ email }}" class="email">{{ email }}</a>
+      </p>
+
+      <p class="tel">
+        <span class="type">{{#t}}pages.office-finder.offices.contact-types.phone.label{{/t}}</span>
+        {{#phone.length}}
+          {{#phone}}
+            {{ . }}
+            {{^last}}<br>{{/last}}
+          {{/phone}}
+        {{/phone.length}}
+        {{^phone.length}}
+          {{ phone }}
+        {{/phone.length}}
+      </p>
+    </div>
+  </div>
+</div>

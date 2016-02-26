@@ -109,6 +109,7 @@ app.get('/', function rootRedirect(req, res) {
 
 // apps
 app.use('/enquiry', require('./apps/contact-ukti/'));
+app.use('/office-finder', require('./apps/office-finder/'));
 
 // static routes
 app.get('/cookies', function renderCookies(req, res) {
