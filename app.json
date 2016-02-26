@@ -10,6 +10,6 @@
     }
   },
   "addons": [
-    "memcachedcloud:30"
+    "heroku-redis:hobby-dev"
   ]
 }
