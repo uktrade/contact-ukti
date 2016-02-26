@@ -8,7 +8,9 @@ var auth = require('./lib/basic-auth');
 var churchill = require('churchill');
 var raven = require('raven');
 var session = require('express-session');
-var MemcachedStore = require('connect-memjs')(session);
+var url = require('url');
+var redis = require('redis');
+var RedisStore = require('connect-redis-crypto')(session);
 var config = require('./config');
 require('moment-business');
 
@@ -50,13 +52,29 @@ app.use(function setViewLocals(req, res, next) {
 });
 
 /*************************************/
-/* Memcached session storage         */
+/* Redis session storage             */
 /*************************************/
+var client;
 
-var memcachedStore = new MemcachedStore({
-  servers: [config.memcached.hosts],
-  username: config.memcached.username,
-  password: config.memcached.password,
+if (config.redis.url) {
+  var redisURL = url.parse(config.redis.url);
+  /* eslint-disable camelcase */
+  client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+  /* eslint-enable camelcase */
+  client.auth(redisURL.auth.split(':')[1]);
+} else {
+  client = redis.createClient(config.redis.port, config.redis.host);
+}
+
+client.on('error', function clientErrorHandler(e) {
+  throw e;
+});
+
+var redisStore = new RedisStore({
+  client: client,
+  // config ttl defined in milliseconds
+  ttl: config.session.ttl / 1000,
+  secret: config.session.secret
 });
 
 app.use(require('cookie-parser')(config.session.secret));
@@ -72,7 +90,7 @@ app.use(function secureCookies(req, res, next) {
   next();
 });
 app.use(session({
-  store: memcachedStore,
+  store: redisStore,
   proxy: (config.env === 'development' || config.env === 'ci') ? false : true,
   cookie: {
     secure: (config.env === 'development' || config.env === 'ci') ? false : true,

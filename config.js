@@ -18,14 +18,14 @@ module.exports = {
     // 30 mins timeout
     ttl: process.env.SESSION_TTL || (30 * 60 * 1000)
   },
+  redis: {
+    url: process.env.REDIS_URL || process.env.REDISTOGO_URL,
+    port: process.env.REDIS_PORT || 6379,
+    host: process.env.REDIS_HOST || '127.0.0.1'
+  },
   logLevel: process.env.LOG_LEVEL || 'warn',
   sentry: {
     dsn: process.env.SENTRY_DSN
-  },
-  memcached: {
-    hosts: process.env.MEMCACHEDCLOUD_SERVERS || 'localhost:11211',
-    username: process.env.MEMCACHEDCLOUD_USERNAME,
-    password: process.env.MEMCACHEDCLOUD_PASSWORD
   },
   email: {
     caseworker: {

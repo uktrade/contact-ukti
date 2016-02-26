@@ -7,7 +7,7 @@ For instances when this document does not provide enough support, we suggest tha
 - [Express](https://www.npmjs.com/package/express) - Server
 - [HOF (Home Office Forms)](https://www.npmjs.com/package/hmpo-form-wizard) - Create and orchestrate forms
 - [Mustache](https://www.npmjs.com/package/mustache) - A logic-less Javascript template system.
-- [Connect Memcached](https://www.npmjs.com/package/connect-memcached) - Session storage.
+- [Connect Redis Crypto](https://www.npmjs.com/package/connect-redis-crypto) - Encrypted session storage.
 - [Browserify](https://www.npmjs.com/package/browserify) - Node-style dependency injection in the browser.
 
 A complete list of the dependencies on which this application depends is found in [package.json](../package.json)
