@@ -56,20 +56,22 @@ Emailer.prototype = {
     });
 
     this.locali18n.on('ready', function locali18nLoaded() {
-      var locals = {
+      var batch = [];
+      var templateLocals = {
         data: email.dataToSend,
         t: function t(text) {
           return this.locali18n.translate(text);
         }.bind(this)
       };
-      var batch = [
-        {
+
+      if (email.to) {
+        batch.push({
           template: new EmailTemplate(path.join(templatesDir, email.template, 'customer')),
           to: email.to,
           subject: email.subject,
-          locals: locals
-        }
-      ];
+          locals: templateLocals
+        });
+      }
 
       this.getCaseworkerEmail(email.dataToSend['enquiry-reason'], email.dataToSend['uk-postcode'],
         function caseworkerEmailCb(error, caseworkerEmail) {
@@ -81,7 +83,7 @@ Emailer.prototype = {
             template: new EmailTemplate(path.join(templatesDir, email.template, 'caseworker')),
             to: caseworkerEmail,
             subject: email.subject,
-            locals: locals
+            locals: templateLocals
           });
 
           this.sendBatch(batch, callback);
