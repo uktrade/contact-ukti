@@ -18,6 +18,19 @@ require('moment-business');
 app.use(raven.middleware.express.requestHandler(config.sentry.dsn));
 
 /*************************************/
+/* Force Https                       */
+/*************************************/
+
+app.use(function forceSSL(req, res, next) {
+  var FORCE_HTTPS = (config.env === 'development' || config.env === 'ci') ? false : true;
+  if (req.headers['x-forwarded-proto'] !== 'https' && FORCE_HTTPS) {
+    return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  }
+  next();
+});
+
+
+/*************************************/
 /* Basic Authentication              */
 /*************************************/
 if (config.auth.use === 'true') {
