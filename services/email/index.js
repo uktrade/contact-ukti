@@ -27,11 +27,6 @@ var attachments = [
     filename: 'org_crest.png',
     path: path.resolve(__dirname, 'images', 'org_crest.png'),
     cid: 'org_crest'
-  },
-  {
-    filename: 'spacer.gif',
-    path: path.resolve(__dirname, 'images', 'spacer.gif'),
-    cid: 'spacer_image'
   }
 ];
 
