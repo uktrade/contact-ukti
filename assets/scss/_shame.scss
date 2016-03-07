@@ -11,6 +11,14 @@
   margin-top: 0;
 }
 
+.button--inline {
+  margin-top: 15px;
+
+  @include media(tablet) {
+    margin-top: 0;
+  }
+}
+
 // override form control styles to latest version
 .form-control {
   padding: .4em .4em .2em;
