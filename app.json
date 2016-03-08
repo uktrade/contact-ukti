@@ -4,6 +4,7 @@
   "env": {
     "NODE_MODULES_CACHE": "false",
     "NPM_CONFIG_PRODUCTION": "false",
+    "STUNNEL_ENABLED": "false",
     "SESSION_SECRET": {
       "description": "A secret key for verifying the integrity of signed cookies.",
       "generator": "secret"
@@ -11,5 +12,13 @@
   },
   "addons": [
     "heroku-redis:hobby-dev"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-redis"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    }
   ]
 }
