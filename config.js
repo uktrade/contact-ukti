@@ -29,6 +29,7 @@ module.exports = {
   },
   email: {
     caseworker: {
+      blindCopy: process.env.CASEWORKER_BCC_EMAIL,
       default: process.env.CASEWORKER_DEFAULT_EMAIL || 'enquiries@ukti.gsi.gov.uk',
       investment: process.env.CASEWORKER_INVESTMENT_EMAIL || 'enquiries@ukti-invest.com',
       bizops: process.env.CASEWORKER_BIZOPS_EMAIL || 'bizoppteam@ukti.gov.uk',
@@ -41,7 +42,7 @@ module.exports = {
       user: process.env.SMTP_USER || '',
       pass: process.env.SMTP_PASSWORD || ''
     },
-    from: process.env.FROM_ADDRESS || 'UKTI <info@ukti.gov.uk>'
+    from: process.env.FROM_ADDRESS || 'UK Trade & Investment <no-reply@contactus.ukti.gov.uk>'
   },
   // webdriverio
   webdriver: {

@@ -77,6 +77,8 @@ Emailer.prototype = {
           batch.push({
             template: new EmailTemplate(path.join(templatesDir, email.template, 'caseworker')),
             to: caseworkerEmail,
+            bcc: config.email.caseworker.blindCopy,
+            replyTo: email.to || null,
             subject: email.subject,
             locals: templateLocals
           });
@@ -105,7 +107,9 @@ Emailer.prototype = {
 
       this.transporter.sendMail({
         from: config.email.from,
+        replyTo: item.replyTo || config.email.from,
         to: item.to,
+        bcc: item.bcc,
         subject: item.subject,
         html: results.html,
         text: results.text,
