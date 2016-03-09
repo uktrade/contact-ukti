@@ -12,6 +12,11 @@ block content
   = t('emails.customer-instructions')
   br
   br
+  | #{t('emails.reference-text')}:
+  br
+  = reference
+  br
+  br
   | #{t('emails.you-sent')}:
   br
   include ../_data-text

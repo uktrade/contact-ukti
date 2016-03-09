@@ -54,6 +54,7 @@ Emailer.prototype = {
       var batch = [];
       var templateLocals = {
         data: email.dataToSend,
+        reference: email.reference,
         t: function t(text) {
           return this.locali18n.translate(text);
         }.bind(this)
@@ -79,7 +80,7 @@ Emailer.prototype = {
             to: caseworkerEmail,
             bcc: config.email.caseworker.blindCopy,
             replyTo: email.to || null,
-            subject: email.subject,
+            subject: email.subject + ' | Reference: ' + email.reference,
             locals: templateLocals
           });
 

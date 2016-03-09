@@ -3,9 +3,10 @@
 var util = require('util');
 var _ = require('underscore');
 var async = require('async');
+var analytics = require('../../../lib/analytics');
+var referenceGenerator = require('../../../lib/reference-generator');
 
 var BaseController = require('hof').controllers.base;
-var analytics = require('../../../lib/analytics');
 var Model = require('../models/email');
 
 var ConfirmController = function ConfirmController() {
@@ -18,6 +19,7 @@ var serviceMap = {
   '/enquiry/confirm': function contactUkti() {
     return {
       template: 'contact-ukti',
+      reference: referenceGenerator.generate(),
       subject: 'Form submitted: Contact UK Trade & Investment'
     };
   }
@@ -33,6 +35,7 @@ ConfirmController.prototype.saveValues = function saveValues(req, res, callback)
     if (service) {
       model.set('template', service.template);
       model.set('subject', service.subject);
+      model.set('reference', service.reference);
     } else {
       throw new Error('no service found');
     }
@@ -42,6 +45,8 @@ ConfirmController.prototype.saveValues = function saveValues(req, res, callback)
       if (err) {
         callback(err);
       }
+
+      req.sessionModel.set('reference', service.reference);
 
       var isCustomReason = data['enquiry-reason-other'] !== undefined;
       var isCustomType = data['org-type-other'] !== undefined;

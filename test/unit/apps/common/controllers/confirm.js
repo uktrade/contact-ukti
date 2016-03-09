@@ -17,6 +17,12 @@ var ConfirmController = proxyquire('../../../../../apps/common/controllers/confi
       base: BaseController
     }
   },
+  '../../../lib/analytics': {
+    event: sinon.stub()
+  },
+  '../../../lib/reference-generator': {
+    generate: sinon.stub()
+  },
   '../models/email': Model,
   '../routes/fields': {foo: {}, bar: {}}
 });
