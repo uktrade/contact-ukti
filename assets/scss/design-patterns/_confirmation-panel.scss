@@ -1,0 +1,25 @@
+.confirmation-panel {
+  margin: 1em 0;
+  padding: 2em 1em 1em;
+  color: $white;
+  background: $turquoise;
+  text-align: center;
+}
+
+.confirmation-header {
+  @include bold-27;
+  margin: 0 0 1em;
+
+  span {
+    margin-right: 15px;
+  }
+}
+
+.confirmation-message {
+  @include bold-19;
+}
+
+.confirmation-reference {
+  @include bold-36;
+  display: block;
+}

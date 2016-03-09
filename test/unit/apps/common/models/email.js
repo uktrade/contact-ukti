@@ -42,6 +42,7 @@ describe('apps/common/models/email', function() {
         template: 'test_template',
         email: 'email@email.com',
         subject: 'email subject',
+        reference: 'reference',
         steps: ['session', 'steps'],
         'csrf-secret': 'itsasecret',
         name: 'dave',
@@ -56,6 +57,7 @@ describe('apps/common/models/email', function() {
         template: 'test_template',
         to: 'email@email.com',
         subject: 'email subject',
+        reference: 'reference',
         dataToSend: {
           email: 'email@email.com',
           name: 'dave',

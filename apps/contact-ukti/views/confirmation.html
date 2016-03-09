@@ -8,26 +8,22 @@
   {{/title}}
 
   {{$content}}
-    <div class="alert-complete" role="alert">
-      <span class="icon icon-complete" role="presentation"></span>
-      <div class="alert-message">
-        <h1 class="alert-header">{{#t}}pages.confirmation.header{{/t}}</h1>
-      </div>
+    <div class="confirmation-panel" role="alert">
+      <h1 class="confirmation-header"><span role="presentation">&#10004;</span>{{#t}}pages.confirmation.header{{/t}}</h1>
+      <p class="confirmation-message">
+        {{#t}}pages.confirmation.reference{{/t}}
+        <br>
+        <strong class="confirmation-reference">{{values.reference}}</strong>
+      </p>
     </div>
 
     {{#values.email}}
     <p>{{#t}}pages.confirmation.email{{/t}} <strong>{{values.email}}</strong></p>
     {{/values.email}}
 
-    <hr>
-
     <h2>{{#t}}pages.confirmation.next.header{{/t}}</h2>
 
     <p>{{#t}}pages.confirmation.next.para.one{{/t}}</p>
-
-    <hr>
-
-    <a href="https://www.gov.uk/ukti" class="button">{{#t}}buttons.close{{/t}}</a>
 
   {{/content}}
 

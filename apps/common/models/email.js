@@ -15,9 +15,10 @@ EmailModel.prototype.save = function save(callback) {
   // we omit keys that are not part of the session data
   emailService.send({
     template: this.get('template'),
+    reference: this.get('reference'),
     to: this.get('email'),
     subject: this.get('subject'),
-    dataToSend: _.omit(this.toJSON(), ['steps', 'csrf-secret', 'template'])
+    dataToSend: _.omit(this.toJSON(), ['steps', 'csrf-secret', 'template', 'reference'])
   }, callback);
 };
 

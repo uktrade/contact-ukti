@@ -9,6 +9,10 @@ block content
     +text
       p #{t('emails.dear')} #{data['fullname']}
       p #{t('emails.customer-instructions')}
+      p #{t('emails.reference-text')}:
+      p
+        +text(23)
+          strong= reference
       p #{t('emails.you-sent')}:
   include ../_data-html
   tr: td(height='20')

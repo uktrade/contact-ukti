@@ -60,6 +60,7 @@
     "nodemailer-smtp-transport": "^2.1.0",
     "nodemailer-stub-transport": "^1.0.0",
     "q": "^1.4.1",
+    "randomstring": "^1.1.4",
     "raven": "^0.10.0",
     "redis": "^1.0.0",
     "request": "^2.69.0",

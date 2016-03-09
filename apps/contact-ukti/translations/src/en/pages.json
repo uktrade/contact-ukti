@@ -56,6 +56,7 @@
   },
   "confirmation": {
     "header": "Thank you, we’ve received your enquiry.",
+    "reference": "Your reference number is",
     "email": "We’ve also sent an email with the information you’ve provided to",
     "next": {
       "header": "What happens next",
