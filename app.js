@@ -117,6 +117,9 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// use the hof middleware
+app.use(require('hof').middleware());
+
 // redirect base root to enquiry app
 app.get('/', function rootRedirect(req, res) {
   res.redirect('/enquiry');
