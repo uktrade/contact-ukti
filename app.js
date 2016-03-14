@@ -5,17 +5,19 @@ var app = express();
 var path = require('path');
 var logger = require('./lib/logger');
 var auth = require('./lib/basic-auth');
+var config = require('./config');
 var churchill = require('churchill');
+var git = require('git-rev-sync');
 var raven = require('raven');
+var ravenClient = new raven.Client(config.sentry.dsn, {release: git.long()});
 var session = require('express-session');
 var url = require('url');
 var redis = require('redis');
 var RedisStore = require('connect-redis-crypto')(session);
-var config = require('./config');
 require('moment-business');
 
 // sentry error monitoring
-app.use(raven.middleware.express.requestHandler(config.sentry.dsn));
+app.use(raven.middleware.express.requestHandler(ravenClient));
 
 /*************************************/
 /* Force Https                       */
@@ -145,7 +147,7 @@ app.get('/contactSearch.html', redirectOfficeFinder);
 app.get('/doContactRegionSearch.html', redirectOfficeFinder);
 
 // errors
-app.use(raven.middleware.express.errorHandler(config.sentry.dsn));
+app.use(raven.middleware.express.errorHandler(ravenClient));
 app.use(require('./errors/page-not-found'));
 app.use(require('./errors/'));
 
