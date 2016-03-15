@@ -22,9 +22,9 @@
     </div>
   {{/region}}
 
-  <form method="POST" action="">
+  <form method="POST" action="" class="search-form">
 
-    <div class="form-group{{#errorlist}} validation-error{{/errorlist}}" id="postcode-group">
+    <div class="{{#errorlist}} validation-error{{/errorlist}}" id="postcode-group">
       <label for="postcode" class="form-label-bold">
         {{#t}}fields.postcode.label{{/t}}
         <span id="postcode-hint" class="form-hint">{{#t}}fields.postcode.hint{{/t}}</span>
