@@ -17,8 +17,6 @@ module.exports = function errorHandler(err, req, res, next) {
     content.message = i18n.translate('errors.session.message');
   }
 
-  console.log(err.code);
-
   if (err.code === 'NO_COOKIES') {
     err.status = 403;
     content.title = i18n.translate('errors.cookies-required.title');
