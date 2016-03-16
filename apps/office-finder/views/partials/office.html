@@ -1,8 +1,8 @@
-<div class="office adr">
+<div class="office vcard">
   <h3 class="fn">{{ name }}</h3>
 
   <div class="grid-row">
-    <div class="contact-address">
+    <div class="contact-address adr">
       {{#address}}
         <p>
           {{#address.street.length}}
@@ -41,18 +41,21 @@
         <a href="mailto:{{ email }}" class="email">{{ email }}</a>
       </p>
 
-      <p class="tel">
-        <span class="type">{{#t}}pages.office-finder.offices.contact-types.phone.label{{/t}}</span>
-        {{#phone.length}}
-          {{#phone}}
-            {{ . }}
-            {{^last}}<br>{{/last}}
-          {{/phone}}
-        {{/phone.length}}
-        {{^phone.length}}
+      {{#phone.length}}
+        {{#phone}}
+          <p class="tel">
+            <span class="type">{{#t}}pages.office-finder.offices.contact-types.phone.label{{/t}} {{ type }}</span>
+            {{ value }}
+          </p>
+        {{/phone}}
+      {{/phone.length}}
+
+      {{^phone.length}}
+        <p class="tel">
+          <span class="type">{{#t}}pages.office-finder.offices.contact-types.phone.label{{/t}}</span>
           {{ phone }}
-        {{/phone.length}}
-      </p>
+        </p>
+      {{/phone.length}}
     </div>
   </div>
 </div>
