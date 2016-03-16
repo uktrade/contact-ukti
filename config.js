@@ -47,5 +47,7 @@ module.exports = {
   // webdriverio
   webdriver: {
     baseUrl: process.env.WDIO_BASEURL || 'http://localhost:8080'
-  }
+  },
+  // heroku releases
+  release: process.env.HEROKU_RELEASE_VERSION || null
 };
