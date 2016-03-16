@@ -124,6 +124,18 @@ app.get('/', function rootRedirect(req, res) {
   res.redirect('/enquiry');
 });
 
+// Legacy application redirects
+function redirectEnquiry(req, res) {
+  res.redirect('/enquiry');
+}
+function redirectOfficeFinder(req, res) {
+  res.redirect('/office-finder');
+}
+app.get('/:lang?/uktihome/:type?/contactus/*contactusform.html', redirectEnquiry);
+app.get('*contactusform/thankyou.html', redirectEnquiry);
+app.get('*contactSearch.html', redirectOfficeFinder);
+app.get('*doContactRegionSearch.html', redirectOfficeFinder);
+
 // apps
 app.use('/enquiry', require('./apps/contact-ukti/'));
 app.use('/office-finder', require('./apps/office-finder/'));
@@ -135,18 +147,6 @@ app.get('/cookies', function renderCookies(req, res) {
 app.get('/terms-and-conditions', function renderTerms(req, res) {
   res.render('terms');
 });
-
-// Legacy application redirects
-function redirectEnquiry(req, res) {
-  res.redirect('/enquiry');
-}
-function redirectOfficeFinder(req, res) {
-  res.redirect('/office-finder');
-}
-app.get('/:lang?/uktihome/:type?/contactus/*contactusform.html', redirectEnquiry);
-app.get('*contactusform/thankyou.html', redirectEnquiry);
-app.get('/contactSearch.html', redirectOfficeFinder);
-app.get('/doContactRegionSearch.html', redirectOfficeFinder);
 
 // errors
 app.use(raven.middleware.express.errorHandler(ravenClient));
