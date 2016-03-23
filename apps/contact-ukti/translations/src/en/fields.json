@@ -30,14 +30,22 @@
   "fullname": {
     "label": "Full name"
   },
+  "contact-preference": {
+    "legend": "Preferred contact method",
+    "options": {
+      "phone": {
+        "label": "Phone"
+      },
+      "email": {
+        "label": "Email"
+      }
+    }
+  },
   "email": {
     "label": "Email address"
   },
-  "no-email": {
-    "label": "I don't have an email address"
-  },
   "phone": {
-    "label": "Phone number (optional)"
+    "label": "Phone number"
   },
   "org-name": {
     "label": "Company name"

@@ -8,11 +8,15 @@
   "fullname": {
     "required": "Enter your full name"
   },
+  "contact-preference": {
+    "required": "Choose your preferred method of contact"
+  },
   "email": {
     "required": "Enter your email address",
     "email": "Enter your email in the correct format, for example name@domain.com"
   },
   "phone": {
+    "required": "Enter your phone number",
     "phonenumber": "Enter your phone number in the correct format, for example 020 7946 0937 or 07700 900579"
   },
   "inside-uk": {
