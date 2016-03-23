@@ -1,11 +1,17 @@
+$item-spacing: em(8) em(8) em(5);
+
 .tt-menu {
   background-color: $white;
   border: 1px solid $grey-2;
-  width: 65%;
+  width: 50%;
+}
+
+.tt-input {
+  margin-bottom: 2px;
 }
 
 .tt-suggestion {
-  padding: .5em;
+  padding: $item-spacing;
 
   &:hover,
   &.tt-cursor {
@@ -16,6 +22,17 @@
   &:hover {
     cursor: pointer;
   }
+
+  .tt-highlight {
+    font-weight: normal;
+    text-decoration: underline;
+  }
+}
+
+.tt-empty {
+  color: $grey-1;
+  padding: $item-spacing;
+  margin: 0;
 }
 
 .twitter-typeahead {
