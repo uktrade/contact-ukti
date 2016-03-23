@@ -974,6 +974,15 @@ var euCountries = [
   }
 ];
 
-module.exports.nonEuCountries = _.pluck(countries, 'value');
-module.exports.euCountries = _.pluck(euCountries, 'value');
-module.exports.allCountries = [].concat(module.exports.nonEuCountries, module.exports.euCountries);
+var nonEuCountriesArray = _.pluck(countries, 'value');
+var euCountriesArray = _.pluck(euCountries, 'value');
+var allCountries = [].concat(nonEuCountriesArray, euCountriesArray);
+var nonUkCountries = allCountries;
+nonUkCountries.splice(allCountries.indexOf('United Kingdom'), 1);
+
+module.exports = {
+  nonEuCountries: nonEuCountriesArray,
+  euCountries: euCountriesArray,
+  allCountries: allCountries,
+  nonUkCountries: nonUkCountries
+};
