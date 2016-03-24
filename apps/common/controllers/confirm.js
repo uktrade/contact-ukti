@@ -68,6 +68,14 @@ ConfirmController.prototype.saveValues = function saveValues(req, res, callback)
         },
       ];
 
+      if (data.sector) {
+        events.push({
+          category: 'Sector',
+          action: 'standard',
+          label: data.sector
+        });
+      }
+
       async.each(events, function eachEvent(params, next) {
         analytics.event(params, next);
       }, callback);
