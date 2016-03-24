@@ -31,8 +31,8 @@ module.exports = {
   '/personal-details': {
     fields: [
       'fullname',
+      'contact-preference',
       'email',
-      'no-email',
       'phone',
     ],
     next: '/organisation-type',
