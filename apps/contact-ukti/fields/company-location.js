@@ -23,7 +23,7 @@ module.exports = {
   },
   'outside-uk': {
     className: ['typeahead', 'js-hidden'],
-    options: [''].concat(require('../../../assets/countries').allCountries),
+    options: [''].concat(require('../../../assets/countries').nonUkCountries),
     dependent: {
       field: 'inside-uk',
       value: 'no',

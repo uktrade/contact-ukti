@@ -22,28 +22,35 @@ $('.typeahead').each(function applyTypeahead() {
     /*eslint-enable */
   }).get();
 
-  // remove the selectbox
-  $el.remove();
-
+  // map attributes
   $.each(attributes, function applyAttributes() {
     $input.attr(this.name, this.value);
   });
 
-  $input.removeClass('js-hidden');
-  $input.addClass('form-control');
-  $input.val(selectedValue);
+  $input
+    .removeClass('js-hidden')
+    .addClass('form-control')
+    .val(selectedValue);
 
   $parent.append($input);
+
+  // remove the selectbox
+  $el.remove();
 
   $input.typeahead({
     minLength: 1,
     hint: false,
-    limit: 5
+    highlight: true,
+    autoselect: true
   }, {
     source: new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.whitespace,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       local: typeaheadList
-    })
+    }),
+    limit: 5,
+    templates: {
+      empty: '<p class="tt-empty">Item not found</p>'
+    }
   });
 });

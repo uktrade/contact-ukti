@@ -1,4 +1,9 @@
 .form-group.validation-error {
+  padding-bottom: 3px;
+
+  .form-control {
+    margin-bottom: 0;
+  }
 
   label .error-message {
     position: absolute;
@@ -29,10 +34,10 @@
     text-transform: none;
     color: $error-colour;
   }
-}
 
-.form-date .form-group.validation-error,
-.panel-indent .form-group.validation-error {
-  border-left: 0;
-  padding-left: 0;
+  .form-date &,
+  .panel-indent & {
+    border-left: 0;
+    padding-left: 0;
+  }
 }
