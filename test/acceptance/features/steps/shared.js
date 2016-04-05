@@ -56,7 +56,8 @@ var sharedSteps = function sharedSteps() {
    */
   this.When(/^I go back a step$/, function submitForm() {
     return browser
-      .click('=Back');
+      .click('=Back')
+      .waitForExist('body');
   });
 
   /**
