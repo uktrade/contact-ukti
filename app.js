@@ -43,10 +43,6 @@ if (config.env !== 'ci') {
 }
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use(function setAssetPath(req, res, next) {
-  res.locals.assetPath = '/public';
-  next();
-});
 
 require('hof').template.setup(app);
 app.set('view engine', 'html');
@@ -57,13 +53,9 @@ app.engine('html', require('hogan-express-strict'));
 
 app.use(require('body-parser').urlencoded({extended: true}));
 app.use(require('body-parser').json());
-// pass locals to views
-app.use(function setViewLocals(req, res, next) {
-  res.locals.baseUrl = req.baseUrl;
-  res.locals.trackingId = config.trackingId;
-  res.locals.feedbackEmail = config.feedbackEmail;
-  next();
-});
+
+// Insert usefull variables into response for all controllers
+app.use(require('./middleware/locals'));
 
 /*************************************/
 /* Redis session storage             */
