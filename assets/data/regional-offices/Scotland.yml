@@ -1,10 +1,10 @@
 name: Scottish Enterprise
 address:
-email: enquiries@scotent.co.uk
+email: international@scotent.co.uk
 phone:
   -
     type: (within Scotland)
-    value: 0800 917 9534
+    value: 0800 019 1953
   -
     type: (international)
     value: +44 141 228 2000
