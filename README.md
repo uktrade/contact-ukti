@@ -4,7 +4,10 @@
 [![Dependency Status (david)](https://img.shields.io/david/UKTradeInvestment/contact-ukti.svg?style=flat-square&label=dependencies%20%28David%29)](https://david-dm.org/UKTradeInvestment/contact-ukti)
 [![devDependency Status](https://img.shields.io/david/dev/UKTradeInvestment/contact-ukti.svg?style=flat-square&label=devDependencies%20%28David%29)](https://david-dm.org/UKTradeInvestment/contact-ukti#info=devDependencies)
 
+N.B. This project depends on Node version 0.12.9 and NPM version 2.14.9
+
 ## Quick start
+
 Install the dependencies and build the project resources
 
 ```bash
