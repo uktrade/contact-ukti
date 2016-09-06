@@ -20,7 +20,7 @@ var serviceMap = {
     return {
       template: 'contact-ukti',
       reference: referenceGenerator.generate(),
-      subject: 'Form submitted: Contact UK Trade & Investment'
+      subject: 'Form submitted: Contact Department for International Trade'
     };
   }
 };
