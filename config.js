@@ -42,7 +42,7 @@ module.exports = {
       user: process.env.SMTP_USER || '',
       pass: process.env.SMTP_PASSWORD || ''
     },
-    from: process.env.FROM_ADDRESS || 'UK Trade & Investment <no-reply@contactus.ukti.gov.uk>'
+    from: process.env.FROM_ADDRESS || 'Department for International Trade <no-reply@contactus.trade.gov.uk>'
   },
   // webdriverio
   webdriver: {

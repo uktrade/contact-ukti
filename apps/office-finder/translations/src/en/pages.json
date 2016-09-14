@@ -1,12 +1,12 @@
 {
   "office-finder": {
-    "heading": "Find a UK Trade & Investment office",
+    "heading": "Find a Department for International Trade office",
     "nearest": {
       "before-postcode": "The nearest office for",
       "after-postcode": "is"
     },
     "offices": {
-      "heading": "UK Trade & Investment regional offices",
+      "heading": "Department for International Trade regional offices",
       "contact-types": {
         "email": {
           "label": "Email"
