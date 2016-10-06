@@ -13,7 +13,7 @@ Variable                 | Description                                          
 `AUTH_PASS`              | password for authentication                          |
 `SESSION_SECRET`         | session secret. **Must be set to encrypt sessions**  |
 `SESSION_TTL`            | number of milliseconds before session expires        | 1800000 (30 minutes)
-`REDIS_URK`              | redis url                                            |
+`REDIS_URL`              | redis url                                            |
 `REDIS_PORT`             | redis port                                           | 6379
 `REDIS_HOST`             | redis host                                           | 127.0.0.1
 `LOG_LEVEL`              | Level of logging to user                             | warn
