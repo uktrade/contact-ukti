@@ -45,6 +45,21 @@ if data
   +heading('pages.confirm.step-titles.enquiry-description')
   +dataRow('enquiry-description', 'pages.confirm.table-headers.description')
   br
+  +heading('fields.bank-referrer.legend')
+  br
+  | #{t('emails.bank-referrer.field-label')}:
+  br
+  if data['bank-referrer'] === 'Yes'
+    = t('emails.bank-referrer.yes')
+  else
+    = t('emails.bank-referrer.no')
+  br
+  if data['bank-referrer'] === 'Yes'
+    br
+    | #{t('emails.bank-referrer.option-label')}:
+    br
+    = data['bank-referrer-name']
+  br
   +heading('fields.data-protection.title')
   br
   | #{t('emails.data-protection.table-header')}:

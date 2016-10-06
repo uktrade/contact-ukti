@@ -64,6 +64,32 @@ if data
       +dataRow('enquiry-description', t('pages.confirm.table-headers.description'))
 tr: td
   +tbl
+    +sectionHeader(t('fields.bank-referrer.legend'))
+    tr: td(colspan='2' height='15')
+    tr
+      th(width='35%' valign='top' align='left')
+        +text(16, 500, '#6f777b')= t('emails.bank-referrer.field-label')
+      td(width='65%' valign='top')
+        +text
+          if data['bank-referrer'] === 'Yes'
+            = t('emails.bank-referrer.yes')
+          else
+            = t('emails.bank-referrer.no')
+
+    tr: td(colspan='2' height='15')
+    tr: td(colspan='2' height='1' bgcolor='#6f777b')
+
+    if data['bank-referrer'] === 'Yes'
+      tr: td(colspan='2' height='15')
+      tr
+        th(width='35%' valign='top' align='left')
+          +text(16, 500, '#6f777b')= t('emails.bank-referrer.option-label')
+        td(width='65%' valign='top')
+          +text= data['bank-referrer-name']
+      tr: td(colspan='2' height='15')
+      tr: td(colspan='2' height='1' bgcolor='#6f777b')
+tr: td
+  +tbl
     +sectionHeader(t('fields.data-protection.title'))
     tr: td(colspan='2' height='15')
     tr
