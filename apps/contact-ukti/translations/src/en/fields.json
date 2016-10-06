@@ -157,8 +157,8 @@
       "no": { "label": "No" }
     }
   },
-  "bank-referrer-options":{
-    "legend": "Choose your bank",
+  "bank-referrer-name":{
+    "legend": "Please select your bank",
     "options": {
       "barclays": { "label": "Barclays" },
       "hsbc": { "label": "HSBC" },

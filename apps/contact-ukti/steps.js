@@ -83,7 +83,7 @@ module.exports = {
     controller: require('../common/controllers/confirm'),
     fields: [
       'bank-referrer',
-      'bank-referrer-options',
+      'bank-referrer-name',
       'data-protection'
     ],
     backLink: false,

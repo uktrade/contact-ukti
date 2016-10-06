@@ -120,6 +120,14 @@ npm run quality
 npm run maildev
 ```
 
+By default, in development, a stub transport will be used for emails. To sent to maildev you will need to create the env var SMTP_USER and set it to any value:
+
+```bash
+export SMTP_USER='test';
+```
+
+Now start the app and it will send emails via maildev.
+
 --------------------------------------------------------------------------------
 
 - See the [package.json](./package.json) for a full list of scripts.

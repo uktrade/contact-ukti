@@ -4,43 +4,44 @@ module.exports = {
   'bank-referrer': {
     options: [
       {
-        value: 'yes',
+        value: 'Yes',
         label: 'fields.bank-referrer.options.yes.label',
-        toggle: 'bank-referrer-options'
+        toggle: 'bank-referrer-name-group'
       },
       {
-        value: 'no',
+        value: 'No',
         label: 'fields.bank-referrer.options.no.label'
       }
     ]
   },
 
-  'bank-referrer-options': {
-    className: 'bank-referrer-options panel-indent',
+  'bank-referrer-name': {
+    className: 'panel-indent',
+    required: true,
     dependent: {
-      value: 'yes',
+      value: 'Yes',
       field: 'bank-referrer',
     },
     options: [
       {
         value: 'Barclays',
-        label: 'fields.bank-referrer-options.options.barclays.label'
+        label: 'fields.bank-referrer-name.options.barclays.label'
       },
       {
         value: 'HSBC',
-        label: 'fields.bank-referrer-options.options.hsbc.label'
+        label: 'fields.bank-referrer-name.options.hsbc.label'
       },
       {
         value: 'Lloyds',
-        label: 'fields.bank-referrer-options.options.lloyds.label'
+        label: 'fields.bank-referrer-name.options.lloyds.label'
       },
       {
         value: 'RBS',
-        label: 'fields.bank-referrer-options.options.rbs.label'
+        label: 'fields.bank-referrer-name.options.rbs.label'
       },
       {
         value: 'Santander',
-        label: 'fields.bank-referrer-options.options.santander.label'
+        label: 'fields.bank-referrer-name.options.santander.label'
       }
     ]
   }
