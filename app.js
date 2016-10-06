@@ -62,19 +62,32 @@ app.use(require('./middleware/locals'));
 /*************************************/
 var client;
 
-if (config.redis.url) {
-  var redisURL = url.parse(config.redis.url);
-  /* eslint-disable camelcase */
-  client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
-  /* eslint-enable camelcase */
-  client.auth(redisURL.auth.split(':')[1]);
-} else {
-  client = redis.createClient(config.redis.port, config.redis.host);
+logger.debug( 'create redis client' );
+
+try {
+
+  if (config.redis.url) {
+    var redisURL = url.parse(config.redis.url);
+    /* eslint-disable camelcase */
+    client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+    /* eslint-enable camelcase */
+    client.auth(redisURL.auth.split(':')[1]);
+  } else {
+    client = redis.createClient(config.redis.port, config.redis.host);
+  }
+
+  client.on('error', function clientErrorHandler(e) {
+    throw e;
+  });
+
+} catch( e ){
+
+  logger.warn( 'Error with redis connection:' );
+  logger.error( e );
+  throw e;
 }
 
-client.on('error', function clientErrorHandler(e) {
-  throw e;
-});
+logger.debug( 'redis client created' );
 
 var redisStore = new RedisStore({
   client: client,
@@ -82,6 +95,8 @@ var redisStore = new RedisStore({
   ttl: config.session.ttl / 1000,
   secret: config.session.secret
 });
+
+logger.debug( 'starting app...' );
 
 app.use(require('cookie-parser')(config.session.secret));
 app.use(function secureCookies(req, res, next) {

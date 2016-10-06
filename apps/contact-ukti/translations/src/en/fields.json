@@ -150,6 +150,23 @@
       }
     }
   },
+  "bank-referrer": {
+    "legend": "Bank Referral",
+    "options": {
+      "yes": { "label": "Yes" },
+      "no": { "label": "No" }
+    }
+  },
+  "bank-referrer-options":{
+    "legend": "Choose your bank",
+    "options": {
+      "barclays": { "label": "Barclays" },
+      "hsbc": { "label": "HSBC" },
+      "lloyds": { "label": "Lloyds" },
+      "rbs": { "label": "RBS" },
+      "santander": { "label": "Santander" }
+    }
+  },
   "data-protection": {
     "title": "Data protection",
     "explanation": "UK Trade &amp; Investment and its partners might use your details to send you relevant news and information.",
