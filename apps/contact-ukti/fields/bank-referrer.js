@@ -1,4 +1,4 @@
-'use-strict';
+'use strict';
 
 module.exports = {
   'bank-referrer': {
@@ -14,7 +14,8 @@ module.exports = {
       }
     ]
   },
-  'bank-referrer-options':{
+
+  'bank-referrer-options': {
     className: 'bank-referrer-options panel-indent',
     dependent: {
       value: 'yes',

@@ -62,7 +62,7 @@ app.use(require('./middleware/locals'));
 /*************************************/
 var client;
 
-logger.debug( 'create redis client' );
+logger.debug('create redis client');
 
 try {
 
@@ -80,14 +80,14 @@ try {
     throw e;
   });
 
-} catch( e ){
+} catch (e) {
 
-  logger.warn( 'Error with redis connection:' );
-  logger.error( e );
+  logger.warn('Error with redis connection:');
+  logger.error(e);
   throw e;
 }
 
-logger.debug( 'redis client created' );
+logger.debug('redis client created');
 
 var redisStore = new RedisStore({
   client: client,
@@ -96,7 +96,7 @@ var redisStore = new RedisStore({
   secret: config.session.secret
 });
 
-logger.debug( 'starting app...' );
+logger.debug('starting app...');
 
 app.use(require('cookie-parser')(config.session.secret));
 app.use(function secureCookies(req, res, next) {
