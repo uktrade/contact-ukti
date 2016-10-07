@@ -2,6 +2,7 @@
 
 module.exports = {
   'bank-referrer': {
+    className: 'form-group inline',
     options: [
       {
         value: 'Yes',
@@ -17,7 +18,7 @@ module.exports = {
 
   'bank-referrer-name': {
     className: 'panel-indent',
-    required: true,
+    validate: ['required'],
     dependent: {
       value: 'Yes',
       field: 'bank-referrer',

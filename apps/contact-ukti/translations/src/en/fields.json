@@ -151,7 +151,8 @@
     }
   },
   "bank-referrer": {
-    "legend": "Bank Referral",
+    "heading": "Bank Referral",
+    "legend": "Did a bank refer you?",
     "options": {
       "yes": { "label": "Yes" },
       "no": { "label": "No" }
