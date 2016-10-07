@@ -8,6 +8,7 @@ var hof = require('hof');
 var validators = hof.wizard.Controller.validators;
 var i18n = hof.i18n;
 var mixins = hof.mixins;
+var logger = require('../../lib/logger');
 
 var locali18n = i18n({
   path: path.resolve(__dirname, './translations/__lng__/__ns__.json')
@@ -50,8 +51,13 @@ router.param('postcode', function postcodeParam(req, res, next, postcode) {
     .then(function success(result) {
       req.region = result;
       next();
-    }, function fail() {
-      errors.push({key: 'postcode', message: locali18n.translate('validation.postcode.not-exist')});
+    }, function fail(e) {
+      logger.debug('failed to get match with postcode', e.message);
+      if (e && e.message === 'Invalid region') {
+        errors.push({key: 'region', message: locali18n.translate('validation.region.invalid')});
+      } else {
+        errors.push({key: 'postcode', message: locali18n.translate('validation.postcode.not-exist')});
+      }
       req.errorlist = errors;
 
       analytics.event({
