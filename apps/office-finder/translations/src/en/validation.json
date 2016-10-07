@@ -2,5 +2,8 @@
   "postcode": {
     "invalid": "Enter your postcode in the correct format, for example SW1A 1AA",
     "not-exist": "The postcode you entered does not exist"
+  },
+  "region": {
+  	"invalid": "We were unable to match a region to your postcode"
   }
 }
