@@ -65,7 +65,7 @@ ConfirmController.prototype.saveValues = function saveValues(req, res, callback)
           category: 'Enquiry description',
           action: 'length',
           label: Math.ceil(data['enquiry-description'].length / 50) * 50
-        },
+        }
       ];
 
       if (data.sector) {
