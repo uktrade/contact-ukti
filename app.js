@@ -73,7 +73,17 @@ if (config.redis.url) {
 }
 
 client.on('error', function clientErrorHandler(e) {
+  logger.error('Unable to connect to redis');
+  logger.error(e);
   throw e;
+});
+
+client.on('connect', function() {
+  logger.info('connected to redis');
+});
+
+client.on('ready', function() {
+  logger.info('connection to redis is ready to use');
 });
 
 var redisStore = new RedisStore({

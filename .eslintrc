@@ -275,7 +275,7 @@ rules:
   # enforce newline at the end of file, with no multiple empty lines
   eol-last: 2
   # require function expressions to have a name
-  func-names: 2
+  func-names: 0
   # enforces use of function declarations or expressions
   func-style: 0
   # enforces spacing between keys and values in object literal properties
