@@ -80,10 +80,12 @@ var redisStore = new RedisStore({
   client: client,
   // config ttl defined in milliseconds
   ttl: config.session.ttl / 1000,
-  secret: config.session.secret
+  secret: config.session.secret,
+  logErrors: logger.error
 });
 
 app.use(require('cookie-parser')(config.session.secret));
+
 app.use(function secureCookies(req, res, next) {
   var cookie = res.cookie.bind(res);
   res.cookie = function cookieHandler(name, value, options) {
@@ -95,6 +97,7 @@ app.use(function secureCookies(req, res, next) {
   };
   next();
 });
+
 app.use(session({
   store: redisStore,
   proxy: (config.env === 'development' || config.env === 'ci') ? false : true,
@@ -145,5 +148,10 @@ app.use(raven.middleware.express.errorHandler(ravenClient));
 app.use(require('./errors/page-not-found'));
 app.use(require('./errors/'));
 
-app.listen(config.port, config.listenHost);
-logger.info('App listening on port', config.port);
+app.listen(config.port, config.listenHost, function appStarted(err) {
+  if (err) {
+    logger.error(err);
+  } else {
+    logger.info('App listening on port', config.port);
+  }
+});

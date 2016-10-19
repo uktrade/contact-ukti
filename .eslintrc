@@ -12,7 +12,7 @@ rules:
   # The following rules point out areas where you might have made mistakes.
 
   # disallow trailing commas in object literals
-  comma-dangle: 0
+  comma-dangle: 2
   # disallow assignment in conditional expressions
   no-cond-assign: 2
   # disallow use of console

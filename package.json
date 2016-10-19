@@ -37,7 +37,7 @@
     "coverage": "npm_config_coverage=true npm run test:unit",
     "quality": "plato --recurse --exclude 'node_modules|reports|test|public' --dir reports/plato ."
   },
-  "author": "UK Trade & Investment",
+  "author": "Department for International Trade",
   "dependencies": {
     "async": "^1.5.2",
     "basic-auth": "^1.0.3",
