@@ -62,43 +62,41 @@ app.use(require('./middleware/locals'));
 /*************************************/
 var client;
 
-logger.debug('create redis client');
 
-try {
-
-  if (config.redis.url) {
-    var redisURL = url.parse(config.redis.url);
-    /* eslint-disable camelcase */
-    client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
-    /* eslint-enable camelcase */
-    client.auth(redisURL.auth.split(':')[1]);
-  } else {
-    client = redis.createClient(config.redis.port, config.redis.host);
-  }
-
-  client.on('error', function clientErrorHandler(e) {
-    throw e;
-  });
-
-} catch (e) {
-
-  logger.warn('Error with redis connection:');
-  logger.error(e);
-  throw e;
+if (config.redis.url) {
+  var redisURL = url.parse(config.redis.url);
+  /* eslint-disable camelcase */
+  client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+  /* eslint-enable camelcase */
+  client.auth(redisURL.auth.split(':')[1]);
+} else {
+  client = redis.createClient(config.redis.port, config.redis.host);
 }
 
-logger.debug('redis client created');
+client.on('error', function clientErrorHandler(e) {
+  logger.error('Error to connecting to redis');
+  logger.error(e);
+  throw e;
+});
+
+client.on('connect', function() {
+  logger.info('connected to redis');
+});
+
+client.on('ready', function() {
+  logger.info('connection to redis is ready to use');
+});
 
 var redisStore = new RedisStore({
   client: client,
   // config ttl defined in milliseconds
   ttl: config.session.ttl / 1000,
-  secret: config.session.secret
+  secret: config.session.secret,
+  logErrors: logger.error
 });
 
-logger.debug('starting app...');
-
 app.use(require('cookie-parser')(config.session.secret));
+
 app.use(function secureCookies(req, res, next) {
   var cookie = res.cookie.bind(res);
   res.cookie = function cookieHandler(name, value, options) {
@@ -110,6 +108,7 @@ app.use(function secureCookies(req, res, next) {
   };
   next();
 });
+
 app.use(session({
   store: redisStore,
   proxy: (config.env === 'development' || config.env === 'ci') ? false : true,
@@ -160,5 +159,10 @@ app.use(raven.middleware.express.errorHandler(ravenClient));
 app.use(require('./errors/page-not-found'));
 app.use(require('./errors/'));
 
-app.listen(config.port, config.listenHost);
-logger.info('App listening on port', config.port);
+app.listen(config.port, config.listenHost, function appStarted(err) {
+  if (err) {
+    logger.error(err);
+  } else {
+    logger.info('App listening on port', config.port);
+  }
+});

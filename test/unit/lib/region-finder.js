@@ -67,24 +67,40 @@ describe('Regional Office', function() {
       return Q.all(regionPromiseAssertions(promise));
     });
 
-    it('returns a regional office if postcode is in Wales, Scotland or Northern Ireland', function() {
-      var postcode = 'sa54tg';
+    [
+      'East of England',
+      'East Midlands',
+      'London',
+      'North East',
+      'North West',
+      'South East',
+      'South West',
+      'West Midlands',
+      'Yorkshire and the Humber',
+      'Yorkshire and The Humber',
+      'Wales',
+      'Northern Ireland',
+      'Scotland'
+    ].forEach(function checkRegion(region, i) {
+      it('returns a regional office if postcode is in ' + region, function() {
+        var postcode = 'test-region' + i;
 
-      nock(config.postcodeApi)
-        .get('/' + postcode)
-        .reply(200, {
-          status: 200,
-          result: {
-            'region': null,
-            'european_electoral_region': 'Wales'
-          }
-        });
+        nock(config.postcodeApi)
+          .get('/' + postcode)
+          .reply(200, {
+            status: 200,
+            result: {
+              'region': null,
+              'european_electoral_region': region
+            }
+          });
 
-      var promise = regionFinder.getByPostcode(postcode);
-      return Q.all(regionPromiseAssertions(promise));
+        var promise = regionFinder.getByPostcode(postcode);
+        return Q.all(regionPromiseAssertions(promise));
+      });
     });
 
-    it('returns an error if the postcode is invalid', function() {
+    it('returns an error if the postcode is invalid and response status is 404', function() {
       var postcode = 'invalid';
 
       nock(config.postcodeApi)
@@ -98,7 +114,7 @@ describe('Regional Office', function() {
         .should.be.rejectedWith('Invalid postcode');
     });
 
-    it('returns an error if the postcode is invalid', function() {
+    it('returns an error if the postcode is invalid and response status is 200', function() {
       var postcode = 'invalid';
 
       nock(config.postcodeApi)
