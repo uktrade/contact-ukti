@@ -151,8 +151,8 @@
     }
   },
   "bank-referrer": {
-    "heading": "Bank referrer",
-    "legend": "Did your bank refer you to us for support?",
+    "heading": "Bank referral",
+    "legend": "Did a bank refer you to us for support?",
     "options": {
       "yes": { "label": "Yes" },
       "no": { "label": "No" }
