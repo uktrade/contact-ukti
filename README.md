@@ -4,6 +4,10 @@
 [![Dependency Status (david)](https://img.shields.io/david/uktrade/contact-ukti.svg?style=flat-square&label=dependencies%20%28David%29)](https://david-dm.org/uktrade/contact-ukti)
 [![devDependency Status](https://img.shields.io/david/dev/uktrade/contact-ukti.svg?style=flat-square&label=devDependencies%20%28David%29)](https://david-dm.org/uktrade/contact-ukti#info=devDependencies)
 
+## Dependencies
+
+- Redis
+
 ## Quick start
 Install the dependencies and build the project resources
 
@@ -11,7 +15,15 @@ Install the dependencies and build the project resources
 npm install
 ```
 
+You will need Redis running - if you don't have it installed locally you can run from a docker container:
+
+```bash
+docker run -d -p 6379:6379 redis
+```
+
 Initiate the server in development mode (Express is used to serve the static resources in development).
+
+To see some log messages set the log level with the env var LOG_LEVEL.
 
 ```bash
 npm run dev
@@ -107,6 +119,14 @@ npm run quality
 ```bash
 npm run maildev
 ```
+
+By default, in development, a stub transport will be used for emails. To sent to maildev you will need to create the env var SMTP_USER and set it to any value:
+
+```bash
+export SMTP_USER='test';
+```
+
+Now start the app and it will send emails via maildev.
 
 --------------------------------------------------------------------------------
 

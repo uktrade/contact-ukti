@@ -150,6 +150,24 @@
       }
     }
   },
+  "bank-referrer": {
+    "heading": "Bank referral",
+    "legend": "Did a bank refer you to us for support?",
+    "options": {
+      "yes": { "label": "Yes" },
+      "no": { "label": "No" }
+    }
+  },
+  "bank-referrer-name":{
+    "legend": "Please select your bank",
+    "options": {
+      "barclays": { "label": "Barclays" },
+      "hsbc": { "label": "HSBC" },
+      "lloyds": { "label": "Lloyds" },
+      "rbs": { "label": "RBS" },
+      "santander": { "label": "Santander" }
+    }
+  },
   "data-protection": {
     "title": "Data protection",
     "explanation": "Department for International Trade and its partners might use your details to send you relevant news and information.",

@@ -12,5 +12,6 @@ module.exports = _.extend(
   require('./org-type'),
   require('./org-name'),
   require('./annual-turnover'),
-  require('./no-employees')
+  require('./no-employees'),
+  require('./bank-referrer')
 );

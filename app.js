@@ -62,6 +62,7 @@ app.use(require('./middleware/locals'));
 /*************************************/
 var client;
 
+
 if (config.redis.url) {
   var redisURL = url.parse(config.redis.url);
   /* eslint-disable camelcase */
@@ -73,7 +74,7 @@ if (config.redis.url) {
 }
 
 client.on('error', function clientErrorHandler(e) {
-  logger.error('Unable to connect to redis');
+  logger.error('Error to connecting to redis');
   logger.error(e);
   throw e;
 });

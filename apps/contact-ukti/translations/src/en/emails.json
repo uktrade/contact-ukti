@@ -3,6 +3,13 @@
   "contact-ukti": {
     "header": "Your enquiry"
   },
+  "bank-referrer":{
+  	"header": "Bank refferal",
+  	"field-label": "Referred by a bank",
+  	"option-label": "Bank name",
+  	"yes": "Yes",
+    "no": "No"
+  },
   "data-protection": {
     "table-header": "Receiving information",
     "yes": "Yes",
