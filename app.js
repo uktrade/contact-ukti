@@ -155,9 +155,10 @@ app.get('/terms-and-conditions', function renderTerms(req, res) {
 });
 
 // errors
+app.use(require('./errors/known'));
 app.use(raven.middleware.express.errorHandler(ravenClient));
+app.use(require('./errors/unknown'));
 app.use(require('./errors/page-not-found'));
-app.use(require('./errors/'));
 
 app.listen(config.port, config.listenHost, function appStarted(err) {
   if (err) {
