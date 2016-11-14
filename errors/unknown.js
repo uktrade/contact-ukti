@@ -10,26 +10,15 @@ var logger = require('../lib/logger');
 /* eslint-disable no-unused-vars */
 module.exports = function errorHandler(err, req, res, next) {
   /* eslint-enable no-unused-vars */
-  var content = {};
-
-  if (err.code === 'SESSION_TIMEOUT') {
-    content.title = i18n.translate('errors.session.title');
-    content.message = i18n.translate('errors.session.message');
-  }
-
-  if (err.code === 'NO_COOKIES') {
-    err.status = 403;
-    content.title = i18n.translate('errors.cookies-required.title');
-    content.message = i18n.translate('errors.cookies-required.message');
-  }
+  var content = {
+    title: i18n.translate('errors.default.title'),
+    message: i18n.translate('errors.default.message')
+  };
 
   err.template = 'error';
-  content.title = content.title || i18n.translate('errors.default.title');
-  content.message = content.message || i18n.translate('errors.default.message');
-
-  res.statusCode = err.status || 500;
-
+  res.statusCode = 500;
   logger.error(err.message || err.error, err);
+
   res.render(err.template, {
     error: err,
     content: content,
