@@ -59,9 +59,10 @@ module.exports = {
       'inside-uk',
       'outside-uk',
       'uk-postcode',
+      'company-number'
     ],
     backLink: 'organisation-type',
-    next: '/company-details',
+    next: '/company-details'
   },
   '/company-details': {
     controller: require('./controllers/company-details'),
