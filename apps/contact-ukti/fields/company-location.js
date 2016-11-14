@@ -12,7 +12,7 @@ module.exports = {
       {
         value: 'yes',
         label: 'fields.inside-uk.options.yes.label',
-        toggle: 'postcode-group',
+        toggle: 'postcode-company-number-group'
       },
       {
         value: 'no',
@@ -41,4 +41,11 @@ module.exports = {
     },
     validate: ['required', 'postcode'],
   },
+  'company-number': {
+    dependent: {
+      field: 'inside-uk',
+      value: 'yes'
+    },
+    validate: ['required']
+  }
 };
