@@ -17,6 +17,25 @@ function getValue(req, key) {
   }
 }
 
+CompanyLocationController.prototype.validate = function(req, res, cb) {
+
+  var errors = null;
+  var key = 'company-number';
+  var companyNumber = req.form.values[key];
+  var valid = true;
+  var message = 'Company not found. Please check the number.';
+  var error;
+
+  if (!valid) {
+
+    error = new this.Error(key, {message: message}, req, res);
+    errors = {};
+    errors[key] = error;
+  }
+
+  cb(errors);
+};
+
 CompanyLocationController.prototype.validateField = function validateField(key, req) {
   var countryValue = getValue(req, 'outside-uk');
 

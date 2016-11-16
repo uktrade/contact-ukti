@@ -46,6 +46,6 @@ module.exports = {
       field: 'inside-uk',
       value: 'yes'
     },
-    validate: ['required']
+    validate: ['required', {type: 'exactlength', arguments: [8]}]
   }
 };

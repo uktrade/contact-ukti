@@ -8,6 +8,10 @@ module.exports = {
   trackingId: process.env.TRACKING_ID,
   feedbackEmail: process.env.FEEDBACK_EMAIL_ADDRESS,
   postcodeApi: process.env.POSTCODE_API || 'http://api.postcodes.io/postcodes',
+  companiesHouse: {
+    url: process.env.COMPANIES_HOUSE_URL || 'https://api.companieshouse.gov.uk',
+    key: process.env.COMPANIES_HOUSE_API
+  },
   auth: {
     use: process.env.USE_AUTH,
     user: process.env.AUTH_USER,
