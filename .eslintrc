@@ -365,7 +365,7 @@ rules:
     - always
   # require or disallow space before blocks
   space-before-blocks:
-    - 2
+    - 0
     # enforce them to be "always" used when possible, or "never" used
     - always
   # require or disallow spaces inside parentheses
