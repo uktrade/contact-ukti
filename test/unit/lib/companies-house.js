@@ -1,6 +1,5 @@
 'use strict';
 
-var nock = require('nock');
 var rewire = require('rewire');
 
 var config = require('../../../config');
@@ -138,7 +137,9 @@ describe('companiesHouse', function() {
 
       describe('When the API is available', function() {
 
-          var requestMock;
+        var requestMock;
+
+        describe('When the company number is valid', function() {
 
           beforeEach(function(){
           
@@ -148,28 +149,102 @@ describe('companiesHouse', function() {
             });
           });
 
-          describe('When the company number is valid', function() {
-            it('Should return as valid', function() {
+          it('Should return as valid', function(done) {
 
+            companiesHouse.getCompany(companyNumber, function(err, details){
+
+              requestMock.should.have.been.called;
+              should.not.exist(err);
+              should.exist(details);
+              done();
+            });
+          });
+        });
+
+        describe('When the company number is not valid', function() {
+
+          beforeEach(function(){
+        
+            requestMock = sinon.stub().yields(null, {statusCode: 404}, {
+              "errors": [
+                {
+                  "error": "company-profile-not-found",
+                  "type": "ch:service"
+                }
+              ]
+            });
+
+            companiesHouse.__set__({
+              request: requestMock
             });
           });
 
-          describe('When the company number is not valid', function() {
-            it('Should return as not valid', function() {
+          it('Should return an error with code 404', function(done) {
 
+            companiesHouse.getCompany('12345', function(err, details){
+
+              err.should.be.defined;
+              err.code.should.eql(404);
+              err.message.should.eql('Company not found');
+              should.not.exist(details);
+              done();
             });
           });
+        });
       });
 
       describe('When the API is not available', function() {
 
-        beforeEach(function(){
+        var requestMock;
+
+        describe( 'When then request errors', function(){
+
+          beforeEach(function(){
         
-        });
+            requestMock = sinon.stub().yields(new Error('Unknown'));
 
-        it('Should return as valid', function() {
+            companiesHouse.__set__({
+              request: requestMock
+            });
+          });
 
-        });
+          it('Should return as valid', function(done) {
+
+            companiesHouse.getCompany('12345', function(err, details){
+
+                err.should.be.defined;
+                err.code.should.eql(999);
+                err.message.should.eql('Unknown error');
+                should.not.exist(details);
+                done();
+              });
+          });
+        
+        } );
+
+        describe( 'When the API returns an error', function(){
+        
+          beforeEach(function(){
+        
+            requestMock = sinon.stub().yields(null, {statusCode: 500});
+
+            companiesHouse.__set__({
+              request: requestMock
+            });
+          });
+
+          it('Should return as valid', function(done) {
+
+            companiesHouse.getCompany('12345', function(err, details){
+
+                err.should.be.defined;
+                err.code.should.eql(998);
+                err.message.should.eql('Unknown response');
+                should.not.exist(details);
+                done();
+              });
+          });  
+        } );
       });
     });
   });
