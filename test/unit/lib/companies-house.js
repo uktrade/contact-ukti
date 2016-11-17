@@ -79,6 +79,7 @@ describe('companiesHouse', function() {
           it('Should call the API', function(done) {
 
             redisClientMock.get = sinon.stub();
+            redisClientMock.setex = sinon.stub();
 
             companiesHouse.getCompany(companyNumber, function(err, details){
 
@@ -110,20 +111,23 @@ describe('companiesHouse', function() {
               done();
             });
 
-            redisClientMock.get.yield(null, stubCompany);
+            redisClientMock.get.yield(null, JSON.stringify(stubCompany));
           });
         });
 
         describe('When there is a cache MISS', function() {
 
-          it('Should call the API', function(done) {
+          it('Should call the API and cache in redis', function(done) {
 
             redisClientMock.get = sinon.stub();
+            redisClientMock.setex = sinon.stub();
 
             companiesHouse.getCompany(companyNumber, function(err, details){
 
               redisClientMock.get.should.have.been.called;
               requestMock.should.have.been.called;
+              redisClientMock.setex.should.have.been.called;
+              redisClientMock.setex.args[0][1].should.be.a('string');
               should.not.exist(err);
               should.exist(details);
               details.should.eql(stubCompany);
@@ -142,14 +146,14 @@ describe('companiesHouse', function() {
         describe('When the company number is valid', function() {
 
           beforeEach(function(){
-          
+
             requestMock = sinon.stub().yields(null, {statusCode: 200}, stubCompany);
             companiesHouse.__set__({
               request: requestMock
             });
           });
 
-          it('Should return as valid', function(done) {
+          it('Should return the company details', function(done) {
 
             companiesHouse.getCompany(companyNumber, function(err, details){
 
@@ -164,7 +168,7 @@ describe('companiesHouse', function() {
         describe('When the company number is not valid', function() {
 
           beforeEach(function(){
-        
+
             requestMock = sinon.stub().yields(null, {statusCode: 404}, {
               "errors": [
                 {
@@ -208,7 +212,7 @@ describe('companiesHouse', function() {
             });
           });
 
-          it('Should return as valid', function(done) {
+          it('Should return an error', function(done) {
 
             companiesHouse.getCompany('12345', function(err, details){
 
@@ -222,7 +226,7 @@ describe('companiesHouse', function() {
         
         } );
 
-        describe( 'When the API returns an error', function(){
+        describe('When the API returns an error', function(){
         
           beforeEach(function(){
         
@@ -233,7 +237,7 @@ describe('companiesHouse', function() {
             });
           });
 
-          it('Should return as valid', function(done) {
+          it('Should return an error', function(done) {
 
             companiesHouse.getCompany('12345', function(err, details){
 
@@ -244,7 +248,31 @@ describe('companiesHouse', function() {
                 done();
               });
           });  
-        } );
+        });
+
+        describe('When the API returns too many requests', function(){
+
+          beforeEach(function(){
+
+            requestMock = sinon.stub().yields(null, {statusCode: 429});
+
+            companiesHouse.__set__({
+              request: requestMock
+            });
+          });
+
+          it('Should return an error', function(done) {
+
+            companiesHouse.getCompany('12345', function(err, details){
+
+                err.should.be.defined;
+                err.code.should.eql(429);
+                err.message.should.eql('Too many requests');
+                should.not.exist(details);
+                done();
+              });
+          });
+        });
       });
     });
   });
