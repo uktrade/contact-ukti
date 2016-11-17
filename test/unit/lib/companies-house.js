@@ -1,12 +1,12 @@
 'use strict';
+/* eslint no-underscore-dangle:0, handle-callback-err:0 */
 
 var rewire = require('rewire');
-
-var config = require('../../../config');
 
 describe('companiesHouse', function() {
 
   var companiesHouse;
+  var apiUrl = 'https://www.test.com';
 
   beforeEach(function() {
     companiesHouse = rewire('../../../lib/companies-house');
@@ -23,7 +23,7 @@ describe('companiesHouse', function() {
         companiesHouse.__set__({
           config: {
             companiesHouse: {
-              url: 'https://www.test.com'
+              url: apiUrl
             }
           }
         });
@@ -44,8 +44,9 @@ describe('companiesHouse', function() {
     describe('When the API key is defined', function() {
 
       var companyNumber = 12345678;
+      var companiesHouseTtl = (60 * 60 * 2);
+      var requestTimeout = 4000;
       var stubCompany = {name: 'test company', id: companyNumber};
-      var apiUrl = 'https://www.test.com';
 
       beforeEach(function(){
 
@@ -53,7 +54,9 @@ describe('companiesHouse', function() {
           config: {
             companiesHouse: {
               url: apiUrl,
-              key: 'abc123'
+              key: 'abc123',
+              ttl: companiesHouseTtl,
+              timeout: requestTimeout
             }
           }
         });
@@ -66,7 +69,7 @@ describe('companiesHouse', function() {
 
         beforeEach(function(){
 
-          requestMock = sinon.stub().yields(null, {statusCode: 200}, stubCompany);
+          requestMock = sinon.stub();
           companiesHouse.__set__({
             request: requestMock
           });
@@ -74,67 +77,120 @@ describe('companiesHouse', function() {
           companiesHouse.setRedisClient(redisClientMock);
         });
 
-        describe('When there is a redis error', function() {
+        describe('When the API response is 404', function(){
 
-          it('Should call the API', function(done) {
-
+          beforeEach(function(){
             redisClientMock.get = sinon.stub();
             redisClientMock.setex = sinon.stub();
+            requestMock.yields(null, {statusCode: 404});
+          });
 
-            companiesHouse.getCompany(companyNumber, function(err, details){
+          describe('When there is a cache MISS', function(){
 
-              redisClientMock.get.should.have.been.called;
-              requestMock.should.have.been.called;
-              should.not.exist(err);
-              should.exist(details);
-              details.should.eql(stubCompany);
-              done();
+            it('Should cache the response', function(done){
+
+              companiesHouse.getCompany('12345', function(){
+
+                redisClientMock.setex.should.have.been.called;
+                redisClientMock.setex.args[0][2].should.eql(JSON.stringify({statusCode: 404}));
+                done();
+              });
+
+              redisClientMock.get.yield(null, null);
             });
+          });
 
-            redisClientMock.get.yield(new Error('redis error'));
+          describe('When there is a cache HIT', function(){
+
+            it('Should return an Error', function(done){
+
+              companiesHouse.getCompany('12345', function(err, details){
+
+                should.exist(err);
+                err.code.should.eql(404);
+                should.not.exist(details);
+                done();
+              });
+
+              redisClientMock.get.yield(null, JSON.stringify({statusCode: 404}));
+            });
           });
         });
 
-        describe('When there is a cache HIT', function() {
+        describe('When the response is valid', function(){
 
-          it('Should return the cached data', function(done) {
+          beforeEach(function(){
 
-            redisClientMock.get = sinon.stub();
-
-            companiesHouse.getCompany(companyNumber, function(err, details){
-
-              redisClientMock.get.should.have.been.called;
-              requestMock.should.not.have.been.called;
-              should.not.exist(err);
-              should.exist(details);
-              details.should.eql(stubCompany);
-              done();
-            });
-
-            redisClientMock.get.yield(null, JSON.stringify(stubCompany));
+            requestMock.yields(null, {statusCode: 200}, stubCompany);
           });
-        });
 
-        describe('When there is a cache MISS', function() {
+          describe('When there is a redis error', function() {
 
-          it('Should call the API and cache in redis', function(done) {
+            it('Should call the API', function(done) {
 
-            redisClientMock.get = sinon.stub();
-            redisClientMock.setex = sinon.stub();
+              redisClientMock.get = sinon.stub();
+              redisClientMock.setex = sinon.stub();
 
-            companiesHouse.getCompany(companyNumber, function(err, details){
+              companiesHouse.getCompany(companyNumber, function(err, details){
 
-              redisClientMock.get.should.have.been.called;
-              requestMock.should.have.been.called;
-              redisClientMock.setex.should.have.been.called;
-              redisClientMock.setex.args[0][1].should.be.a('string');
-              should.not.exist(err);
-              should.exist(details);
-              details.should.eql(stubCompany);
-              done();
+                redisClientMock.get.should.have.been.called;
+                requestMock.should.have.been.called;
+                should.not.exist(err);
+                should.exist(details);
+                details.should.eql(stubCompany);
+                done();
+              });
+
+              redisClientMock.get.yield(new Error('redis error'));
+            });
+          });
+
+          describe('When there is a cache HIT', function() {
+
+            it('Should return the cached data', function(done) {
+
+              redisClientMock.get = sinon.stub();
+
+              companiesHouse.getCompany(companyNumber, function(err, details){
+
+                redisClientMock.get.should.have.been.called;
+                requestMock.should.not.have.been.called;
+                should.not.exist(err);
+                should.exist(details);
+                details.should.eql(stubCompany);
+                done();
+              });
+
+              redisClientMock.get.yield(null, JSON.stringify({responseCode: 200, data: stubCompany}));
+            });
+          });
+
+          describe('When there is a cache MISS', function() {
+
+            beforeEach(function(){
+
+              redisClientMock.get = sinon.stub();
+              redisClientMock.setex = sinon.stub();
             });
 
-            redisClientMock.get.yield(null, null);
+            it('Should call the API and cache in redis', function(done) {
+
+              companiesHouse.getCompany(companyNumber, function(err, details){
+
+                redisClientMock.get.should.have.been.called;
+                requestMock.should.have.been.called;
+                redisClientMock.setex.should.have.been.called;
+                redisClientMock.setex.args[0][1].should.eql(companiesHouseTtl);
+                redisClientMock.setex.args[0][2].should.be.a('string');
+                JSON.parse(redisClientMock.setex.args[0][2]).statusCode.should.eql(200);
+                should.not.exist(err);
+                should.exist(details);
+                details.should.eql(stubCompany);
+                done();
+              });
+
+              redisClientMock.get.yield(null, null);
+            });
           });
         });
       });
@@ -142,6 +198,29 @@ describe('companiesHouse', function() {
       describe('When the API is available', function() {
 
         var requestMock;
+
+        it('Should set the API key in the header', function(done){
+
+          requestMock = sinon.stub().yields(null, {statusCode: 200}, stubCompany);
+          companiesHouse.__set__({
+            request: requestMock
+          });
+
+          companiesHouse.getCompany(companyNumber, function(){
+
+            requestMock.should.have.been.called;
+            requestMock.args[0][0].should.eql({
+              url: (apiUrl + '/company/' + companyNumber),
+              headers: {
+                Authorization: 'Basic YWJjMTIzOg=='
+              },
+              timeout: requestTimeout,
+              json: true
+            });
+            done();
+          });
+
+        });
 
         describe('When the company number is valid', function() {
 
@@ -170,10 +249,10 @@ describe('companiesHouse', function() {
           beforeEach(function(){
 
             requestMock = sinon.stub().yields(null, {statusCode: 404}, {
-              "errors": [
+              errors: [
                 {
-                  "error": "company-profile-not-found",
-                  "type": "ch:service"
+                  error: 'company-profile-not-found',
+                  type: 'ch:service'
                 }
               ]
             });
@@ -201,10 +280,10 @@ describe('companiesHouse', function() {
 
         var requestMock;
 
-        describe( 'When then request errors', function(){
+        describe('When then request errors', function(){
 
           beforeEach(function(){
-        
+
             requestMock = sinon.stub().yields(new Error('Unknown'));
 
             companiesHouse.__set__({
@@ -223,13 +302,13 @@ describe('companiesHouse', function() {
                 done();
               });
           });
-        
-        } );
+
+        });
 
         describe('When the API returns an error', function(){
-        
+
           beforeEach(function(){
-        
+
             requestMock = sinon.stub().yields(null, {statusCode: 500});
 
             companiesHouse.__set__({
@@ -247,7 +326,7 @@ describe('companiesHouse', function() {
                 should.not.exist(details);
                 done();
               });
-          });  
+          });
         });
 
         describe('When the API returns too many requests', function(){

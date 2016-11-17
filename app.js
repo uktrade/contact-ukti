@@ -13,6 +13,8 @@ var session = require('express-session');
 var url = require('url');
 var redis = require('redis');
 var RedisStore = require('connect-redis-crypto')(session);
+var companiesHouse = require('./lib/companies-house');
+
 require('moment-business');
 
 // sentry error monitoring
@@ -85,6 +87,7 @@ client.on('connect', function() {
 
 client.on('ready', function() {
   logger.info('connection to redis is ready to use');
+  companiesHouse.setRedisClient(client);
 });
 
 var redisStore = new RedisStore({
