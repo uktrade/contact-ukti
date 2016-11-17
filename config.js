@@ -52,7 +52,7 @@ module.exports = {
   },
   // webdriverio
   webdriver: {
-    baseUrl: process.env.WDIO_BASEURL || 'http://localhost:8080'
+    baseUrl: process.env.WDIO_BASEURL || ('http://localhost:' + process.env.PORT)
   },
   // heroku releases
   release: process.env.HEROKU_RELEASE_VERSION || null
