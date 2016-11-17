@@ -35,7 +35,7 @@ function startSelenium() {
         version: '2.50.1',
         drivers: {
           chrome: {
-            version: '2.9'
+            version: '2.22'
           }
         },
         progressCb: function seleniumProgress(total, progress, chunk) {
@@ -51,12 +51,14 @@ function startSelenium() {
         }
       }, function seleniumInstall(installError) {
         if (installError) {
+          console.dir(installError);
           throw installError;
         }
 
         logger.info('Starting selenium');
         selenium.start(function seleniumStart(startError, child) {
           if (startError) {
+            console.log(startError);
             throw startError;
           }
 
