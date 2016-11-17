@@ -10,7 +10,9 @@ module.exports = {
   postcodeApi: process.env.POSTCODE_API || 'http://api.postcodes.io/postcodes',
   companiesHouse: {
     url: process.env.COMPANIES_HOUSE_URL || 'https://api.companieshouse.gov.uk',
-    key: process.env.COMPANIES_HOUSE_API
+    key: process.env.COMPANIES_HOUSE_KEY,
+    ttl: (process.env.COMPANIES_HOUSE_TTL || (60 * 60 * 1)),
+    timeout: (process.env.COMPANIES_HOUSE_TIMEOUT || 4000)
   },
   auth: {
     use: process.env.USE_AUTH,

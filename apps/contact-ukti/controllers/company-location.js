@@ -4,6 +4,7 @@ var util = require('util');
 var BaseController = require('hof').controllers.base;
 var analytics = require('../../../lib/analytics');
 var logger = require('../../../lib/logger');
+var companiesHouse = require('../../../lib/companies-house');
 
 var CompanyLocationController = function CompanyLocationController() {
   BaseController.apply(this, arguments);
@@ -21,19 +22,31 @@ CompanyLocationController.prototype.validate = function(req, res, cb) {
 
   var errors = null;
   var key = 'company-number';
-  var companyNumber = req.form.values[key];
-  var valid = true;
-  var message = 'Company not found. Please check the number.';
+  var companyNumber;
   var error;
 
-  if (!valid) {
+  function handleCompanyResponse(err) {
 
-    error = new this.Error(key, {message: message}, req, res);
-    errors = {};
-    errors[key] = error;
+    var message = 'Company not found. Please check the number.';
+
+    if (err && err.code === 404) {
+
+      errors = (errors || {});
+      error = new this.Error(key, {message: message}, req, res);
+      errors[key] = error;
+    }
+
+    cb(errors);
   }
 
-  cb(errors);
+  if (key in req.form.values) {
+
+    companyNumber = req.form.values[key];
+    companiesHouse.getCompany(companyNumber, handleCompanyResponse.bind(this));
+
+  } else {
+    cb(errors);
+  }
 };
 
 CompanyLocationController.prototype.validateField = function validateField(key, req) {
