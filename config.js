@@ -1,9 +1,11 @@
 'use strict';
 
+var port = (process.env.PORT || 8080);
+
 /* eslint no-process-env: 0*/
 module.exports = {
   env: process.env.NODE_ENV,
-  port: process.env.PORT || 8080,
+  port: port,
   listenHost: process.env.LISTEN_HOST || '0.0.0.0',
   trackingId: process.env.TRACKING_ID,
   feedbackEmail: process.env.FEEDBACK_EMAIL_ADDRESS,
@@ -52,7 +54,7 @@ module.exports = {
   },
   // webdriverio
   webdriver: {
-    baseUrl: process.env.WDIO_BASEURL || ('http://localhost:' + process.env.PORT)
+    baseUrl: process.env.WDIO_BASEURL || ('http://localhost:' + port)
   },
   // heroku releases
   release: process.env.HEROKU_RELEASE_VERSION || null
