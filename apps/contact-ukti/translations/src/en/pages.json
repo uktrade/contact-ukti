@@ -38,6 +38,7 @@
       "phone": "Phone number",
       "country": "Country",
       "uk-postcode": "UK Postcode",
+      "company-number": "Company number",
       "org-name": "Company name",
       "sector": "Industry",
       "org-type": "Description",
