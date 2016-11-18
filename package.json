@@ -100,7 +100,7 @@
     "proxyquire": "^1.7.4",
     "require-uncached": "1.0.3",
     "rewire": "2.5.2",
-    "selenium-standalone": "4.9.1",
+    "selenium-standalone": "5.8.0",
     "sinomocha": "^0.2.4",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",

@@ -32,10 +32,10 @@ function startSelenium() {
 
       logger.info('Installing selenium standalone');
       selenium.install({
-        version: '2.50.1',
+        version: '2.53.1',
         drivers: {
           chrome: {
-            version: '2.22'
+            version: '2.25'
           }
         },
         progressCb: function seleniumProgress(total, progress, chunk) {
