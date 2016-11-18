@@ -20,7 +20,14 @@ var screenshotPath = path.resolve(__dirname, 'errorshots');
 function startSelenium() {
   var deferred = Q.defer();
   var statusUrl = 'http://localhost:4444/wd/hub/status';
-
+  var drivers = {
+      chrome: {
+        version: '2.25'
+      },
+      firefox: {
+        version: '0.11.1'
+      }
+    };
 
   request(statusUrl, function checkSelenium(error) {
     if (!error) {
@@ -33,11 +40,7 @@ function startSelenium() {
       logger.info('Installing selenium standalone');
       selenium.install({
         version: '2.53.1',
-        drivers: {
-          chrome: {
-            version: '2.25'
-          }
-        },
+        drivers: drivers,
         progressCb: function seleniumProgress(total, progress, chunk) {
           if (!bar) {
             bar = new ProgressBar('selenium installation [:bar] :percent :etas', {
@@ -56,7 +59,9 @@ function startSelenium() {
         }
 
         logger.info('Starting selenium');
-        selenium.start(function seleniumStart(startError, child) {
+        selenium.start({
+          drivers: drivers
+        }, function seleniumStart(startError, child) {
           if (startError) {
             console.log(startError);
             throw startError;
