@@ -5,6 +5,7 @@ var _ = require('underscore');
 var async = require('async');
 var analytics = require('../../../lib/analytics');
 var referenceGenerator = require('../../../lib/reference-generator');
+var logger = require('../../../lib/logger');
 
 var BaseController = require('hof').controllers.base;
 var Model = require('../models/email');
@@ -46,6 +47,8 @@ ConfirmController.prototype.saveValues = function saveValues(req, res, callback)
         callback(err);
       }
 
+      logger.info('Email sent, logging events to GA');
+
       req.sessionModel.set('reference', service.reference);
 
       var isCustomReason = data['enquiry-reason-other'] !== undefined;
@@ -78,7 +81,15 @@ ConfirmController.prototype.saveValues = function saveValues(req, res, callback)
 
       async.each(events, function eachEvent(params, next) {
         analytics.event(params, next);
-      }, callback);
+      }, function(asyncErr) {
+
+        if (asyncErr) {
+          logger.error('Error logging events to GA');
+          logger.error(asyncErr);
+        }
+
+        callback();
+      });
     });
   });
 
