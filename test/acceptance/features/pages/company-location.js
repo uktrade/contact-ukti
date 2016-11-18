@@ -28,7 +28,7 @@ var Page = function Page(client) {
     },
     companyNumber: {
       selector: '#company-number',
-      value: '12345678'
+      value: 'FC032354'
     }
   };
   var $errors = '.validation-error';
