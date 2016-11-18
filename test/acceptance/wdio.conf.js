@@ -54,7 +54,7 @@ function startSelenium() {
         }
       }, function seleniumInstall(installError) {
         if (installError) {
-          console.dir(installError);
+          logger.error(installError);
           throw installError;
         }
 
@@ -63,7 +63,7 @@ function startSelenium() {
           drivers: drivers
         }, function seleniumStart(startError, child) {
           if (startError) {
-            console.log(startError);
+            logger.error(startError);
             throw startError;
           }
 
