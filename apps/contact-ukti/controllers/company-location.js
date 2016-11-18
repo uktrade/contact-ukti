@@ -22,7 +22,7 @@ CompanyLocationController.prototype.validate = function(req, res, cb) {
 
   var errors = null;
   var key = 'company-number';
-  var companyNumber;
+  var companyNumber = req.form.values[key];
   var error;
 
   function handleCompanyResponse(err) {
@@ -39,9 +39,8 @@ CompanyLocationController.prototype.validate = function(req, res, cb) {
     cb(errors);
   }
 
-  if (key in req.form.values) {
+  if (companyNumber) {
 
-    companyNumber = req.form.values[key];
     companiesHouse.getCompany(companyNumber, handleCompanyResponse.bind(this));
 
   } else {

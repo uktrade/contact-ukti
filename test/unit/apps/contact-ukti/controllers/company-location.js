@@ -99,58 +99,68 @@ describe('apps/contact-ukti/controllers/company-location', function() {
 
     describe('When there is a company number field', function(){
 
+      var req;
+      var res;
+
+      beforeEach(function(){
+        req = {
+          form: {
+            values: {
+              'company-number': '123456'
+            }
+          }
+        };
+        res = sinon.stub();
+      });
+
+      describe('When the field is empty', function(){
+
+        it('Should not return any errors', function(done){
+
+          req.form.values['company-number'] = '';
+
+          controller.validate(req, res, function(errors){
+            should.not.exist(errors);
+            getCompanyStub.should.not.have.been.called;
+            done();
+          });
+        });
+      });
+
       describe('When the number is valid', function(){
 
-        var req;
-        var res;
         var stubCompany;
 
         beforeEach(function(){
-          req = {
-            form: {
-              values: {
-                'company-number': '123456'
-              }
-            }
-          };
-          res = sinon.stub();
           stubCompany = {name: 'test', id: 12345};
           getCompanyStub.yields(null, stubCompany);
         });
 
-        it('Should not return any errors', function(){
+        it('Should not return any errors', function(done){
 
           controller.validate(req, res, function(errors){
             should.not.exist(errors);
+            done();
           });
         });
       });
 
       describe('When the number is not valid', function(){
 
-        var req;
-        var res;
-
         beforeEach(function(){
           var getErr;
-          req = {
-            form: {
-              values: {
-                'company-number': '123456'
-              }
-            }
-          };
-          res = sinon.stub();
+
           getErr = new Error('Company not found');
           getErr.code = 404;
           getCompanyStub.yields(getErr, null);
         });
 
-        it('Should return errors', function(){
+        it('Should return errors', function(done){
 
           controller.validate(req, res, function(errors){
             should.exist(errors);
             errors['company-number'].message.should.eql('Company not found. Please check the number.');
+            done();
           });
         });
       });
