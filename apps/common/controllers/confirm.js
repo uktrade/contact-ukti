@@ -5,6 +5,7 @@ var _ = require('underscore');
 var async = require('async');
 var analytics = require('../../../lib/analytics');
 var referenceGenerator = require('../../../lib/reference-generator');
+var zendesk = require('../../../services/zendesk');
 var logger = require('../../../lib/logger');
 
 var BaseController = require('hof').controllers.base;
@@ -53,11 +54,6 @@ function sendGaEvents(data) {
   });
 }
 
-function sendToZendesk(data, callback) {
-  console.log('Send data to zendesk:');
-  console.dir(data);
-  callback();
-}
 
 var ConfirmController = function ConfirmController() {
   BaseController.apply(this, arguments);
@@ -95,13 +91,13 @@ ConfirmController.prototype.saveValues = function saveValues(req, res, callback)
         callback(err);
       }
 
-      logger.info('Email sent, logging events to GA');
+      logger.info('Email sent');
 
       req.sessionModel.set('reference', service.reference);
 
-
       sendGaEvents(data);
-      sendToZendesk(data, callback);
+      zendesk.save(data, service.reference);
+      callback();
     });
   });
 
