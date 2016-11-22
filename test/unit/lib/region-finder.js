@@ -16,6 +16,42 @@ function regionPromiseAssertions(promise) {
     promise.should.eventually.have.property('email')
   ];
 }
+/* eslint quotes:0, camelcase:0 */
+var gy46jt_response = {
+  "result": {
+    "admin_county": null,
+    "admin_district": null,
+    "admin_ward": null,
+    "ccg": null,
+    "codes": {
+      "admin_county": "L99999999",
+      "admin_district": "L99999999",
+      "admin_ward": "L99999999",
+      "ccg": "L99999999",
+      "nuts": null,
+      "parish": "L99999999"
+    },
+    "country": "Channel Islands",
+    "eastings": null,
+    "european_electoral_region": null,
+    "incode": "6JT",
+    "latitude": null,
+    "longitude": null,
+    "lsoa": null,
+    "msoa": null,
+    "nhs_ha": "Guernsey (including Sark and Herm)",
+    "northings": null,
+    "nuts": null,
+    "outcode": "GY4",
+    "parish": null,
+    "parliamentary_constituency": null,
+    "postcode": "GY4 6JT",
+    "primary_care_trust": null,
+    "quality": 9,
+    "region": null
+  },
+  "status": 200
+};
 
 
 describe('Regional Office', function() {
@@ -126,6 +162,19 @@ describe('Regional Office', function() {
       return regionFinder
         .getByPostcode(postcode)
         .should.be.rejectedWith('Invalid postcode');
+    });
+
+    it('returns an error if the postcode doesnt have a region', function() {
+
+      var postcode = 'gy46jt';
+
+      nock(config.postcodeApi)
+        .get('/' + postcode)
+        .reply(200, gy46jt_response);
+
+      return regionFinder
+        .getByPostcode(postcode)
+        .should.be.rejectedWith('Invalid region');
     });
 
     it('returns an error if the POSTCODE API time out', function() {
