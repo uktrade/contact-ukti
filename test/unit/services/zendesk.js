@@ -7,6 +7,7 @@ var zendeskService;
 
 var apiUrl = 'https://www.test.com';
 var apiKey = 'acbdef123456';
+var hash = 'dG9vbHMrY29udGFjdC1kaXRAZGlnaXRhbC50cmFkZS5nb3YudWsvdG9rZW5wNXFxUGt1S3dyY2xDeU1aVUxnV3VQMk8xV2VVWmJTQzA1YmVzWktP';
 var config = {
   zendesk: {
     url: apiUrl,
@@ -28,7 +29,8 @@ describe('Zendesk Service', function(){
     zendeskService = rewire('../../../services/zendesk');
     zendeskService.__set__({
       config: config,
-      request: requestStub
+      request: requestStub,
+      hash: hash
     });
   });
 
@@ -56,7 +58,7 @@ describe('Zendesk Service', function(){
             method: 'POST',
             json: true,
             headers: {
-              Authorization: 'Basic dG9vbHMrY29udGFjdC1kaXRAZGlnaXRhbC50cmFkZS5nb3YudWsvdG9rZW5wNXFxUGt1S3dyY2xDeU1aVUxnV3VQMk8xV2VVWmJTQzA1YmVzWktP'
+              Authorization: 'Basic ' + hash
             },
             body: {
               ticket: {

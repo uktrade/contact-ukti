@@ -8,7 +8,7 @@ var logger = require('../lib/logger');
 
 var hash = new Buffer(config.zendesk.email + '/token' + config.zendesk.key).toString('base64');
 
-function createJson(data, reference){
+function createJson(data, reference) {
 
   delete data.steps;
   delete data['csrf-secret'];
@@ -36,7 +36,7 @@ module.exports = {
       headers: {
         Authorization: 'Basic ' + hash
       }
-    }, function(err){
+    }, function(err, response, body) {
 
       if (err) {
         // send to sentry
@@ -44,7 +44,8 @@ module.exports = {
 
       } else {
 
-        logger.info('Data sent to zendesk');
+        logger.info('Data sent to zendesk, status: ' + response.statusCode);
+        logger.debug(body);
       }
     });
   }

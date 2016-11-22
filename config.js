@@ -39,7 +39,7 @@ module.exports = {
     url: process.env.ZENDESK_URL || 'https://uktrade.zendesk.com/api/v2',
     key: process.env.ZENDESK_API_KEY,
     email: process.env.ZENDESK_EMAIL || 'tools+contact-dit@digital.trade.gov.uk',
-    tag: 'contact-dit'
+    tag: process.env.ZENDESK_TAG || 'contact-dit'
   },
   email: {
     caseworker: {
