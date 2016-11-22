@@ -95,7 +95,10 @@ ConfirmController.prototype.saveValues = function saveValues(req, res, callback)
         callback(err);
       }
 
+      logger.info('Email sent, logging events to GA');
+
       req.sessionModel.set('reference', service.reference);
+
 
       sendGaEvents(data);
       sendToZendesk(data, callback);

@@ -9,6 +9,7 @@ RUN chown app:app /app
 USER app
 
 COPY package.json /app/package.json
+COPY npm-shrinkwrap.json /app/npm-shrinkwrap.json
 COPY assets /app/assets
 RUN npm install
 COPY . /app
