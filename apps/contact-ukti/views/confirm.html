@@ -124,6 +124,13 @@
               <td><a href="company-location/edit#uk-postcode" class="button">{{#t}}buttons.change{{/t}}</a></td>
             </tr>
             {{/values.uk-postcode}}
+            {{#values.company-number}}
+            <tr>
+              <td>{{#t}}pages.confirm.table-headers.company-number{{/t}}</td>
+              <td>{{values.company-number}}</td>
+              <td><a href="company-location/edit#company-number" class="button">{{#t}}buttons.change{{/t}}</a></td>
+            </tr>
+            {{/values.company-number}}
           </tbody>
         </table>
         {{/values.country}}

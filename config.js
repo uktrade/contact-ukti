@@ -1,13 +1,21 @@
 'use strict';
 
+var port = (process.env.PORT || 8080);
+
 /* eslint no-process-env: 0*/
 module.exports = {
   env: process.env.NODE_ENV,
-  port: process.env.PORT || 8080,
+  port: port,
   listenHost: process.env.LISTEN_HOST || '0.0.0.0',
   trackingId: process.env.TRACKING_ID,
   feedbackEmail: process.env.FEEDBACK_EMAIL_ADDRESS,
   postcodeApi: process.env.POSTCODE_API || 'http://api.postcodes.io/postcodes',
+  companiesHouse: {
+    url: process.env.COMPANIES_HOUSE_URL || 'https://api.companieshouse.gov.uk',
+    key: process.env.COMPANIES_HOUSE_KEY,
+    ttl: (process.env.COMPANIES_HOUSE_TTL || (60 * 60 * 1)),
+    timeout: (process.env.COMPANIES_HOUSE_TIMEOUT || 4000)
+  },
   auth: {
     use: process.env.USE_AUTH,
     user: process.env.AUTH_USER,
@@ -46,7 +54,7 @@ module.exports = {
   },
   // webdriverio
   webdriver: {
-    baseUrl: process.env.WDIO_BASEURL || 'http://localhost:8080'
+    baseUrl: process.env.WDIO_BASEURL || ('http://localhost:' + port)
   },
   // heroku releases
   release: process.env.HEROKU_RELEASE_VERSION || null

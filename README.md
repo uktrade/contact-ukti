@@ -15,7 +15,7 @@ Install the dependencies and build the project resources
 npm install
 ```
 
-You will need Redis running - if you don't have it installed locally you can run from a docker container:
+[Redis](http://redis.io/topics/quickstart) is used for session handling by the application and will need to be installed and running prior to starting the app - if you don't have it installed locally you can run from a docker container:
 
 ```bash
 docker run -d -p 6379:6379 redis

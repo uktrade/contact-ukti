@@ -25,6 +25,10 @@ var Page = function Page(client) {
     postcode: {
       selector: '#uk-postcode',
       value: 'SW1A 1AA'
+    },
+    companyNumber: {
+      selector: '#company-number',
+      value: 'FC032354'
     }
   };
   var $errors = '.validation-error';
@@ -50,6 +54,7 @@ var Page = function Page(client) {
     return client
       .click(fields.insideUk.selector + '[value="' + fields.insideUk.value + '"]')
       .setValue(fields.postcode.selector, fields.postcode.value)
+      .setValue(fields.companyNumber.selector, fields.companyNumber.value)
       .submitForm($form);
   };
 

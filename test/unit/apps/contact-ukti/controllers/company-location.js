@@ -1,10 +1,17 @@
 'use strict';
 
-var CompanyLocationController = require('../../../../../apps/contact-ukti/controllers/company-location');
+/* eslint no-underscore-dangle:0 */
+
+var rewire = require('rewire');
+var CompanyLocationController;
 var BaseController = require('hof').controllers.base;
 var analytics = require('../../../../../lib/analytics');
 
 describe('apps/contact-ukti/controllers/company-location', function() {
+
+  beforeEach(function(){
+    CompanyLocationController = rewire('../../../../../apps/contact-ukti/controllers/company-location');
+  });
 
   describe('.saveValues()', function() {
 
@@ -49,7 +56,115 @@ describe('apps/contact-ukti/controllers/company-location', function() {
 
       BaseController.prototype.saveValues.should.have.been.called;
     });
+  });
 
+  describe('.validate', function(){
+
+    var controller;
+    var getCompanyStub;
+
+    beforeEach(function() {
+      analytics.event = sinon.stub();
+      controller = new CompanyLocationController({template: 'index'});
+      getCompanyStub = sinon.stub();
+      CompanyLocationController.__set__({
+        companiesHouse: {
+          getCompany: getCompanyStub
+        }
+      });
+    });
+
+    describe('When there is not a company number field', function(){
+
+      var req;
+      var res;
+
+      beforeEach(function(){
+        req = {
+          form: {
+            values: {}
+          }
+        };
+        res = sinon.stub();
+      });
+
+      it('Should not return any errors', function(){
+
+        controller.validate(req, res, function(errors){
+          should.not.exist(errors);
+          getCompanyStub.should.not.have.been.called;
+        });
+      });
+    });
+
+    describe('When there is a company number field', function(){
+
+      var req;
+      var res;
+
+      beforeEach(function(){
+        req = {
+          form: {
+            values: {
+              'company-number': '123456'
+            }
+          }
+        };
+        res = sinon.stub();
+      });
+
+      describe('When the field is empty', function(){
+
+        it('Should not return any errors', function(done){
+
+          req.form.values['company-number'] = '';
+
+          controller.validate(req, res, function(errors){
+            should.not.exist(errors);
+            getCompanyStub.should.not.have.been.called;
+            done();
+          });
+        });
+      });
+
+      describe('When the number is valid', function(){
+
+        var stubCompany;
+
+        beforeEach(function(){
+          stubCompany = {name: 'test', id: 12345};
+          getCompanyStub.yields(null, stubCompany);
+        });
+
+        it('Should not return any errors', function(done){
+
+          controller.validate(req, res, function(errors){
+            should.not.exist(errors);
+            done();
+          });
+        });
+      });
+
+      describe('When the number is not valid', function(){
+
+        beforeEach(function(){
+          var getErr;
+
+          getErr = new Error('Company not found');
+          getErr.code = 404;
+          getCompanyStub.yields(getErr, null);
+        });
+
+        it('Should return errors', function(done){
+
+          controller.validate(req, res, function(errors){
+            should.exist(errors);
+            errors['company-number'].message.should.eql('Company not found. Please check the number.');
+            done();
+          });
+        });
+      });
+    });
   });
 
   describe('.validateField()', function() {

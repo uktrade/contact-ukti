@@ -4,6 +4,7 @@ var util = require('util');
 var BaseController = require('hof').controllers.base;
 var analytics = require('../../../lib/analytics');
 var logger = require('../../../lib/logger');
+var companiesHouse = require('../../../lib/companies-house');
 
 var CompanyLocationController = function CompanyLocationController() {
   BaseController.apply(this, arguments);
@@ -16,6 +17,36 @@ function getValue(req, key) {
     return req.form.values[key];
   }
 }
+
+CompanyLocationController.prototype.validate = function(req, res, cb) {
+
+  var errors = null;
+  var key = 'company-number';
+  var companyNumber = req.form.values[key];
+  var error;
+
+  function handleCompanyResponse(err) {
+
+    var message = 'Company not found. Please check the number.';
+
+    if (err && err.code === 404) {
+
+      errors = (errors || {});
+      error = new this.Error(key, {message: message}, req, res);
+      errors[key] = error;
+    }
+
+    cb(errors);
+  }
+
+  if (companyNumber) {
+
+    companiesHouse.getCompany(companyNumber, handleCompanyResponse.bind(this));
+
+  } else {
+    cb(errors);
+  }
+};
 
 CompanyLocationController.prototype.validateField = function validateField(key, req) {
   var countryValue = getValue(req, 'outside-uk');

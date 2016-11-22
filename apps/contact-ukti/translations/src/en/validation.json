@@ -50,6 +50,10 @@
     "required": "Enter the industry you mainly operate in",
     "equal": "Select an industry from the list"
   },
+  "company-number":{
+    "required": "Enter a company number",
+    "exactlength": "Company number must be 8 characters"
+  },
   "bank-referrer-name": {
     "required": "Please choose the name of the bank that referred you"
   }

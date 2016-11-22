@@ -32,9 +32,15 @@
 
         {{#radio-group}}inside-uk{{/radio-group}}
 
-        <fieldset id="postcode-group" class="panel-indent {{#errors.uk-postcode}}validation-error{{/errors.uk-postcode}}">
-          {{#input-text}}uk-postcode{{/input-text}}
-        </fieldset>
+        <div id="postcode-company-number-group">
+          <fieldset id="postcode-group" class="panel-indent {{#errors.uk-postcode}}validation-error{{/errors.uk-postcode}}">
+            {{#input-text}}uk-postcode{{/input-text}}
+          </fieldset>
+
+          <fieldset id="company-number-group" class="panel-indent {{#errors.company-number}}validation-error{{/errors.company-number}}">
+            {{#input-text}}company-number{{/input-text}}
+          </fieldset>
+        </div>
 
         <fieldset id="country-group" class="panel-indent {{#errors.outside-uk}}validation-error{{/errors.outside-uk}}">
 

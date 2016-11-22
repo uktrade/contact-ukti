@@ -134,6 +134,10 @@
     "label": "Main operating industry",
     "hint": "Start typing in the box below to find the most relevant description"
   },
+  "company-number": {
+    "label": "Company number",
+    "hint": "Please enter the Companies House registration number"
+  },
   "exported-before": {
     "options": {
       "no": {
