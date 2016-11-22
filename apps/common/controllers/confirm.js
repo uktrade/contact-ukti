@@ -10,6 +10,55 @@ var logger = require('../../../lib/logger');
 var BaseController = require('hof').controllers.base;
 var Model = require('../models/email');
 
+function sendGaEvents(data) {
+
+  logger.info('logging events to GA');
+
+  var isCustomReason = data['enquiry-reason-other'] !== undefined;
+  var isCustomType = data['org-type-other'] !== undefined;
+  var events = [
+    {
+      category: 'Enquiry type',
+      action: isCustomReason ? 'custom' : 'standard',
+      label: isCustomReason ? data['enquiry-reason-other'] : data['enquiry-reason']
+    },
+    {
+      category: 'Organisation type',
+      action: isCustomType ? 'custom' : 'standard',
+      label: isCustomType ? data['org-type-other'] : data['org-type']
+    },
+    {
+      category: 'Enquiry description',
+      action: 'length',
+      label: Math.ceil(data['enquiry-description'].length / 50) * 50
+    }
+  ];
+
+  if (data.sector) {
+    events.push({
+      category: 'Sector',
+      action: 'standard',
+      label: data.sector
+    });
+  }
+
+  async.each(events, function eachEvent(params, next) {
+    analytics.event(params, next);
+  }, function(asyncErr) {
+
+    if (asyncErr) {
+      logger.error('Error logging events to GA');
+      logger.error(asyncErr);
+    }
+  });
+}
+
+function sendToZendesk(data, callback) {
+  console.log('Send data to zendesk:');
+  console.dir(data);
+  callback();
+}
+
 var ConfirmController = function ConfirmController() {
   BaseController.apply(this, arguments);
 };
@@ -41,55 +90,15 @@ ConfirmController.prototype.saveValues = function saveValues(req, res, callback)
       throw new Error('no service found');
     }
 
-
     model.save(function modelSaved(err) {
       if (err) {
         callback(err);
       }
 
-      logger.info('Email sent, logging events to GA');
-
       req.sessionModel.set('reference', service.reference);
 
-      var isCustomReason = data['enquiry-reason-other'] !== undefined;
-      var isCustomType = data['org-type-other'] !== undefined;
-      var events = [
-        {
-          category: 'Enquiry type',
-          action: isCustomReason ? 'custom' : 'standard',
-          label: isCustomReason ? data['enquiry-reason-other'] : data['enquiry-reason']
-        },
-        {
-          category: 'Organisation type',
-          action: isCustomType ? 'custom' : 'standard',
-          label: isCustomType ? data['org-type-other'] : data['org-type']
-        },
-        {
-          category: 'Enquiry description',
-          action: 'length',
-          label: Math.ceil(data['enquiry-description'].length / 50) * 50
-        }
-      ];
-
-      if (data.sector) {
-        events.push({
-          category: 'Sector',
-          action: 'standard',
-          label: data.sector
-        });
-      }
-
-      async.each(events, function eachEvent(params, next) {
-        analytics.event(params, next);
-      }, function(asyncErr) {
-
-        if (asyncErr) {
-          logger.error('Error logging events to GA');
-          logger.error(asyncErr);
-        }
-
-        callback();
-      });
+      sendGaEvents(data);
+      sendToZendesk(data, callback);
     });
   });
 
