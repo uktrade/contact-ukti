@@ -11,6 +11,7 @@ var ravenClient = new raven.Client(config.sentry.dsn);
 var hash = new Buffer(config.zendesk.email + '/token:' + config.zendesk.key).toString('base64');
 var ticketUrl = (config.zendesk.url + '/tickets.json');
 
+// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 function createJson(data, reference) {
 
   delete data.steps;
@@ -26,6 +27,7 @@ function createJson(data, reference) {
     }
   };
 }
+// jscs:enable requireCamelCaseOrUpperCaseIdentifiers
 
 module.exports = {
   save: function(data, reference) {
