@@ -35,6 +35,14 @@ module.exports = {
   sentry: {
     dsn: process.env.SENTRY_DSN
   },
+  zendesk: {
+    url: process.env.ZENDESK_URL || 'https://uktrade.zendesk.com/api/v2',
+    key: process.env.ZENDESK_API_KEY,
+    email: process.env.ZENDESK_EMAIL || 'tools+contact-dit@digital.trade.gov.uk',
+    tag: process.env.ZENDESK_TAG || 'contact-dit',
+    // contact-dit group
+    group: process.env.ZENDESK_GROUP || '26284869'
+  },
   email: {
     caseworker: {
       blindCopy: process.env.CASEWORKER_BCC_EMAIL,
