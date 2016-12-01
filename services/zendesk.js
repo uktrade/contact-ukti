@@ -65,6 +65,7 @@ module.exports = {
         // logger.debug(body);
 
         if (response.statusCode !== 200) {
+          logger.info('Response from Zendesk was not success, sending details to sentry');
           ravenClient.captureMessage('Unable to save in zendesk', {
             level: 'warning',
             extra: {
