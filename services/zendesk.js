@@ -62,7 +62,7 @@ module.exports = {
       } else {
 
         logger.info('Data sent to zendesk, status: ' + response.statusCode);
-        logger.debug(body);
+        // logger.debug(body);
 
         if (response.statusCode !== 200) {
           ravenClient.captureMessage('Unable to save in zendesk', {
