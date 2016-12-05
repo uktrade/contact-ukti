@@ -97,6 +97,16 @@ describe('Zendesk Service', function(){
         });
       });
 
+      describe('When the API returns Created', function(){
+
+        it('Should not log the error with sentry', function(){
+
+          requestStub.yields(null, {statusCode: 201}, null);
+          zendeskService.save(data, reference);
+          ravenStub.captureMessage.should.not.have.been.called;
+        });
+      });
+
       describe('When there is an error', function(){
 
         describe('When there is a request error', function(){
