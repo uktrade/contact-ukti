@@ -72,6 +72,7 @@ describe('Zendesk Service', function(){
                 external_id: reference,
                 group_id: config.zendesk.group,
                 tags: [config.zendesk.tag],
+                status: 'closed',
                 subject: 'Contact DIT ref: ' + reference,
                 comment: JSON.stringify({
                   'enquiry-reason': 'Export opportunities',
