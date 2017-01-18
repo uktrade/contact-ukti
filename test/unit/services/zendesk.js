@@ -35,6 +35,19 @@ describe('Zendesk Service', function(){
     'enquiry-description': 'dfghtjyu'
   };
 
+  var bankReferrerData = {
+    'steps': ['test'],
+    'csrf-secret': 'testing',
+    'enquiry-reason': 'Export opportunities',
+    fullname: 'cb',
+    'contact-preference': 'phone',
+    phone: '23456',
+    'org-type': 'Government department',
+    'enquiry-description': 'dfghtjyu',
+    'bank-referrer': 'Yes',
+    'bank-referrer-name': 'Test bank'
+  };
+
   beforeEach(function(){
 
     reference = Math.floor(Math.random() * 123456789);
@@ -56,7 +69,45 @@ describe('Zendesk Service', function(){
 
     describe('When the API is called', function(){
 
-      it('Should have the correct format', function(){
+      describe('When a bank referrer is specified', function(){
+
+        it('Should have the correct format', function(){
+
+          zendeskService.save(bankReferrerData, reference);
+
+          requestStub.firstCall.args[0].should.eql({
+            url: ticketUrl,
+            method: 'POST',
+            json: true,
+            headers: {
+              Authorization: 'Basic ' + hash
+            },
+            body: {
+              ticket: {
+                external_id: reference,
+                group_id: config.zendesk.group,
+                tags: [config.zendesk.tag],
+                status: 'closed',
+                subject: 'Contact DIT ref: ' + reference,
+                comment: JSON.stringify({
+                  'enquiry-reason': 'Export opportunities',
+                  fullname: 'cb',
+                  'contact-preference': 'phone',
+                  phone: '23456',
+                  'org-type': 'Government department',
+                  'enquiry-description': 'dfghtjyu',
+                  'bank-referrer': 'Yes',
+                  'bank-referrer-name': 'Test bank'
+                })
+              }
+            }
+          });
+        });
+      });
+
+      describe('When the bank referrer is not specified', function(){
+
+        it('Should add a bank referrer and have the correct format', function(){
 
           zendeskService.save(data, reference);
 
@@ -80,12 +131,15 @@ describe('Zendesk Service', function(){
                   'contact-preference': 'phone',
                   phone: '23456',
                   'org-type': 'Government department',
-                  'enquiry-description': 'dfghtjyu'
+                  'enquiry-description': 'dfghtjyu',
+                  'bank-referrer': 'No',
                 })
               }
             }
           });
+        });
       });
+
 
       describe('When the API returns OK', function(){
 

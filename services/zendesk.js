@@ -17,6 +17,8 @@ function createJson(data, reference) {
   delete data.steps;
   delete data['csrf-secret'];
 
+  data['bank-referrer'] = (data['bank-referrer'] || 'No');
+
   return {
     ticket: {
       external_id: reference,
