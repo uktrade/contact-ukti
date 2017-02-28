@@ -23,6 +23,9 @@ var emailFixture = {
 describe('Email service', function() {
 
   describe('#send()', function() {
+    // increase timeout for Travis as it failed
+    this.timeout(3500);
+
     it('should send an inward investment email', function(done) {
       emailService.send(emailFixture, function(error) {
         should.not.exist(error);
