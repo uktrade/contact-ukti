@@ -10,3 +10,4 @@ helpers.documentReady(toolkit.validation);
 require('./modules/typeahead');
 require('./modules/validation-tracking').init();
 require('./modules/outbound-tracking').init();
+require('./modules/select-radio-via-hash').init();

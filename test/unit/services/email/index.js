@@ -90,6 +90,13 @@ describe('Email service', function() {
       });
     });
 
+    it('should return Finance help email address', function() {
+      var reason = i18n.translate('fields.enquiry-reason.options.getting-finance-help.label');
+      emailService.getCaseworkerEmail(reason, null, function(e, result) {
+        result.should.equal(config.email.caseworker.financeHelp);
+      });
+    });
+
     it('should return export email address', function() {
       var postcode = 'sw1a1aa';
       var reason = i18n.translate('fields.enquiry-reason.options.export.label');
@@ -120,7 +127,7 @@ describe('Email service', function() {
       });
     });
 
-    it('hould return default email address if region lookup fails', function() {
+    it('should return default email address if region lookup fails', function() {
       var postcode = 'AAA';
       var reason = i18n.translate('fields.enquiry-reason.options.export.label');
       nock(config.postcodeApi)

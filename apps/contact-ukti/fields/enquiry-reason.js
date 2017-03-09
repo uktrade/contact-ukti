@@ -34,6 +34,10 @@ module.exports = {
         label: 'fields.enquiry-reason.options.events.label',
       },
       {
+        value: 'Getting finance help',
+        label: 'fields.enquiry-reason.options.getting-finance-help.label',
+      },
+      {
         value: 'Other',
         label: 'fields.enquiry-reason.options.other.label',
         toggle: 'enquiry-reason-other-toggle',

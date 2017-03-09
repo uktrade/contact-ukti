@@ -18,6 +18,13 @@ module.exports = {
           field: 'enquiry-reason',
           value: 'Exporting from the UK'
         }
+      },
+      {
+        target: '/previously-sold-overseas',
+        condition: {
+          field: 'enquiry-reason',
+          value: 'Getting finance help'
+        }
       }
     ]
   },
