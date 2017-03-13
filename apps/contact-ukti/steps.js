@@ -23,7 +23,7 @@ module.exports = {
         target: '/previously-sold-overseas',
         condition: {
           field: 'enquiry-reason',
-          value: 'Getting finance help'
+          value: 'Secure finance'
         }
       }
     ]
