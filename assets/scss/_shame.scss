@@ -56,3 +56,12 @@ hr {
     color: $border-colour;
   }
 }
+
+// override block-label widths
+#enquiry-reason-group {
+  .block-label {
+    @include media(tablet) {
+      width: 55%;
+    }
+  }
+}
