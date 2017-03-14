@@ -14,7 +14,7 @@ module.exports = {
         label: 'fields.enquiry-reason.options.export.label',
       },
       {
-        value: 'Secure finance',
+        value: 'Get finance',
         label: 'fields.enquiry-reason.options.getting-finance-help.label',
       },
       {
