@@ -14,6 +14,10 @@ module.exports = {
         label: 'fields.enquiry-reason.options.export.label',
       },
       {
+        value: 'Get finance',
+        label: 'fields.enquiry-reason.options.getting-finance-help.label',
+      },
+      {
         value: 'Investing overseas',
         label: 'fields.enquiry-reason.options.overseas-investment.label',
       },

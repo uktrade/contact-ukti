@@ -51,6 +51,7 @@ module.exports = {
       bizops: process.env.CASEWORKER_BIZOPS_EMAIL || 'bizoppteam@ukti.gov.uk',
       dso: process.env.CASEWORKER_DSO_EMAIL || 'uktidso.enquiry@ukti.gsi.gov.uk',
       events: process.env.CASEWORKER_EVENTS_EMAIL || 'enquiries@ukti.gsi.gov.uk',
+      financeHelp: process.env.CASEWORKER_FINANCE_EMAIL || 'customer.service@ukexportfinance.gov.uk'
     },
     port: process.env.EMAIL_PORT || 1025,
     host: process.env.EMAIL_HOST || 'localhost',

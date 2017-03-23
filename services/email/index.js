@@ -142,6 +142,10 @@ Emailer.prototype = {
       return callback(null, config.email.caseworker.events);
     }
 
+    if (reason === this.locali18n.translate('fields.enquiry-reason.options.getting-finance-help.label')) {
+      return callback(null, config.email.caseworker.financeHelp);
+    }
+
     if (
       (reason === this.locali18n.translate('fields.enquiry-reason.options.export.label') ||
         reason === this.locali18n.translate('fields.enquiry-reason.options.overseas-investment.label')) && postcode

@@ -19,6 +19,9 @@
       "events": {
         "label": "Events"
       },
+      "getting-finance-help": {
+        "label": "Get finance"
+      },
       "other": {
         "label": "Other"
       }
