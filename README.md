@@ -8,7 +8,10 @@
 
 - Redis
 
+N.B. This project depends on Node version 0.12.9.
+
 ## Quick start
+
 Install the dependencies and build the project resources
 
 ```bash
