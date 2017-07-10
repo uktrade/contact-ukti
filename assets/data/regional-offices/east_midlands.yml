@@ -1,8 +1,10 @@
 name: DIT East Midlands
 address:
-  street: Innovation House
-  city: Derby
-  region: East Midlands
-  postcode: DE21 7BF
+  street:
+    - The International Trade Centre
+    - 5 Merus Court
+    - Meridian Business Park
+  city: Leicester
+  postcode: LE19 1RJ
 email: info@tradeEM.co.uk
 phone: 0345 052 4001
