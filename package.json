@@ -8,7 +8,7 @@
     "url": "https://github.com/UKTradeInvestment/contact-ukti/"
   },
   "engines": {
-    "node": "4.6.2",
+    "node": "4.8.1",
     "npm": "2.15.11"
   },
   "license": "GPL-2.0",
@@ -68,6 +68,7 @@
     "randomstring": "^1.1.4",
     "raven": "^0.10.0",
     "redis": "^1.0.0",
+    "redis-sentinel": "^0.3.3",
     "request": "^2.69.0",
     "typeahead.js-browserify": "^1.0.7",
     "underscore": "^1.8.3",

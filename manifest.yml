@@ -1,0 +1,16 @@
+---
+applications:
+- name: contact-ukti
+  memory: 256M
+  command: npm start
+  env:
+    REDIS_USE_TLS: true
+    REDIS_HOST: redis-contact.ci.uktrade.io
+    REDIS_URL: redis-contact.ci.uktrade.io
+    REDIS_PORT: 26379
+    CASEWORKER_BCC_EMAIL: jayesh.patel@digital.trade.gov.uk
+    CASEWORKER_DEFAULT_EMAIL: jayesh.patel@digital.trade.gov.uk
+    CASEWORKER_INVESTMENT_EMAIL: jayesh.patel@digital.trade.gov.uk
+    CASEWORKER_BIZOPS_EMAIL: jayesh.patel@digital.trade.gov.uk
+    CASEWORKER_DSO_EMAIL: jayesh.patel@digital.trade.gov.uk
+    CASEWORKER_EVENTS_EMAIL: jayesh.patel@digital.trade.gov.uk
