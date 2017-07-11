@@ -12,7 +12,7 @@ var ravenClient = new raven.Client(config.sentry.dsn, {release: config.release})
 var session = require('express-session');
 var url = require('url');
 var redis = require('redis');
-var sentinel = require('redis-sentinel')
+var sentinel = require('redis-sentinel');
 var RedisStore = require('connect-redis-crypto')(session);
 var companiesHouse = require('./lib/companies-house');
 
@@ -66,15 +66,14 @@ var client;
 
 if (config.redis.url) {
   if (config.redis.useTls) {
-    //New if statement to check if use TLS is set, needed for UK Gov PaaS
+    // New if statement to check if use TLS is set, needed for UK Gov PaaS
     var opts = {};
     var masterName = config.redis.masterName;
     var endpoints = [
       {host: config.redis.host, port: config.redis.port}
     ];
     client = sentinel.createClient(endpoints, masterName, {role: 'master'}, opts);
-  }
-  else {
+  } else {
     var redisURL = url.parse(config.redis.url);
     /* eslint-disable camelcase */
     client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
