@@ -16,6 +16,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                echo 'Printing Env settings...'
+                echo sh(returnStdout: true, script: 'env')
                 sh 'cf target -o dit-services -s dev-exopps'
                 sh 'cf set-env contact-ukti ZENDESK_URL https://staging-uktrade.zendesk.com/api/v2'
                 sh 'cf push contact-ukti'
