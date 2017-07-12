@@ -2,7 +2,6 @@
 applications:
 - name: contact-ukti
   memory: 256M
-  command: npm start
   env:
     REDIS_USE_TLS: true
     REDIS_HOST: redis-contact.ci.uktrade.io
