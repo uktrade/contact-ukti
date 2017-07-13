@@ -86,7 +86,7 @@
     "eslint-plugin-mocha": "^1.1.0",
     "eslint-plugin-one-variable-per-var": "0.0.3",
     "globule": "^0.2.0",
-    "hof-transpiler": "2.0.2",
+    "hof-transpiler": "0.0.6",
     "istanbul": "^0.4.2",
     "jscs": "^2.9.0",
     "maildev": "^0.12.1",
