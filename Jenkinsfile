@@ -20,6 +20,7 @@ pipeline {
                 echo sh(returnStdout: true, script: 'env')
                 sh 'cf target -o dit-services -s dev-exopps'
                 sh 'cf set-env contact-ukti ZENDESK_URL https://staging-uktrade.zendesk.com/api/v2'
+                sh 'cf set-env contact-ukti CASEWORKER_BCC_EMAIL $CASEWORKER_BCC_EMAIL'
                 sh 'cf push contact-ukti'
                 sh 'sleep 10'
             }
