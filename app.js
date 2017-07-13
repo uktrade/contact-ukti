@@ -67,7 +67,7 @@ var client;
 if (config.redis.url) {
   if (config.redis.useTls) {
     // New if statement to check if use TLS is set, needed for UK Gov PaaS
-    var opts = {port: config.redis.redisPort};
+    var opts = {};
     var masterName = config.redis.masterName;
     var endpoints = [
       {host: config.redis.host, port: config.redis.port}
