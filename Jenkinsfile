@@ -22,13 +22,15 @@ pipeline {
 
                 echo $Environment
 
-                def test = "development"
+                script {
+                    def test = "development"
 
-                if (test.equals("development")) {
+                    if (test.equals("development")) {
                     
-                    git checkout $Environment
+                        git checkout $Environment
+                    }
                 }
-
+                
                 sh 'while read envs; do cf set-env contact-ukti $envs;done < contact-ukti-envs/paas_environment_file'
 
                 sh 'sleep 10'
