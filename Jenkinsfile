@@ -23,7 +23,7 @@ pipeline {
                 echo "${params.Environment}"
                 script {
                     if ("${params.Environment}" == 'staging') {
-                        sh "cd contact-ukti-envs; git branch -r"
+                        sh "git fetch origin; git branch -r"
                         sh "git checkout -b ${params.Environment} origin/${params.Environment}"
                     }
                 }
