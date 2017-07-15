@@ -23,9 +23,8 @@ pipeline {
                 echo "$Environment"
 
                 script {
-                    def test = "development"
 
-                    if (test.equals("development")) {
+                    if ($Environment.equals("development")) {
                     
                         git checkout development
                     }
