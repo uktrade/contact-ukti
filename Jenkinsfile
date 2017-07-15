@@ -27,7 +27,7 @@ pipeline {
 
                     if (test.equals("development")) {
                     
-                        git checkout $Environment
+                        git checkout development
                     }
                 }
 
