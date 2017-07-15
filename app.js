@@ -65,8 +65,8 @@ app.use(require('./middleware/locals'));
 var client;
 
 if (config.redis.url) {
-  if (config.redis.useTls) {
-    // New if statement to check if use TLS is set, needed for UK Gov PaaS
+  if (config.redis.useSentinel) {
+    // New if statement to check if use Sentinel is set, needed for UK Gov PaaS
     var opts = {};
     var masterName = config.redis.masterName;
     var endpoints = [

@@ -8,7 +8,7 @@
     "url": "https://github.com/UKTradeInvestment/contact-ukti/"
   },
   "engines": {
-    "node": "4.8.1",
+    "node": "4.8.4",
     "npm": "2.15.11"
   },
   "license": "GPL-2.0",

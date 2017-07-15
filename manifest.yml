@@ -1,9 +1,4 @@
 ---
 applications:
 - name: contact-ukti
-  memory: 512M
-  env:
-    REDIS_USE_TLS: true
-    REDIS_HOST: redis-contact.ci.uktrade.io
-    REDIS_URL: redis-contact.ci.uktrade.io
-    REDIS_PORT: 26379
+  memory: 256M
