@@ -20,11 +20,11 @@ pipeline {
                 sh 'cf target -o dit-services -s dev-exopps'
                 sh 'git clone git@gitlab.ci.uktrade.io:webops/contact-ukti-envs.git'
 
-                echo "$Environment"
+                echo "${params.Environment}"
 
                 script {
 
-                    if ($Environment.equals("development")) {
+                    if (${params.Environment}.equals("development")) {
                     
                         git checkout development
                     }
