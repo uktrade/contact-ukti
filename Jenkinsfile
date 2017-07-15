@@ -24,9 +24,9 @@ pipeline {
 
                 script {
 
-                    if (${params.Environment}.equals("development")) {
+                    if ("${params.Environment}".equals("development")) {
                     
-                        git checkout development
+                        git checkout "${params.Environment}"
                     }
                 }
 
