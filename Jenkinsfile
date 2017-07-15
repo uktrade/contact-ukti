@@ -14,22 +14,14 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps {
+            if ("${params.Environment}" == 'development') {
                 echo 'Deploying....'
 
                 sh 'cf target -o dit-services -s dev-exopps'
                 sh 'git clone git@gitlab.ci.uktrade.io:webops/contact-ukti-envs.git'
 
                 echo "${params.Environment}"
-                echo "${params.Environment.trim()}"
-
-                script {
-
-                    if ("development".equals("development")) {
-                    
-                        git checkout "${params.Environment}"
-                    }
-                }
+                sh 'git checkout "${params.Environment}"'
 
                 sh 'while read envs; do cf set-env contact-ukti $envs;done < contact-ukti-envs/paas_environment_file'
 
