@@ -21,10 +21,11 @@ pipeline {
                 sh 'git clone git@gitlab.ci.uktrade.io:webops/contact-ukti-envs.git'
 
                 echo "${params.Environment}"
+                echo "${params.Environment.trim()}"
 
                 script {
 
-                    if ("${params.Environment}".equals("development")) {
+                    if ("${params.Environment.trim()}".equals("development")) {
                     
                         git checkout "${params.Environment}"
                     }
