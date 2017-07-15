@@ -23,7 +23,7 @@ pipeline {
                 echo "${params.Environment}"
                 script {
                     if ("${params.Environment}" == 'development') {
-                        git checkout development
+                        sh "git checkout development"
                     }
                 }
 
