@@ -20,7 +20,7 @@ pipeline {
                 sh 'cf target -o dit-services -s dev-exopps'
                 sh 'git clone git@gitlab.ci.uktrade.io:webops/contact-ukti-envs.git'
 
-                echo $Environment
+                echo "$Environment"
 
                 script {
                     def test = "development"
@@ -30,7 +30,7 @@ pipeline {
                         git checkout $Environment
                     }
                 }
-                
+
                 sh 'while read envs; do cf set-env contact-ukti $envs;done < contact-ukti-envs/paas_environment_file'
 
                 sh 'sleep 10'
