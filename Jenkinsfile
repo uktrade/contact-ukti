@@ -20,8 +20,10 @@ pipeline {
                 sh 'cf target -o dit-services -s dev-exopps'
                 sh 'git clone git@gitlab.ci.uktrade.io:webops/contact-ukti-envs.git'
 
-                if (!$Environment.equals.("LIVE")) {
-                    echo $Environment
+                echo $Environment
+
+                if ($Environment.equals("development")) {
+                    
                     git checkout $Environment
                 }
 
