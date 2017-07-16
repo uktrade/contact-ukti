@@ -15,13 +15,13 @@ pipeline {
         }
         stage('Deploy') {
             steps  {
-                echo 'Deploying to....${params.environment}'
+                echo "Deploying to....${params.environment}"
 
-                sh 'cf target -o d${params.paas_org} -s ${params.environment}-${params.paas_space}'
+                sh 'cf target -o ${params.paas_org} -s ${params.environment}-${params.paas_space}'
                 sh 'git clone ${params.github_url}/${params.project_name}-envs.git'
 
                 script {
-                    if ('${params.environment}' != 'LIVE') {
+                    if ("${params.environment}" != 'LIVE') {
                         sh 'cd ${params.project_name}-envs; git checkout ${params.environment}'
                     }
                 }
