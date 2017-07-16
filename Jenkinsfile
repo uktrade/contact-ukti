@@ -21,8 +21,8 @@ pipeline {
                 sh 'git clone ${params.github_url}/${params.project_name}-envs.git'
 
                 script {
-                    if ('dev' == 'dev') {
-                        sh 'cd contact-ukti-envs; git checkout dev'
+                    if ("dev" == "dev") {
+                        sh "cd contact-ukti-envs; git checkout dev"
                     }
                 }
 
