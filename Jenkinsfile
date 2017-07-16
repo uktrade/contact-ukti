@@ -21,7 +21,7 @@ pipeline {
                 sh 'git clone ${params.github_url}/${params.project_name}-envs.git'
 
                 script {
-                    if ('dev' != 'LIVE') {
+                    if ('dev' == 'dev') {
                         sh 'cd contact-ukti-envs; git checkout dev'
                     }
                 }
