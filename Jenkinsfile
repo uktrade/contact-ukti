@@ -26,6 +26,7 @@ pipeline {
                     }
                 }
                 sh "while read env_var; do cf set-env ${params.project_name} \$env_var;done < ${params.project_name}-envs/Paasenvfile"
+                sh "cf push ${params.project_name}"
                 sh "sleep 10"
             }
         }
