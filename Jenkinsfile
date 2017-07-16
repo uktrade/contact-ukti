@@ -15,20 +15,18 @@ pipeline {
         }
         stage('Deploy') {
             steps  {
-                echo 'Deploying....'
+                echo 'Deploying to....${params.environment}'
 
-                sh 'cf target -o dit-services -s dev-exopps'
-                sh 'git clone git@gitlab.ci.uktrade.io:webops/contact-ukti-envs.git'
+                sh 'cf target -o d${params.paas_org} -s ${params.environment}-${params.paas_space}'
+                sh 'git clone ${params.github_url}/${params.project_name}-envs.git'
 
-                echo "${params.Environment}"
                 script {
-                    if ("${params.Environment}" != 'LIVE') {
-                        sh "cd contact-ukti-envs; git checkout ${params.Environment}"
+                    if ('${params.environment}' != 'LIVE') {
+                        sh 'cd ${params.project_name}-envs; git checkout ${params.environment}'
                     }
                 }
 
-                sh 'while read envs; do cf set-env contact-ukti $envs;done < contact-ukti-envs/paas_environment_file'
-
+                sh 'while read env_var; do cf set-env {params.project_name} $env_var;done < ${params.project_name}-envs/Paasenvfile'
                 sh 'sleep 10'
             }
         }
