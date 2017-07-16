@@ -22,7 +22,7 @@ pipeline {
 
                 script {
                     if ("${params.environment}" != 'LIVE') {
-                        sh 'cd ${params.project_name}-envs; git checkout ${params.environment}'
+                        sh "cd ${params.project_name}-envs; git checkout ${params.environment}"
                     }
                 }
 
