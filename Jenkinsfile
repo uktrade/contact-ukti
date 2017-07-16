@@ -24,7 +24,7 @@ pipeline {
                 script {
                     if ("${params.Environment}" == 'staging') {
                         sh "cd contact-ukti-envs"
-                        sh "git checkout -b ${params.Environment} origin/${params.Environment}"
+                        sh "git checkout ${params.Environment}"
                     }
                 }
 
