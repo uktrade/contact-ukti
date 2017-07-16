@@ -22,7 +22,7 @@ pipeline {
 
                 echo "${params.Environment}"
                 script {
-                    if ("${params.Environment}" == 'staging') {
+                    if ("${params.Environment}" != 'LIVE') {
                         sh "cd contact-ukti-envs; git checkout ${params.Environment}"
                     }
                 }
