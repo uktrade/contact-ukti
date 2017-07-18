@@ -24,6 +24,7 @@ pipeline {
                         sh "cf target -o ${params.paas_org} -s ${params.environment}-${params.paas_space}"
                     }
                 }
+                
                 sh "while read env_var; do cf set-env ${params.project_name} \$env_var;done < ${params.project_name}-envs/${params.environment}/Paasenvfile"
                 sh "cf push ${params.project_name}"
                 sh "sleep 10"
