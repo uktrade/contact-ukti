@@ -31,6 +31,7 @@ module.exports = {
     port: process.env.REDIS_PORT || 6379,
     host: process.env.REDIS_HOST || '127.0.0.1',
     useSentinel: process.env.REDIS_USE_SENTINEL === 'true',
+    redisAuth: process.env.REDIS_AUTH || 'CA2i919XGO2Mmb2PV92nxV0wPfDqi8oEcZznKjXfthQgj3V2aUCfbdewOsfVLgdA',
     masterName: process.env.MASTER_NAME || 'master'
   },
   logLevel: process.env.LOG_LEVEL || 'warn',

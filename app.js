@@ -67,7 +67,7 @@ var client;
 if (config.redis.url) {
   if (config.redis.useSentinel) {
     // New if statement to check if use Sentinel is set, needed for UK Gov PaaS
-    var opts = {};
+    var opts = {password: config.redis.redisAuth};
     var masterName = config.redis.masterName;
     var endpoints = [
       {host: config.redis.host, port: config.redis.port}
