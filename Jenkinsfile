@@ -15,6 +15,7 @@ pipeline {
         stage('Deploy') {
             steps  {
                 echo "Deploying to...${params.environment}"
+                sh "cf login -a api.cloud.service.gov.uk -u ${params.cf_username} -p ${params.cf_password}"
                 sh "git clone ${params.github_url}/${params.project_name}-envs.git"
                 
                 script {
