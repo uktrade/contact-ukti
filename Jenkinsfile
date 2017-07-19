@@ -20,13 +20,15 @@ pipeline {
                 script {
                     if ("${params.environment}" == "production") {
                         sh "cf target -o ${params.paas_org} -s ${params.paas_space}"
+                        env.app_name = "${params.project_name}"
                     } else {
                         sh "cf target -o ${params.paas_org} -s ${params.environment}-${params.paas_space}"
+                        env.app_name = "${params.project_name}.${params.environment}"
                     }
                 }
                 
                 sh "while read env_var; do cf set-env ${params.project_name} \$env_var;done < ${params.project_name}-envs/${params.environment}/Paasenvfile"
-                sh "cf push ${params.project_name}"
+                sh "cf push ${env.app_name}"
                 sh "sleep 10"
             }
         }
