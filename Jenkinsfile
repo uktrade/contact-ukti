@@ -24,7 +24,7 @@ pipeline {
                         env.app_name = "${params.project_name}"
                     } else {
                         sh "cf target -o ${params.paas_org} -s ${params.environment}-${params.paas_space}"
-                        env.app_name = "${params.project_name}.${params.environment}"
+                        env.app_name = "${params.project_name}-${params.environment}"
                     }
                 }
                 

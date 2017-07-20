@@ -2,3 +2,5 @@
 applications:
 - name: contact-ukti
   memory: 256M
+  buildpack: nodejs_buildpack
+  command: node .
