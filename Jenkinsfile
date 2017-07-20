@@ -28,8 +28,9 @@ pipeline {
                     }
                 }
                 
-                sh "while read env_var; do cf set-env ${env.app_name} \$env_var;done < ${params.project_name}-envs/${params.environment}/Paasenvfile"
                 sh "cf push ${env.app_name}"
+                sh "while read env_var; do cf set-env ${env.app_name} \$env_var;done < ${params.project_name}-envs/${params.environment}/Paasenvfile"
+                sh "cf restage ${env.app_name}"
                 sh "sleep 10"
             }
         }
