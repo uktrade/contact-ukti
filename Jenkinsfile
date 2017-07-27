@@ -9,10 +9,10 @@ pipeline {
                 
                 script {
                     if ("${params.environment}" == "production") {
-                            env.app_space = "${params.paas_space}"
+                            env.app_space = "${params.paas_team}"
                             env.app_name = "${params.project_name}"
                         } else {
-                            env.app_space = "${params.environment}-${params.paas_space}"
+                            env.app_space = "${params.environment}-${params.paas_team}"
                             env.app_name = "${params.project_name}-${params.environment}"
                         }
                 }
