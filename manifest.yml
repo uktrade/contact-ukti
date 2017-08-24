@@ -1,0 +1,8 @@
+---
+applications:
+- name: contact-ukti
+  memory: 256M
+  disk_quota: 2G
+  buildpack: nodejs_buildpack
+  command: node .
+  

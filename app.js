@@ -12,6 +12,7 @@ var ravenClient = new raven.Client(config.sentry.dsn, {release: config.release})
 var session = require('express-session');
 var url = require('url');
 var redis = require('redis');
+var sentinel = require('redis-sentinel');
 var RedisStore = require('connect-redis-crypto')(session);
 var companiesHouse = require('./lib/companies-house');
 
@@ -31,7 +32,6 @@ app.use(function forceSSL(req, res, next) {
   }
   next();
 });
-
 
 /*************************************/
 /* Basic Authentication              */
@@ -64,17 +64,25 @@ app.use(require('./middleware/locals'));
 /*************************************/
 var client;
 
-
 if (config.redis.url) {
-  var redisURL = url.parse(config.redis.url);
-  /* eslint-disable camelcase */
-  client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
-  /* eslint-enable camelcase */
-  client.auth(redisURL.auth.split(':')[1]);
+  if (config.redis.useSentinel) {
+    // New if statement to check if use Sentinel is set, needed for UK Gov PaaS
+    var opts = {password: config.redis.redisAuth};
+    var masterName = config.redis.masterName;
+    var endpoints = [
+      {host: config.redis.host, port: config.redis.port}
+    ];
+    client = sentinel.createClient(endpoints, masterName, {role: 'master'}, opts);
+  } else {
+    var redisURL = url.parse(config.redis.url);
+    /* eslint-disable camelcase */
+    client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+    /* eslint-enable camelcase */
+    client.auth(redisURL.auth.split(':')[1]);
+  }
 } else {
   client = redis.createClient(config.redis.port, config.redis.host);
 }
-
 client.on('error', function clientErrorHandler(e) {
   logger.error('Error to connecting to redis');
   logger.error(e);
