@@ -1,11 +1,16 @@
 name: Scottish Enterprise
 address:
+  street:
+    - Atrium Court
+    - 50 Waterloo Street
+  city: Glasgow
+  postcode: G2 6HQ
 email: international@scotent.co.uk
 phone:
   -
     type: (within Scotland)
-    value: 0800 019 1953
+    value: 0300 013 3542
   -
-    type: (international)
-    value: +44 141 228 2000
+    type: (from mobile phones or if outside Scotland)
+    value: 0141 247 1385
 website: www.scottish-enterprise.com/international
