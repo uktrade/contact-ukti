@@ -1,7 +1,8 @@
 #ide specific
 .idea/
 
-.env
+env/
+env-4.3/
 .bundle/
 node_modules
 public
