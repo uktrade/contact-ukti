@@ -1,1 +1,1 @@
-web: bin/start-stunnel npm start
+web: node .
