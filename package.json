@@ -47,7 +47,7 @@
     "churchill": "1.2.0",
     "connect-redis-crypto": "^3.3.3",
     "cookie-parser": "^1.4.3",
-    "debug": "^3.1.0",
+    "debug": "3.1.0",
     "email-templates": "^3.1.8",
     "express": "^4.16.2",
     "express-partial-templates": "^0.2.0",
