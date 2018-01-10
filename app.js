@@ -61,7 +61,14 @@ app.use(require('./middleware/locals'));
 /*************************************/
 /* Redis session storage             */
 /*************************************/
-var client = redis.createClient(config.redis.url, {tls: {rejectUnauthorized: false}});
+var client
+
+if (config.redis.use_tls) {
+  client = redis.createClient(config.redis.url, {tls: {rejectUnauthorized: false}});
+} else {
+  client = redis.createClient(config.redis.url);
+}
+
 client.on('error', function clientErrorHandler(e) {
   logger.error('Error to connecting to redis');
   logger.error(e);
