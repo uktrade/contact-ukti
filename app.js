@@ -10,7 +10,6 @@ var churchill = require('churchill');
 var raven = require('raven');
 var ravenClient = new raven.Client(config.sentry.dsn, {release: config.release});
 var session = require('express-session');
-var url = require('url');
 var redis = require('redis');
 var RedisStore = require('connect-redis-crypto')(session);
 var companiesHouse = require('./lib/companies-house');
@@ -61,9 +60,9 @@ app.use(require('./middleware/locals'));
 /*************************************/
 /* Redis session storage             */
 /*************************************/
-var client
+var client;
 
-if (config.redis.use_tls) {
+if (config.redis.useTLS) {
   client = redis.createClient(config.redis.url, {tls: {rejectUnauthorized: false}});
 } else {
   client = redis.createClient(config.redis.url);
