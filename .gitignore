@@ -17,3 +17,4 @@ apps/**/translations/en
 dump.rdb
 dev.Procfile
 test/acceptance/errorshots
+.venv/
