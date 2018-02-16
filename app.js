@@ -19,7 +19,7 @@ var companiesHouse = require('./lib/companies-house');
 require('moment-business');
 
 // sentry error monitoring
-app.use(raven.middleware.express.requestHandler(ravenClient));
+// app.use(raven.middleware.express.requestHandler(ravenClient));
 
 /*************************************/
 /* Force Https                       */
