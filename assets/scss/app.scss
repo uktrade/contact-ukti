@@ -1,6 +1,12 @@
 $path: '../img/';
 
-@import '../../node_modules/hmpo-frontend-toolkit/assets/stylesheets/app';
+//@import '../../node_modules/hmpo-frontend-toolkit/assets/stylesheets/app';
+@import '_palette.scss';
+@import '_organisation.scss';
+@import 'gov_uk_frontend_toolkit/typography';
+@import 'gov_uk_frontend_toolkit/colours';
+@import 'gov_uk_frontend_toolkit/grid_layout';
+@import 'gov_uk_frontend_toolkit/design-patterns/alpha-beta';
 
 @import 'design-patterns/alerts';
 @import 'design-patterns/autocomplete';

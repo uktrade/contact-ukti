@@ -2,7 +2,6 @@
 // Alerts
 // ==========================================================================
 
-
 %alert {
   border-left: 4px solid $error-colour;
   clear: both;
@@ -38,7 +37,7 @@
 
 
 .alert-header {
-  @extend .bold-medium;
+  @extend .bold-medium !optional;
   clear: both;
   margin-bottom: .5em;
   overflow: hidden;
@@ -47,7 +46,7 @@
 
 
 .alert-number {
-  @extend .bold-xlarge;
+  @extend .bold-xlarge !optional;
   float: left;
   margin-right: .41666667em; // 20px ÷ 48px font size
 }

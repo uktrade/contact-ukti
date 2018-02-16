@@ -36,7 +36,7 @@ module.exports = {
   },
   logLevel: process.env.LOG_LEVEL || 'warn',
   sentry: {
-    dsn: process.env.SENTRY_DSN
+    dsn: process.env.SENTRY_DSN || 'https://acce1fa4ad6040a2a285806e432d018b:bb7f5af7974f4fd9ad5292e7852afc1e@sentry.ci.uktrade.io/68'
   },
   zendesk: {
     url: process.env.ZENDESK_URL || 'https://uktrade.zendesk.com/api/v2',
