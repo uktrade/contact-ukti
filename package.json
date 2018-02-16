@@ -52,6 +52,7 @@
     "express": "^4.16.2",
     "express-partial-templates": "^0.2.0",
     "express-session": "^1.15.6",
+    "hmpo-frontend-toolkit": "^8.1.1",
     "hof": "^13.2.1",
     "hogan-express-strict": "^0.5.4",
     "hogan.js": "^3.0.2",
