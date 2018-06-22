@@ -1,5 +1,5 @@
 ---
 applications:
 - name: contact-ukti
-  buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git#v1.6.15
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git#v1.6.11
   command: node .
