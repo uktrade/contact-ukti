@@ -1,9 +1,5 @@
 ---
 applications:
 - name: contact-ukti
-  instances: 2
-  memory: 512M
-  disk_quota: 2G
-  buildpack: nodejs_buildpack
+  buildpack: https://github.com/cloudfoundry/nodejs_buildpack.git#v1.6.15
   command: node .
-  
